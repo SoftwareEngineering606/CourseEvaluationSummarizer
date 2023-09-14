@@ -5,12 +5,10 @@ Installation and Setup guide
 1. Install rbenv
 ```
 •	cd ~
-```
-```
 •	curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
 ```
 
-3. Verify ~/.zshrc file contains the path variables, if not add them:
+2. Verify ~/.zshrc file contains the path variables, if not add them:
    
 ```   
 export PATH=$HOME/.rbenv/bin:$PATH
@@ -38,22 +36,25 @@ rbenv() {
 source ~/.zshrc
 ```
    
-6. Install Ruby :
+4. Install Ruby :
 ```
 rbenv install 3.2.2
 ```
 
-9. Go to a ruby project folder
+5. Go to a ruby project folder
+
+```
 Set ruby 3.2.2 as the local default version: rbenv local 3.2.2
 Set 3.2.2 as the global version : rbenv global 3.2.2
 gem install bundler
+```
 
-10. Install the dependenices :
+6. Install the dependenices :
 ```
 bundle install
 ```
 
-12. Verify Ruby version :
+7. Verify Ruby version :
 ```
 ruby -v
 ```
@@ -71,7 +72,7 @@ In case you see any error related to libyaml not found, follow the below steps:
 •	Install: sudo make install
 ```
 
-9. Install Rails :
+8. Install Rails :
     
 •	To install Rails, use the gem install command:
 ```
@@ -83,7 +84,7 @@ gem install rails
 rails -v
 ```
 
-10. Install Node.js for handling Javascript in our Rails apps
+9. Install Node.js for handling Javascript in our Rails apps
 
 Download Node.js from https://nodejs.org/en/
 or from terminal using : 
@@ -91,14 +92,14 @@ or from terminal using :
 brew install node
 ```
 
-11. Install yarn ( JavaScript package manager)
+10. Install yarn ( JavaScript package manager)
 
 Run in terminal: 
 ```
 brew install yarn
 ```
 
-12. Install postgresql DB:
+11. Install postgresql DB:
 Heroku recommends using PostgreSQL during development as Sqlite3 is not compatible with Heroku.
 
 ```
@@ -112,12 +113,12 @@ We can also install postgreDB from terminal using brew:
 •	export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:${PATH}"
 •	source ~/.bash_profile 
 ```
-After istalling, verify the version:
+After the installation, verify the version:
 ```
 psql –version
 ```
 
-13. Create a new Rails App:
+12. Create a new Rails App:
 
 •	Go to a desired folder location and create a new app with the following command:
 ```
@@ -140,7 +141,7 @@ bin/rails db:create
 bundle install
 ```
 
-14. To create a basic Hello World Rails App:
+13. To create a basic Hello World Rails App:
 
 •	Create a welcome controller :
 ```
@@ -162,7 +163,7 @@ bundle install
  rails server
 ```
 
-Go to  http://localhost:3000 in a browser and we can see the “Hello! Welcome to Ruby on Rails” page.
+Go to  http://localhost:3000 in a browser and verify the “Hello! Welcome to Ruby on Rails” page.
 ---------------------------------------------------------------------------------------------------------------------------
 
 
