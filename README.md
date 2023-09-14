@@ -3,11 +3,12 @@
 Installation and Setup guide
 
 1. Install rbenv
-•	cd ~
-•	curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
+•	```cd ~```
+•	```curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash```
 
 2. Verify ~/.zshrc file contains the path variables, if not add them:
    
+```   
 export PATH=$HOME/.rbenv/bin:$PATH
 eval export PATH="/Users/vinodheniramasrinivasan/.rbenv/shims:${PATH}"
 export RBENV_SHELL=zsh
@@ -27,7 +28,7 @@ rbenv() {
     command rbenv "$command" "$@";;
   esac
 }
-
+```
 3. Reload zshrc : source ~/.zshrc
    
 4. Install Ruby : rbenv install 3.2.2
