@@ -1,6 +1,6 @@
-# CourseEvaluationSummarizerProject
+## CourseEvaluationSummarizerProject
 
-Installation and Setup guide
+#Installation and Setup guide
 
 1. Install rbenv
 ```
