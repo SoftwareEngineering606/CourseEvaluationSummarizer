@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #500000;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .upload_files {
+            flex: 1;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        .recents {
+            flex: 1;
+            background-color: #e0e0e0;
+            padding: 20px;
+        }
+
+        /* Media Query for Responsiveness */
+        @media screen and (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Course Evaluation Summarizer</h1>
+    </header>
+
+    <div class="main-content">
+        <div class="upload_files">
+            <h1>Upload Files</h1>
+        </div>
+
+        <div class="recents">
+            <h1>Recents</h1>
+        </div>
+    </div>
+
+</body>
+
+</html>
