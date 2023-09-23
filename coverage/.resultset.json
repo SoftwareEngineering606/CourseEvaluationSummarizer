@@ -1,0 +1,96 @@
+{
+  "Cucumber Features": {
+    "coverage": {
+      "/Users/vinodheniramasrinivasan/Documents/Rails/CourseEvaluationSummarizer/CourseEvaluationSummarizer/app/controllers/pages_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/Users/vinodheniramasrinivasan/Documents/Rails/CourseEvaluationSummarizer/CourseEvaluationSummarizer/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/Users/vinodheniramasrinivasan/Documents/Rails/CourseEvaluationSummarizer/CourseEvaluationSummarizer/app/helpers/application_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/Users/vinodheniramasrinivasan/Documents/Rails/CourseEvaluationSummarizer/CourseEvaluationSummarizer/app/helpers/pages_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/Users/vinodheniramasrinivasan/Documents/Rails/CourseEvaluationSummarizer/CourseEvaluationSummarizer/app/channels/application_cable/channel.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/vinodheniramasrinivasan/Documents/Rails/CourseEvaluationSummarizer/CourseEvaluationSummarizer/app/channels/application_cable/connection.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/vinodheniramasrinivasan/Documents/Rails/CourseEvaluationSummarizer/CourseEvaluationSummarizer/app/controllers/hello_controller.rb": {
+        "lines": [
+          0,
+          0,
+          null,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/vinodheniramasrinivasan/Documents/Rails/CourseEvaluationSummarizer/CourseEvaluationSummarizer/app/jobs/application_job.rb": {
+        "lines": [
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/vinodheniramasrinivasan/Documents/Rails/CourseEvaluationSummarizer/CourseEvaluationSummarizer/app/mailers/application_mailer.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/vinodheniramasrinivasan/Documents/Rails/CourseEvaluationSummarizer/CourseEvaluationSummarizer/app/models/application_record.rb": {
+        "lines": [
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      }
+    },
+    "timestamp": 1695500609
+  }
+}
