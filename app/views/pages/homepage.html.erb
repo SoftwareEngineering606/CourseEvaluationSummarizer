@@ -57,6 +57,24 @@
 
         <div class="recents">
             <h1>Recents</h1>
+            <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Download Link</th>
+            </tr>
+            </thead>
+            <tbody>
+                <% @recent_excel_sheets.each do |excel_sheet| %>
+                <tr>
+                    <td><%= excel_sheet.name %></td>
+                    <td><%= excel_sheet.description %></td>
+                    <td><%= link_to "Download", download_excel_sheet_path(excel_sheet) %></td>
+                </tr>
+            <% end %>
+            </tbody>
+            </table>
         </div>
     </div>
 
