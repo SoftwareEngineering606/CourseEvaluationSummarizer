@@ -166,6 +166,50 @@ bundle install
 Go to  http://localhost:3000 in a browser and verify the “Hello! Welcome to Ruby on Rails” page.
 ---------------------------------------------------------------------------------------------------------------------------
 
+Ruby on Rails App Deployment to Heroku with PostgreSQL
+This README provides step-by-step instructions on how to deploy a Ruby on Rails application to Heroku with a PostgreSQL database. Heroku is a popular platform-as-a-service (PaaS) that allows you to easily host and manage web applications in the cloud.
+
+Prerequisites
+Before you begin, make sure you have the following prerequisites installed:
+
+Ruby
+Rails
+Heroku CLI
+Git
+PostgreSQL
+
+
+Login to your Heroku account:
+
+```
+heroku login
+```
+
+Create a new Heroku app:
+
+```
+heroku create <app_name>
+```
+
+Add Heroku PostgreSQL add-on to your app:
+
+```
+heroku addons:create heroku-postgresql:hobby-dev
+```
+
+Push your code to Heroku:
+
+```
+git push heroku master
+```
+
+Migrate your database on Heroku:
+
+```
+heroku run rake db:migrate
+```
+
+
 
 
 
