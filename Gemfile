@@ -74,3 +74,8 @@ group :test do
 end
 
 gem 'simplecov', require: false, group: :test
+
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection", "~> 1.0"
