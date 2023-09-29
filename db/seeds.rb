@@ -5,20 +5,13 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-# seed.rb
-
-# Existing seed data...
-
-# Dummy ExcelSheet data
 excel_sheets = [
-  { name: "Dummy Sheet 1", description: "Description for Sheet 1", file_data: "..." },
-  { name: "Dummy Sheet 2", description: "Description for Sheet 2", file_data: "..." },
-  { name: "Dummy Sheet 3", description: "Description for Sheet 3", file_data: "..." }
-]
-
-# Seed ExcelSheet data
-excel_sheets.each do |excel_sheet_params|
-  ExcelSheet.create(excel_sheet_params)
-end
-
-puts "ExcelSheet data has been seeded."
+    { name: "Dummy Sheet 1", description: "Description for Sheet 1", file_data: "..." },
+    { name: "Dummy Sheet 2", description: "Description for Sheet 2", file_data: "..." },
+    { name: "Dummy Sheet 3", description: "Description for Sheet 3", file_data: "..." }
+  ]
+  
+  # Seed ExcelSheet data
+  excel_sheets.each do |excel_sheet_params|
+    ExcelSheet.create(excel_sheet_params)
+  end
