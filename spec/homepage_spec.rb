@@ -14,9 +14,16 @@ RSpec.feature 'Homepage' do
     # Test the upload_files section
     expect(page).to have_selector('.upload_files')
     expect(page).to have_css('.upload_files h1', text: 'Upload Files')
+    expect(page).to have_field('file')
+    expect(page).to have_button("Generate")
 
     # Test the recents section
     expect(page).to have_selector('.recents')
     expect(page).to have_css('.recents h1', text: 'Recents')
+
+    #Test Generate button and Download File page
+    click_button('Generate')
+    expect(page).to have_current_path(download_report_path)
+    expect(page).to have_button("Download")
   end
 end
