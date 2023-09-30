@@ -9,3 +9,21 @@ end
 Then("I should see the {string} section") do |section|
     expect(page).to have_selector('.main-content .'+section.downcase.gsub(' ', '_'), text: section)
 end
+
+Then("I should see the {string} field") do |chooseFile|
+    expect(page).to have_field('file')
+end
+
+Then("I should see the {string} button") do |btnLabel|
+    expect(page).to have_button(btnLabel)
+end
+
+And("I click on the {string} button") do |btnLabel|
+    click_button('Generate')
+end
+
+Then("I should be on the {string} page") do |pageName|
+    expect(page).to have_current_path(download_report_path)
+end
+
+
