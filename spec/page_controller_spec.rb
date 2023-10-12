@@ -12,6 +12,12 @@ RSpec.describe PagesController, type: :controller do
       expect(response).to redirect_to(download_report_path)
     end
   end
+  describe "GET #validate" do
+    it "redirects to download report path" do
+      get :validate
+      expect(response).to redirect_to(download_report_path)
+    end
+  end
 end
 
 RSpec.describe PagesController, type: :controller do

@@ -173,20 +173,20 @@
       },
       "/media/sf_606/CourseEvaluationSummarizerProject/app/channels/application_cable/channel.rb": {
         "lines": [
-          0,
-          0,
-          0,
-          0
+          null,
+          null,
+          null,
+          null
         ],
         "branches": {
         }
       },
       "/media/sf_606/CourseEvaluationSummarizerProject/app/channels/application_cable/connection.rb": {
         "lines": [
-          0,
-          0,
-          0,
-          0
+          null,
+          null,
+          null,
+          null
         ],
         "branches": {
         }
@@ -256,29 +256,29 @@
       },
       "/media/sf_606/CourseEvaluationSummarizerProject/app/jobs/application_job.rb": {
         "lines": [
-          0,
           null,
           null,
           null,
           null,
           null,
-          0
+          null,
+          null
         ],
         "branches": {
         }
       },
       "/media/sf_606/CourseEvaluationSummarizerProject/app/mailers/application_mailer.rb": {
         "lines": [
-          0,
-          0,
-          0,
-          0
+          null,
+          null,
+          null,
+          null
         ],
         "branches": {
         }
       }
     },
-    "timestamp": 1697146046
+    "timestamp": 1697147701
   },
   "RSpec": {
     "coverage": {
@@ -310,7 +310,7 @@
           1,
           null,
           1,
-          0,
+          1,
           null,
           null,
           1,
@@ -537,13 +537,13 @@
       },
       "/media/sf_606/CourseEvaluationSummarizerProject/app/jobs/application_job.rb": {
         "lines": [
-          0,
           null,
           null,
           null,
           null,
           null,
-          0
+          null,
+          null
         ],
         "branches": {
         }
@@ -559,6 +559,6 @@
         }
       }
     },
-    "timestamp": 1697146673
+    "timestamp": 1697147876
   }
 }
