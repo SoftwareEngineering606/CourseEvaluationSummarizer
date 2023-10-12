@@ -131,6 +131,9 @@ GEM
     ffi (1.15.5)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.2.1)
@@ -161,6 +164,7 @@ GEM
     minitest (5.20.0)
     msgpack (1.7.2)
     multi_test (1.1.0)
+    multi_xml (0.6.0)
     net-imap (0.3.7)
       date
       net-protocol
@@ -171,10 +175,13 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.9)
+    nokogiri (1.15.4-arm64-darwin)
+      racc (~> 1.4)
     nokogiri (1.15.4-x64-mingw-ucrt)
       racc (~> 1.4)
     nokogiri (1.15.4-x86_64-linux)
       racc (~> 1.4)
+    openai (0.3.0)
     pg (1.5.4)
     pg (1.5.4-x64-mingw-ucrt)
     psych (5.1.0)
@@ -286,6 +293,7 @@ GEM
     zeitwerk (2.6.11)
 
 PLATFORMS
+  arm64-darwin-22
   x64-mingw-ucrt
   x86_64-linux
 
@@ -295,8 +303,10 @@ DEPENDENCIES
   cucumber-rails
   database_cleaner
   debug
+  httparty
   importmap-rails
   jbuilder
+  openai
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.8)

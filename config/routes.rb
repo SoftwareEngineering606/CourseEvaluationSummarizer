@@ -12,4 +12,6 @@ get "/download_report", to: "pages#download_report", as: "download_report"
 get "/homepage", to: "pages#new", as: "homepage"
 post "/homepage", to: "pages#validate"
 
+get '/openai', to: 'openai#index'
+
 end
