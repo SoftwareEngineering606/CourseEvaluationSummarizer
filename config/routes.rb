@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  #The routes for future use
+  # resources :excel_sheets
+  # get 'excel_sheets/index'
+  # get 'excel_sheets/show'
+  # get 'excel_sheets/new'
+  # get 'excel_sheets/edit'
+  # get 'excel_sheets/create'
+  # get 'excel_sheets/update'
+  # get 'excel_sheets/destroy'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
