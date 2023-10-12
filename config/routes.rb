@@ -20,7 +20,8 @@ get 'download_excel_sheet', to: 'pages#download_excel_sheet', as: 'download_exce
 #root "hello#index"
   get "/download_report", to: "pages#download_report", as: "download_report"
 get "/homepage", to: "pages#new", as: "homepage"
-  #post "/homepage", to: "pages#validate"
+  post "/download_report", to: "pages#validate"
+  # get 'download_report', to: 'report#download'
 
 
 end
