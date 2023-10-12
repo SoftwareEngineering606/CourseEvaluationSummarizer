@@ -54,9 +54,21 @@
     <div class="upload_files">
     <h1>Download File</h1>
     <p>Click the button below to download a file:</p>
+
+      <style>
+          .btn {
+              background-color: #C0C0C0; /* Background color */
+              color: #000; /* Text color */
+              padding: 5px 10px; /* Padding inside the button */
+              border: none; /* No border */
+              border-radius: 5px; /* Rounded corners */
+
+          }
+      </style>
   
     <%= form_tag download_report_path, method: :get do %>
-      <button type="submit">Download</button>
+      <!--<button type="submit">Download</button>-->
+        <%= link_to 'Download Excel', '/download_excel', class: 'btn' %>
     <% end %>
     </div>
     </div>
