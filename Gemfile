@@ -74,3 +74,7 @@ group :test do
 end
 
 gem 'simplecov', require: false, group: :test
+
+gem "rubyXL"
+
+gem 'rails-controller-testing'
