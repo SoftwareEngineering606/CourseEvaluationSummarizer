@@ -58,8 +58,19 @@
               <label for="file">Choose a file to upload:</label>
               <input type="file" id="file" name="file">
             </div>
-            </br>
-            <input type="submit" value="Generate">
+            <br>
+           <!-- <input type="submit" value="Generate">-->
+              <style>
+              .btn {
+              background-color: #C0C0C0; /* Background color */
+              color: #000; /* Text color */
+              padding: 5px 10px; /* Padding inside the button */
+              border: none; /* No border */
+              border-radius: 5px; /* Rounded corners */
+
+              }
+              </style>
+              <%= link_to "Generate", generate_excel_path, class: "btn" %>
           </form>
         </div>
 
