@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 root "pages#homepage"
+get "excel_sheets/new", to: "excel_sheets#new", as: "excel_sheets_new"
+post 'excel_sheets/create', to: 'excel_sheets#create', as: "excel_sheets_create"
 match '/excels/sheet/generate', to: 'pages#generate', via: :get,
         as: 'generate_excel'
   get '/download_excel', to: 'pages#download', as: 'download_excel'
