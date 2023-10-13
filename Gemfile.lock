@@ -131,6 +131,9 @@ GEM
     ffi (1.15.5)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.2.1)
@@ -161,6 +164,7 @@ GEM
     minitest (5.20.0)
     msgpack (1.7.2)
     multi_test (1.1.0)
+    multi_xml (0.6.0)
     net-imap (0.3.7)
       date
       net-protocol
@@ -305,6 +309,7 @@ DEPENDENCIES
   cucumber-rails
   database_cleaner
   debug
+  httparty
   importmap-rails
   jbuilder
   pg (~> 1.1)

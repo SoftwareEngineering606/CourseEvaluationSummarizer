@@ -282,25 +282,42 @@
   },
   "RSpec": {
     "coverage": {
-      "/media/sf_606/CourseEvaluationSummarizerProject/app/helpers/application_helper.rb": {
+      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/Test/CourseEvaluationSummarizer/app/helpers/application_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/media/sf_606/CourseEvaluationSummarizerProject/app/helpers/excel_sheets_helper.rb": {
+      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/Test/CourseEvaluationSummarizer/app/helpers/excel_sheets_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/media/sf_606/CourseEvaluationSummarizerProject/app/helpers/pages_helper.rb": {
+      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/Test/CourseEvaluationSummarizer/app/helpers/pages_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/media/sf_606/CourseEvaluationSummarizerProject/app/controllers/pages_controller.rb": {
+      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/Test/CourseEvaluationSummarizer/app/controllers/chatgpt_controller.rb": {
+        "lines": [
+          1,
+          1,
+          2,
+          0,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/Test/CourseEvaluationSummarizer/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/Test/CourseEvaluationSummarizer/app/controllers/pages_controller.rb": {
         "lines": [
           1,
           1,
@@ -433,26 +450,20 @@
           null
         ]
       },
-      "/media/sf_606/CourseEvaluationSummarizerProject/app/controllers/application_controller.rb": {
+      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/Test/CourseEvaluationSummarizer/app/models/excel_sheet.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/media/sf_606/CourseEvaluationSummarizerProject/app/models/excel_sheet.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/media/sf_606/CourseEvaluationSummarizerProject/app/models/application_record.rb": {
+      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/Test/CourseEvaluationSummarizer/app/models/application_record.rb": {
         "lines": [
           1,
           1,
           null
         ]
       },
-      "/media/sf_606/CourseEvaluationSummarizerProject/app/channels/application_cable/channel.rb": {
+      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/Test/CourseEvaluationSummarizer/app/channels/application_cable/channel.rb": {
         "lines": [
           null,
           null,
@@ -462,7 +473,7 @@
         "branches": {
         }
       },
-      "/media/sf_606/CourseEvaluationSummarizerProject/app/channels/application_cable/connection.rb": {
+      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/Test/CourseEvaluationSummarizer/app/channels/application_cable/connection.rb": {
         "lines": [
           null,
           null,
@@ -472,7 +483,7 @@
         "branches": {
         }
       },
-      "/media/sf_606/CourseEvaluationSummarizerProject/app/controllers/excel_sheets_controller.rb": {
+      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/Test/CourseEvaluationSummarizer/app/controllers/excel_sheets_controller.rb": {
         "lines": [
           null,
           null,
@@ -524,19 +535,6 @@
           null,
           null,
           null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "branches": {
-        }
-      },
-      "/media/sf_606/CourseEvaluationSummarizerProject/app/jobs/application_job.rb": {
-        "lines": [
           null,
           null,
           null,
@@ -548,17 +546,62 @@
         "branches": {
         }
       },
-      "/media/sf_606/CourseEvaluationSummarizerProject/app/mailers/application_mailer.rb": {
+      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/Test/CourseEvaluationSummarizer/app/jobs/application_job.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "branches": {
+        }
+      },
+      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/Test/CourseEvaluationSummarizer/app/mailers/application_mailer.rb": {
         "lines": [
           null,
           null,
           null,
           null
+        ],
+        "branches": {
+        }
+      },
+      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/Test/CourseEvaluationSummarizer/app/services/chatgpt_service.rb": {
+        "lines": [
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
         ],
         "branches": {
         }
       }
     },
-    "timestamp": 1697147876
+    "timestamp": 1697216060
   }
 }

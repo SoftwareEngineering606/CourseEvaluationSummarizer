@@ -25,5 +25,5 @@ get "/homepage", to: "pages#new", as: "homepage"
   post "/download_report", to: "pages#validate"
   # get 'download_report', to: 'report#download'
 
-
+get '/chatgpt', to: 'chatgpt#index'
 end
