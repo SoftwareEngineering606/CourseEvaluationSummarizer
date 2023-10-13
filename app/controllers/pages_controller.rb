@@ -11,6 +11,7 @@ class PagesController < ApplicationController
 
   def generate
 
+    puts @excel_sheet
     workbook = RubyXL::Parser.parse('app/assets/images/SampleExcel.xlsx')
     worksheet = workbook[0]
     category_column_index = 22
