@@ -12,12 +12,13 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  get "/login", to: "pages#login"
 root "pages#homepage"
 match '/excels/sheet/generate', to: 'pages#generate', via: :get,
         as: 'generate_excel'
   get '/download_excel', to: 'pages#download', as: 'download_excel'
   
-  root "pages#home"
+#  root "pages#home"
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',
