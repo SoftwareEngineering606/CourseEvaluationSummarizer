@@ -21,7 +21,7 @@ RSpec.describe PagesController, type: :controller do
 end
 
 RSpec.describe PagesController, type: :controller do
-  describe 'GET download ' do
+  describe 'GET download' do
     context 'when the Excel file exists' do
       it 'sends the Excel file for download' do
         get :download
