@@ -9,7 +9,7 @@
       @options = {
         headers: {
           'Content-Type' => 'application/json',
-          'Authorization' => "Bearer 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"
+          'Authorization' => "Bearer "
         }
       }
     end
