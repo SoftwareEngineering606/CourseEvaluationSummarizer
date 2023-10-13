@@ -8,7 +8,7 @@ class OpenaiService
       @options = {
         headers: {
           'Content-Type' => 'application/json',
-          'Authorization' => "Bearer #{Rails.application.credentials.openai_api_key}"
+          'Authorization' => "Bearer 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"
         }
       }
     end
