@@ -10,7 +10,7 @@ class ChatgptService
     @options = {
       headers: {
         'Content-Type' => 'application/json',
-        'Authorization' => 'Bearer '
+        'Authorization' => 'Bearer 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'
       }
     }
   end
