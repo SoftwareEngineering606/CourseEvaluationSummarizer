@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  #The routes for future use
+  # The routes for future use
   # resources :excel_sheets
   # get 'excel_sheets/index'
   # get 'excel_sheets/show'
@@ -12,18 +14,18 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-root "pages#homepage"
-get "excel_sheets/new", to: "excel_sheets#new", as: "excel_sheets_new"
-post 'excel_sheets/create', to: 'excel_sheets#create', as: "excel_sheets_create"
-match '/excels/sheet/generate', to: 'pages#generate', via: :get,
-        as: 'generate_excel'
+  root 'pages#homepage'
+  get 'excel_sheets/new', to: 'excel_sheets#new', as: 'excel_sheets_new'
+  post 'excel_sheets/create', to: 'excel_sheets#create', as: 'excel_sheets_create'
+  match '/excels/sheet/generate', to: 'pages#generate', via: :get,
+                                  as: 'generate_excel'
   get '/download_excel', to: 'pages#download', as: 'download_excel'
-get 'download_excel_sheet', to: 'pages#download_excel_sheet', as: 'download_excel_sheet'
-#root "hello#index"
-  get "/download_report", to: "pages#download_report", as: "download_report"
-get "/homepage", to: "pages#new", as: "homepage"
-  post "/download_report", to: "pages#validate"
+  get 'download_excel_sheet', to: 'pages#download_excel_sheet', as: 'download_excel_sheet'
+  # root "hello#index"
+  get '/download_report', to: 'pages#download_report', as: 'download_report'
+  get '/homepage', to: 'pages#new', as: 'homepage'
+  post '/download_report', to: 'pages#validate'
   # get 'download_report', to: 'report#download'
 
-get '/chatgpt', to: 'chatgpt#index'
+  get '/chatgpt', to: 'chatgpt#index'
 end
