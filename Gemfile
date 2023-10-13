@@ -78,3 +78,7 @@ gem 'simplecov', require: false, group: :test
 gem "rubyXL"
 
 gem 'rails-controller-testing'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection", "~> 1.0"
