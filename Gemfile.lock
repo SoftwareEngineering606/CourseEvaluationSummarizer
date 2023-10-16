@@ -144,10 +144,10 @@ GEM
     ffi (1.16.3)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    hashie (5.0.0)
     httparty (0.21.0)
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
-    hashie (5.0.0)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.2.1)
@@ -351,8 +351,8 @@ DEPENDENCIES
   cucumber-rails
   database_cleaner
   debug
-  httparty
   devise
+  httparty
   importmap-rails
   jbuilder
   omniauth

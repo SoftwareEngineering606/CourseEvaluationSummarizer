@@ -29,10 +29,10 @@ Rails.application.routes.draw do
 
   get '/chatgpt', to: 'chatgpt#index'
   get "/login", to: "pages#login"
-root "pages#homepage"
-match '/excels/sheet/generate', to: 'pages#generate', via: :get,
-        as: 'generate_excel'
-  get '/download_excel', to: 'pages#download', as: 'download_excel'
+# root "pages#homepage"
+# match '/excels/sheet/generate', to: 'pages#generate', via: :get,
+#         as: 'generate_excel'
+#   get '/download_excel', to: 'pages#download', as: 'download_excel'
   
 #  root "pages#home"
 
@@ -44,11 +44,11 @@ match '/excels/sheet/generate', to: 'pages#generate', via: :get,
   
 
 
-get 'download_excel_sheet', to: 'pages#download_excel_sheet', as: 'download_excel_sheet'
-#root "hello#index"
-  get "/download_report", to: "pages#download_report", as: "download_report"
-get "/homepage", to: "pages#new", as: "homepage"
-  post "/download_report", to: "pages#validate"
+# get 'download_excel_sheet', to: 'pages#download_excel_sheet', as: 'download_excel_sheet'
+# #root "hello#index"
+#   get "/download_report", to: "pages#download_report", as: "download_report"
+# get "/homepage", to: "pages#new", as: "homepage"
+#   post "/download_report", to: "pages#validate"
   # get 'download_report', to: 'report#download'
 
 post "/homepage", to: "pages#validate"
