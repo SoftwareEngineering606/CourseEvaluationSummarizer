@@ -1,0 +1,9 @@
+<!-- app/views/excel_sheets/index.html.erb -->
+<!-- app/views/excel_sheets/index.html.erb -->
+<h1>Excel Sheets</h1>
+
+<ul>
+    <% @excel_sheets.each do |excel_sheet| %>
+    <li><%= excel_sheet.report_name %></li>
+    <% end %>
+</ul>
