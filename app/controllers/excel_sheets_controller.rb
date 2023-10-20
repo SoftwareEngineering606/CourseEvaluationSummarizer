@@ -33,11 +33,10 @@ class ExcelSheetsController < ApplicationController
   # Update the excel sheet in the database
   def update
     @excel_sheet = ExcelSheet.find(params[:id])
-
     if @excel_sheet.update(excel_sheet_params)
-      redirect_to @excel_sheet
+      redirect_to @excel_sheet, notice: 'Excel sheet was successfully updated.'
     else
-      render 'edit'
+      render :edit
     end
   end
 

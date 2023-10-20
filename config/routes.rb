@@ -17,6 +17,7 @@ root "pages#homepage"
 match '/excels/sheet/generate', to: 'pages#generate', via: :get,
         as: 'generate_excel'
   get '/download_excel', to: 'pages#download', as: 'download_excel'
+  resources :excel_sheets
   
 #  root "pages#home"
 
@@ -34,6 +35,7 @@ get 'download_excel_sheet', to: 'pages#download_excel_sheet', as: 'download_exce
 get "/homepage", to: "pages#new", as: "homepage"
   post "/download_report", to: "pages#validate"
   # get 'download_report', to: 'report#download'
+
 
 post "/homepage", to: "pages#validate"
 post "/homepage", to: "pages#homepage"

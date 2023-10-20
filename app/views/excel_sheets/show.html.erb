@@ -1,0 +1,23 @@
+<h1>Excel Sheet Details</h1>
+
+<p>
+  <strong>User ID:</strong>
+  <%= @excel_sheet.user_id %>
+</p>
+
+<p>
+  <strong>Report ID:</strong>
+  <%= @excel_sheet.report_id %>
+</p>
+
+<p>
+  <strong>Report Name:</strong>
+  <%= @excel_sheet.report_name %>
+</p>
+
+<p>
+  <strong>Report Path:</strong>
+  <%= @excel_sheet.report_path %>
+</p>
+
+<%= link_to 'Back', excel_sheets_path %> <!-- Not all projects have this path. If yours does not, you may need to adjust it -->

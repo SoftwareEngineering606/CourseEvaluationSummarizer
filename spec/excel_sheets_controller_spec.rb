@@ -1,45 +1,90 @@
+
 require 'rails_helper'
 
-RSpec.describe PagesController, type: :controller do
-  let(:file_path) { 'app/assets/images/SampleExcel.xlsx' }
-  let(:excel_parser) { ExcelParser.new(file_path) }
+RSpec.describe ExcelSheetsController, type: :controller do
+  before(:each) do
+    @valid_attributes = {
+      user_id: 1,  # replace with a valid user id
+      report_id: 1, # replace with a valid report id
+      report_name: 'Test Excel',
+      report_path: '/path/to/excel'
+    }
 
-  describe 'GET #generate' do
-    it 'redirects to download_report_path' do
-      get :generate
-      expect(response).to redirect_to(download_report_path)
+    @excel_sheet = ExcelSheet.create! @valid_attributes
+  end
+
+  describe "GET #index" do
+    it "returns a success response" do
+      get :index
+      expect(response).to be_successful
     end
   end
 
-  describe 'GET #validate' do
-    it 'redirects to download_report_path' do
-      get :validate
-      expect(response).to redirect_to(download_report_path)
+  describe "GET #show" do
+    it "returns a success response" do
+      get :show, params: {id: @excel_sheet.to_param}
+      expect(response).to be_successful
     end
   end
 
-  describe 'GET #download' do
-    context 'when the Excel file exists' do
-      it 'sends the Excel file for download' do
-        allow(File).to receive(:exist?).and_return(true)
+  describe "POST #create" do
+    context "with valid params" do
+      it "creates a new ExcelSheet" do
+        expect {
+          post :create, params: {excel_sheet: @valid_attributes}
+        }.to change(ExcelSheet, :count).by(1)
+      end
 
-        get :download
-
-        expect(response).to be_successful
-        expect(response.headers['Content-Type']).to eq('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-        expect(response.headers['Content-Disposition']).to include('attachment; filename="grouped_data.xlsx"')
+      it "redirects to the created excel sheet" do
+        post :create, params: {excel_sheet: @valid_attributes}
+        expect(response).to redirect_to(ExcelSheet.last)
       end
     end
 
-    context 'when the Excel file does not exist' do
-      it 'sets a flash message and redirects to the root path' do
-        allow(File).to receive(:exist?).and_return(false)
+  end
 
-        get :download
+  describe "GET #edit" do
+    it "returns a success response" do
+      get :edit, params: {id: @excel_sheet.to_param}
+      expect(response).to be_successful
+    end
+  end
 
-        expect(flash[:alert]).to eq('The Excel file does not exist.')
-        expect(response).to redirect_to(root_path)
+  describe "PATCH #update" do
+    let(:new_attributes) {
+      {
+        report_name: 'Updated Report Name',
+        report_path: '/new/path/to/excel'
+      }
+    }
+
+    context "with valid params" do
+      it "updates the requested excel sheet" do
+        patch :update, params: {id: @excel_sheet.to_param, excel_sheet: new_attributes}
+        @excel_sheet.reload
+        expect(@excel_sheet.report_name).to eq('Updated Report Name')
+        expect(@excel_sheet.report_path).to eq('/new/path/to/excel')
       end
+
+      it "redirects to the excel sheet" do
+        patch :update, params: {id: @excel_sheet.to_param, excel_sheet: new_attributes}
+        @excel_sheet.reload
+        expect(response).to redirect_to(@excel_sheet)
+      end
+    end
+    
+  end
+
+  describe "DELETE #destroy" do
+    it "destroys the requested excel sheet" do
+      expect {
+        delete :destroy, params: {id: @excel_sheet.to_param}
+      }.to change(ExcelSheet, :count).by(-1)
+    end
+
+    it "redirects to the list of excel sheets" do
+      delete :destroy, params: {id: @excel_sheet.to_param}
+      expect(response).to redirect_to(excel_sheets_path)
     end
   end
 end

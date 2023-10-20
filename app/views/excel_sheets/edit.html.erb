@@ -1,0 +1,29 @@
+<h1>Edit Excel Sheet</h1>
+
+<%= form_with model: @excel_sheet, local: true do |form| %>
+
+  <div>
+    <%= form.label :user_id %><br>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.label :report_id %><br>
+    <%= form.number_field :report_id %>
+  </div>
+
+  <div>
+    <%= form.label :report_name %><br>
+    <%= form.text_field :report_name %>
+  </div>
+
+  <div>
+    <%= form.label :report_path %><br>
+    <%= form.text_field :report_path %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+
+<% end %>
