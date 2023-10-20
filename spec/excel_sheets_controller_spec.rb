@@ -72,11 +72,11 @@ RSpec.describe ExcelSheetsController, type: :controller do
         expect(response).to redirect_to(@excel_sheet)
       end
     end
-    
+
   end
 
   describe "DELETE #destroy" do
-    it "destroys the requested excel sheet" do
+    it "destroys the requested excel sheet " do
       expect {
         delete :destroy, params: {id: @excel_sheet.to_param}
       }.to change(ExcelSheet, :count).by(-1)
