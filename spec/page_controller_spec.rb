@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # spec/controllers/pages_controller_spec.rb
 
 require 'rails_helper'
@@ -12,8 +14,8 @@ RSpec.describe PagesController, type: :controller do
       expect(response).to redirect_to(download_report_path)
     end
   end
-  describe "GET #validate" do
-    it "redirects to download report path" do
+  describe 'GET #validate' do
+    it 'redirects to download report path' do
       get :validate
       expect(response).to redirect_to(download_report_path)
     end
