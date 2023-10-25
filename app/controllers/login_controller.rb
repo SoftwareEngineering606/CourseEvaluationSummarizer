@@ -1,2 +1,2 @@
-class LoginController < ActionController
-end
+# class LoginController < ActionController
+# end
