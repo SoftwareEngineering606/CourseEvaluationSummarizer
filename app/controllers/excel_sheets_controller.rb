@@ -1,5 +1,5 @@
 class ExcelSheetsController < ApplicationController
-  # Displays a list of all excel sheets
+  # Displays a list of all excel sheet s
   def index
     @excel_sheets = ExcelSheet.all
   end
