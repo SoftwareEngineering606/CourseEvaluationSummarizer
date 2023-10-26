@@ -10,9 +10,13 @@ class ChatgptService
     @options = {
       headers: {
         'Content-Type' => 'application/json',
-        'Authorization' => 'Bearer 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'
+        'Authorization' => "Bearer #{chatgpt_api_key}"
       }
     }
+  end
+
+  def chatgpt_api_key
+    Rails.application.credentials.dig(:chatgpt_api_key)
   end
 
   def call
