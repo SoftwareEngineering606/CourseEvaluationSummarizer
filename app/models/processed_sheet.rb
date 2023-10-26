@@ -1,0 +1,2 @@
+class ProcessedSheet < ApplicationRecord
+end

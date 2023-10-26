@@ -2,10 +2,22 @@
 
 class PagesController < ApplicationController
   def homepage
-    @recent_excel_sheets = ExcelSheet.all
+    @recent_processed_sheets = ProcessedSheet.all
   end
 
-  def download_excel_sheet; end
+  def download_processed_sheet
+#    @processed_sheet = ProcessedSheet.find_by(name: params[:name])
+
+#    excel_file_path = Rails.root.join('public', 'excel_files', "#{@processed_sheet.name}.xlsx")
+
+#    if File.exist?(excel_file_path)
+#      send_file excel_file_path, filename: "#{@processed_sheet.name}.xlsx",
+#                                 type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+#    else
+#      flash[:alert] = 'The Excel file does not exist.'
+#      redirect_to root_path
+#    end
+  end
 
   def validate
     redirect_to download_report_path
