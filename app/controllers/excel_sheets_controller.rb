@@ -18,6 +18,8 @@ class ExcelSheetsController < ApplicationController
   def create
     specific_params = {
       uploaded_file: params[:uploaded_file],
+      name: 'Dummy report',
+      description: 'Dummy test report',
       user_id: 123,
       report_id: 345,
       report_name: 'Dummy report',
