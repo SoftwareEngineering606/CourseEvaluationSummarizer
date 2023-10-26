@@ -15,12 +15,10 @@ class PagesController < ApplicationController
     puts @excel_sheet
     workbook = RubyXL::Parser.parse('app/assets/images/SampleExcel.xlsx')
     worksheet = workbook[0]
-    category_column_index = 25
+    category_column_index = 22
     comments_column_index = 36
-    question_response_value = 29
 
     data_groups = {}
-    category_statistics = {}
 
     worksheet.each_with_index do |row, index|
       next if index.zero? # Skip the header row
@@ -29,91 +27,49 @@ class PagesController < ApplicationController
       category = category_cell&.value
 
       next if category.nil? || category.to_s.empty?
+
+      # Check if the category group already exists, if not, create it
+      # data_groups[category] ||= {}
+
+      # Get the product name from the "Product" column
       comment_cell = row[comments_column_index]
       comment_name = comment_cell&.value
 
+      # Add the product name to the corresponding category group
+      # data_groups[category][comment_name] ||= []
+      # data_groups[category][comment_name] << comment_name unless comment_name.nil? || comment_name.empty?
+
       data_groups[category] ||= []
       data_groups[category] << comment_name unless comment_name.nil? || comment_name.empty?
-
-      question_value_cell = row[question_response_value]
-      response_value = question_value_cell&.value
-
-      category_statistics[category] ||= { 'Response Values' => [] }
-      category_statistics[category]['Response Values'] << response_value.to_f
+      # data_groups[category] << comment_name
     end
 
-    # Calculate category statistics (average, median, and mode) for each category
     data_groups.each do |category, comments|
-      response_values = category_statistics[category]['Response Values']
-    
-      average = response_values.reduce(0.0, :+) / response_values.length.to_f
-    
-      sorted_values = response_values.sort
-      n = sorted_values.length
-      median = n.odd? ? sorted_values[n / 2] : (sorted_values[n / 2 - 1] + sorted_values[n / 2]) / 2.0
-    
-      value_counts = Hash.new(0)
-      response_values.each { |value| value_counts[value] += 1 }
-      max_count = value_counts.values.max
-      mode = value_counts.key(max_count)
-    
-      category_statistics[category] = {
-        'Average' => average,
-        'Median' => median,
-        'Mode' => mode
-      }
+      puts "Question ID: #{category}"
+      comments.each do |comment, _|
+        puts "Comments: #{comment}" unless comment.to_s.empty?
+      end
+      puts '-----------------------'
     end
 
     new_workbook = RubyXL::Workbook.new
+    new_worksheet = new_workbook[0]
 
-    data_groups.each do |category, comments, index|
-      next if comments.empty?
-      new_worksheet = new_workbook.add_worksheet(index)
-    
-      row_index = 0
+    row_index = 0
 
-      new_worksheet.add_cell(row_index, 0, "#{category}")
-      new_worksheet.add_cell(row_index, 1, "Perfect Score")
-      new_worksheet.add_cell(row_index, 2, "Average")
-      new_worksheet.add_cell(row_index, 3, "Median")
-      new_worksheet.add_cell(row_index, 4, "Mode")
-
-      row_index = 1
-      new_worksheet.add_cell(row_index, 1, "4")
-      # Add the calculated statistics for the category
-      category_stats = category_statistics[category]
-      new_worksheet.add_cell(row_index, 2, category_stats['Average'])
-      new_worksheet.add_cell(row_index, 3, category_stats['Median'])
-      new_worksheet.add_cell(row_index, 4, category_stats['Mode'])
-
-      row_index = 2
+    data_groups.each do |category, comments|
+      new_worksheet.add_cell(row_index, 0, "Category: #{category}")
+      row_index += 1
 
       comments.each do |comment|
-        new_worksheet.add_cell(row_index, 0, "#{comment}")
+        new_worksheet.add_cell(row_index, 0, "Comment: #{comment}")
         row_index += 1
       end
+
+      row_index += 1
     end
 
-new_workbook.write('public/excel_files/grouped_data.xlsx')
-
-    # new_workbook = RubyXL::Workbook.new
-    # new_worksheet = new_workbook[0]
-
-    # row_index = 0
-
-    # data_groups.each do |category, comments|
-    #   new_worksheet.add_cell(row_index, 0, "Category: #{category}")
-    #   row_index += 1
-
-    #   comments.each do |comment|
-    #     new_worksheet.add_cell(row_index, 0, "Comment: #{comment}")
-    #     row_index += 1
-    #   end
-
-    #   row_index += 1
-    # end
-
-    # new_workbook.write('public/excel_files/grouped_data.xlsx')
+    new_workbook.write('public/excel_files/grouped_data.xlsx')
 
     response_index = 29
 
