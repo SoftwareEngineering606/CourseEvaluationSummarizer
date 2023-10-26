@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2023-10-26T13:46:15-05:00">2023-10-26T13:46:15-05:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2023-10-26T16:41:04-05:00">2023-10-26T16:41:04-05:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -23,14 +23,14 @@
     <span class="group_name">All Files</span>
     (<span class="covered_percent">
       <span class="red">
-  63.74%
+  64.13%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         139.27
+         137.78
        </span>
     </span> hits/line
     )
@@ -43,11 +43,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>182</b> relevant lines,
-    <span class="green"><b>116</b> lines covered</span> and
+    <b>184</b> relevant lines,
+    <span class="green"><b>118</b> lines covered</span> and
     <span class="red"><b>66</b> lines missed. </span>
     (<span class="red">
-  63.74%
+  64.13%
 </span>
 )
   </div>
@@ -304,11 +304,11 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#fe3223b66f48fc08c4cbe4546c5a2731e8be0eaf" class="src_link" title="app/services/chatgpt_service.rb">app/services/chatgpt_service.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">28</td>
-            <td class="cell--number">12</td>
-            <td class="cell--number">12</td>
+            <td class="cell--number">32</td>
+            <td class="cell--number">14</td>
+            <td class="cell--number">14</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">1.67</td>
+            <td class="cell--number">1.71</td>
             
           </tr>
         
@@ -968,7 +968,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.67
+         1.71
        </span>
     </span> hits/line
     )
@@ -981,8 +981,8 @@
   </div>
 
   <div class="t-line-summary">
-    <b>12</b> relevant lines,
-    <span class="green"><b>12</b> lines covered</span> and
+    <b>14</b> relevant lines,
+    <span class="green"><b>14</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed. </span>
     (<span class="green">
   100.0%
@@ -1011,11 +1011,11 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#fe3223b66f48fc08c4cbe4546c5a2731e8be0eaf" class="src_link" title="app/services/chatgpt_service.rb">app/services/chatgpt_service.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">28</td>
-            <td class="cell--number">12</td>
-            <td class="cell--number">12</td>
+            <td class="cell--number">32</td>
+            <td class="cell--number">14</td>
+            <td class="cell--number">14</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">1.67</td>
+            <td class="cell--number">1.71</td>
             
           </tr>
         
@@ -7662,8 +7662,8 @@
     
 
     <div class="t-line-summary">
-      <b>12</b> relevant lines.
-      <span class="green"><b>12</b> lines covered</span> and
+      <b>14</b> relevant lines.
+      <span class="green"><b>14</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
 
@@ -7813,7 +7813,7 @@
 
             
 
-            <code class="ruby">        &#39;Authorization&#39; =&gt; &#39;Bearer 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&#39;</code>
+            <code class="ruby">        &#39;Authorization&#39; =&gt; &quot;Bearer #{chatgpt_api_key}&quot;</code>
           </li>
         </div>
       
@@ -7868,100 +7868,23 @@
 
             
 
-            <code class="ruby">  def call</code>
+            <code class="ruby">  def chatgpt_api_key</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="19">
-            
-            
-
+          <li class="covered" data-hits="2" data-linenumber="19">
+            <span class="hits">2</span>
             
 
-            <code class="ruby">    body = {</code>
+            
+
+            <code class="ruby">    Rails.application.credentials.dig(:chatgpt_api_key)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="20">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      model: &#39;gpt-3.5-turbo&#39;, # Model can be cha nge</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="21">
-            
-            
-
-            
-
-            <code class="ruby">      messages: [{ role: &#39;user&#39;, content: query }]</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="22">
-            
-            
-
-            
-
-            <code class="ruby">    }</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="23">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    response = HTTParty.post(api_url, body: body.to_json, headers: options[:headers], timeout: 500)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="24">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    raise response[&#39;error&#39;][&#39;message&#39;] unless response.code == 200</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="25">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="26">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    response[&#39;choices&#39;][0][&#39;message&#39;][&#39;content&#39;]</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="27">
+          <li class="never" data-hits="" data-linenumber="20">
             
             
 
@@ -7972,7 +7895,128 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="28">
+          <li class="never" data-hits="" data-linenumber="21">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="2" data-linenumber="22">
+            <span class="hits">2</span>
+            
+
+            
+
+            <code class="ruby">  def call</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="23">
+            
+            
+
+            
+
+            <code class="ruby">    body = {</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="24">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      model: &#39;gpt-3.5-turbo&#39;, # Model can be cha nge</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="25">
+            
+            
+
+            
+
+            <code class="ruby">      messages: [{ role: &#39;user&#39;, content: query }]</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="26">
+            
+            
+
+            
+
+            <code class="ruby">    }</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="27">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    response = HTTParty.post(api_url, body: body.to_json, headers: options[:headers], timeout: 500)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="28">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    raise response[&#39;error&#39;][&#39;message&#39;] unless response.code == 200</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="29">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="30">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    response[&#39;choices&#39;][0][&#39;message&#39;][&#39;content&#39;]</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="31">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="32">
             
             
 
