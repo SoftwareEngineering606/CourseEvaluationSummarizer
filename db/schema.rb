@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_13_032139) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_26_175455) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,6 +53,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_13_032139) do
     t.string "report_name"
     t.string "report_path"
     t.string "isProcessed"
+  end
+
+  create_table "processed_sheets", primary_key: "report_id_final", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.binary "file_data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.string "report_name"
+    t.string "report_path"
   end
 
   create_table "users", force: :cascade do |t|

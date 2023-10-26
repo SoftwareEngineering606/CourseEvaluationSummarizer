@@ -25,7 +25,7 @@ Given('there is an Excel sheet available for download') do
 end
 
 When('I click the download Excel sheet page') do
-  visit download_excel_sheet_path
+  visit download_processed_sheet_path
 end
 
 Then('I should be able to download the Excel sheet') do

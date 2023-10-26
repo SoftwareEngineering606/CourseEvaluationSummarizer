@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   resources :excel_sheets
 
-  get 'download_excel_sheet', to: 'pages#download_excel_sheet', as: 'download_excel_sheet'
+  get 'download_processed_sheet', to: 'pages#download_processed_sheet', as: 'download_processed_sheet'
   # root "hello#index"
   get '/download_report', to: 'pages#download_report', as: 'download_report'
   get '/homepage', to: 'pages#new', as: 'homepage'
@@ -48,7 +48,7 @@ Rails.application.routes.draw do
   
 
 
-# get 'download_excel_sheet', to: 'pages#download_excel_sheet', as: 'download_excel_sheet'
+# get 'download_processed_sheet', to: 'pages#download_processed_sheet', as: 'download_processed_sheet'
 # #root "hello#index"
 #   get "/download_report", to: "pages#download_report", as: "download_report"
 # get "/homepage", to: "pages#new", as: "homepage"
