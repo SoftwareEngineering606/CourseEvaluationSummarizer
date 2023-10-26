@@ -16,10 +16,18 @@ class ExcelSheetsController < ApplicationController
 
   # Handles saving a new excel sheet to the database
   def create
-    @excel_sheet = ExcelSheet.new(excel_sheet_params)
+    specific_params = {
+      uploaded_file: params[:uploaded_file],
+      user_id: 123,
+      report_id: 345,
+      report_name: 'Dummy report',
+      report_path: '/dummy/path',
+      isProcessed: 'No'
+    }
+    @excel_sheet = ExcelSheet.new(specific_params)
 
     if @excel_sheet.save
-      redirect_to @excel_sheet
+      redirect_to generate_excel_path
     else
       render 'new'
     end
@@ -51,6 +59,6 @@ class ExcelSheetsController < ApplicationController
   private
 
   def excel_sheet_params
-    params.require(:excel_sheet).permit(:user_id, :report_id, :report_name, :report_path)
+    params.require(:excel_sheet).permit(:user_id, :report_id, :report_name, :report_path, :uploaded_file, :isProcessed)
   end
 end
