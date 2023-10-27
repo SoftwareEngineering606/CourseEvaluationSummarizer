@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-When('I visit the homepage') do
+When('I visit the UI homepage') do
   visit '/'
 end
 
@@ -22,6 +22,10 @@ end
 
 And('I click on the {string} button') do |_btnLabel|
   click_button('Generate')
+end
+
+And('I click on the {string} button in download Page') do |_btnLabel|
+  click_link(_btnLabel)
 end
 
 Then('I should be on the {string} page') do |_pageName|

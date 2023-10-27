@@ -1,12 +1,6 @@
 # frozen_string_literal: true
 
-Given('there are recent Excel sheets in the database') do
-  # Create some ExcelSheet records in the database
-  @excel_sheets = []
-  3.times do |i|
-    @excel_sheets << ExcelSheet.create(name: "Sheet #{i}", file_url: "https://example.com/sheet#{i}.xlsx")
-  end
-end
+
 
 When('I visit the homepage') do
   visit homepage_path
