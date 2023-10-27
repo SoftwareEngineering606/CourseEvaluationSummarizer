@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ExcelSheetsController < ApplicationController
   # Displays a list of all excel sheet s
   def index
@@ -64,6 +66,7 @@ class ExcelSheetsController < ApplicationController
   private
 
   def excel_sheet_params
-    params.require(:excel_sheet).permit(:user_id, :report_id, :report_name, :report_path, { uploaded_files: [] }, :isProcessed)
+    params.require(:excel_sheet).permit(:user_id, :report_id, :report_name, :report_path, { uploaded_files: [] },
+                                        :isProcessed)
   end
 end

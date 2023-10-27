@@ -32,7 +32,6 @@ gem 'jbuilder'
 gem 'httparty'
 gem 'webmock'
 
-
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -83,8 +82,8 @@ gem 'simplecov', require: false, group: :test
 
 gem 'rubyXL'
 
-gem 'rails-controller-testing'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
-gem "omniauth-rails_csrf_protection", "~> 1.0"
+gem 'omniauth-rails_csrf_protection', '~> 1.0'
+gem 'rails-controller-testing'

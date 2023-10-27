@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateProcessedSheets < ActiveRecord::Migration[7.0]
   def change
     create_table :processed_sheets, id: :integer, primary_key: :report_id_final do |t|
