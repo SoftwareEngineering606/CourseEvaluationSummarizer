@@ -6,17 +6,17 @@ class PagesController < ApplicationController
   end
 
   def download_processed_sheet
-#    @processed_sheet = ProcessedSheet.find_by(name: params[:name])
+    #    @processed_sheet = ProcessedSheet.find_by(name: params[:name])
 
-#    excel_file_path = Rails.root.join('public', 'excel_files', "#{@processed_sheet.name}.xlsx")
+    #    excel_file_path = Rails.root.join('public', 'excel_files', "#{@processed_sheet.name}.xlsx")
 
-#    if File.exist?(excel_file_path)
-#      send_file excel_file_path, filename: "#{@processed_sheet.name}.xlsx",
-#                                 type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-#    else
-#      flash[:alert] = 'The Excel file does not exist.'
-#      redirect_to root_path
-#    end
+    #    if File.exist?(excel_file_path)
+    #      send_file excel_file_path, filename: "#{@processed_sheet.name}.xlsx",
+    #                                 type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    #    else
+    #      flash[:alert] = 'The Excel file does not exist.'
+    #      redirect_to root_path
+    #    end
   end
 
   def validate
@@ -41,6 +41,7 @@ class PagesController < ApplicationController
       category = category_cell&.value
 
       next if category.nil? || category.to_s.empty?
+
       comment_cell = row[comments_column_index]
       comment_name = comment_cell&.value
 
@@ -55,20 +56,20 @@ class PagesController < ApplicationController
     end
 
     # Calculate category statistics (average, median, and mode) for each category
-    data_groups.each do |category, comments|
+    data_groups.each do |category, _comments|
       response_values = category_statistics[category]['Response Values']
-    
+
       average = response_values.reduce(0.0, :+) / response_values.length.to_f
-    
+
       sorted_values = response_values.sort
       n = sorted_values.length
       median = n.odd? ? sorted_values[n / 2] : (sorted_values[n / 2 - 1] + sorted_values[n / 2]) / 2.0
-    
+
       value_counts = Hash.new(0)
       response_values.each { |value| value_counts[value] += 1 }
       max_count = value_counts.values.max
       mode = value_counts.key(max_count)
-    
+
       category_statistics[category] = {
         'Average' => average,
         'Median' => median,
@@ -80,18 +81,19 @@ class PagesController < ApplicationController
 
     data_groups.each do |category, comments, index|
       next if comments.empty?
+
       new_worksheet = new_workbook.add_worksheet(index)
-    
+
       row_index = 0
 
-      new_worksheet.add_cell(row_index, 0, "#{category}")
-      new_worksheet.add_cell(row_index, 1, "Perfect Score")
-      new_worksheet.add_cell(row_index, 2, "Average")
-      new_worksheet.add_cell(row_index, 3, "Median")
-      new_worksheet.add_cell(row_index, 4, "Mode")
+      new_worksheet.add_cell(row_index, 0, category.to_s)
+      new_worksheet.add_cell(row_index, 1, 'Perfect Score')
+      new_worksheet.add_cell(row_index, 2, 'Average')
+      new_worksheet.add_cell(row_index, 3, 'Median')
+      new_worksheet.add_cell(row_index, 4, 'Mode')
 
       row_index = 1
-      new_worksheet.add_cell(row_index, 1, "4")
+      new_worksheet.add_cell(row_index, 1, '4')
       # Add the calculated statistics for the category
       category_stats = category_statistics[category]
       new_worksheet.add_cell(row_index, 2, category_stats['Average'])
@@ -101,12 +103,12 @@ class PagesController < ApplicationController
       row_index = 2
 
       comments.each do |comment|
-        new_worksheet.add_cell(row_index, 0, "#{comment}")
+        new_worksheet.add_cell(row_index, 0, comment.to_s)
         row_index += 1
       end
     end
 
-new_workbook.write('public/excel_files/grouped_data.xlsx')
+    new_workbook.write('public/excel_files/grouped_data.xlsx')
 
     # new_workbook = RubyXL::Workbook.new
     # new_worksheet = new_workbook[0]

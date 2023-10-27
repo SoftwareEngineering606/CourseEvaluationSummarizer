@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/models/user.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/models/user.rb": {
         "lines": [
           1,
           null,
@@ -24,7 +24,7 @@
           null
         ]
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/models/application_record.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/models/application_record.rb": {
         "lines": [
           null,
           null,
@@ -33,7 +33,7 @@
           null
         ]
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/helpers/application_helper.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/helpers/application_helper.rb": {
         "lines": [
           null,
           null,
@@ -41,7 +41,7 @@
           null
         ]
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/helpers/excel_sheets_helper.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/helpers/excel_sheets_helper.rb": {
         "lines": [
           null,
           null,
@@ -49,7 +49,7 @@
           null
         ]
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/helpers/pages_helper.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/helpers/pages_helper.rb": {
         "lines": [
           null,
           null,
@@ -57,7 +57,7 @@
           null
         ]
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/controllers/chatgpt_controller.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/controllers/chatgpt_controller.rb": {
         "lines": [
           null,
           null,
@@ -70,7 +70,7 @@
           null
         ]
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/controllers/application_controller.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/controllers/application_controller.rb": {
         "lines": [
           null,
           null,
@@ -78,7 +78,7 @@
           null
         ]
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/controllers/excel_sheets_controller.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/controllers/excel_sheets_controller.rb": {
         "lines": [
           1,
           null,
@@ -109,6 +109,9 @@
           null,
           null,
           3,
+          3,
+          1,
+          null,
           null,
           3,
           3,
@@ -148,7 +151,7 @@
           null
         ]
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/controllers/pages_controller.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/controllers/pages_controller.rb": {
         "lines": [
           null,
           null,
@@ -159,6 +162,18 @@
           null,
           1,
           null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
           1,
           1,
           null,
@@ -169,7 +184,9 @@
           2,
           2,
           2,
+          2,
           null,
+          2,
           2,
           null,
           2,
@@ -179,17 +196,14 @@
           1998,
           null,
           1998,
-          null,
-          null,
-          null,
-          null,
+          486,
+          486,
           null,
           486,
           486,
           null,
-          null,
-          null,
-          null,
+          486,
+          486,
           null,
           486,
           486,
@@ -198,30 +212,75 @@
           null,
           2,
           26,
+          null,
           26,
+          null,
+          26,
+          26,
+          26,
+          null,
+          26,
+          512,
+          26,
+          26,
+          null,
+          26,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          2,
+          null,
+          2,
+          26,
+          10,
+          null,
+          10,
+          null,
+          10,
+          10,
+          10,
+          10,
+          10,
+          null,
+          10,
+          10,
+          null,
+          10,
+          10,
+          10,
+          10,
+          null,
+          10,
+          null,
+          10,
+          42,
           42,
           null,
-          26,
           null,
           null,
           2,
-          2,
-          null,
-          2,
-          null,
-          2,
-          26,
-          26,
-          null,
-          26,
-          42,
-          42,
           null,
           null,
-          26,
           null,
           null,
-          2,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
           null,
           2,
           null,
@@ -275,7 +334,7 @@
           null
         ]
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/services/chatgpt_service.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/services/chatgpt_service.rb": {
         "lines": [
           null,
           null,
@@ -311,7 +370,7 @@
           null
         ]
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/models/excel_sheet.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/models/excel_sheet.rb": {
         "lines": [
           null,
           null,
@@ -320,7 +379,13 @@
           null
         ]
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/channels/application_cable/channel.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/models/processed_sheet.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/media/sf_606/CourseEvaluationSummarizer/app/channels/application_cable/channel.rb": {
         "lines": [
           null,
           null,
@@ -335,7 +400,7 @@
         "branches": {
         }
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/channels/application_cable/connection.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/channels/application_cable/connection.rb": {
         "lines": [
           0,
           0,
@@ -345,7 +410,7 @@
         "branches": {
         }
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/controllers/login_controller.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/controllers/login_controller.rb": {
         "lines": [
           0,
           0
@@ -353,267 +418,7 @@
         "branches": {
         }
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/controllers/users/confirmations_controller.rb": {
-        "lines": [
-          null,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/controllers/users/omniauth_callbacks_controller.rb": {
-        "lines": [
-          null,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/controllers/users/passwords_controller.rb": {
-        "lines": [
-          null,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/controllers/users/registrations_controller.rb": {
-        "lines": [
-          null,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/controllers/users/sessions_controller.rb": {
-        "lines": [
-          null,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/controllers/users/unlocks_controller.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/controllers/users/confirmations_controller.rb": {
         "lines": [
           null,
           null,
@@ -649,7 +454,267 @@
         "branches": {
         }
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/jobs/application_job.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/controllers/users/omniauth_callbacks_controller.rb": {
+        "lines": [
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/media/sf_606/CourseEvaluationSummarizer/app/controllers/users/passwords_controller.rb": {
+        "lines": [
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/media/sf_606/CourseEvaluationSummarizer/app/controllers/users/registrations_controller.rb": {
+        "lines": [
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/media/sf_606/CourseEvaluationSummarizer/app/controllers/users/sessions_controller.rb": {
+        "lines": [
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/media/sf_606/CourseEvaluationSummarizer/app/controllers/users/unlocks_controller.rb": {
+        "lines": [
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/media/sf_606/CourseEvaluationSummarizer/app/jobs/application_job.rb": {
         "lines": [
           null,
           null,
@@ -670,7 +735,7 @@
         "branches": {
         }
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/mailers/application_mailer.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/mailers/application_mailer.rb": {
         "lines": [
           null,
           null,
@@ -686,11 +751,11 @@
         }
       }
     },
-    "timestamp": 1698356458
+    "timestamp": 1698386882
   },
   "Cucumber Features": {
     "coverage": {
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/models/user.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/models/user.rb": {
         "lines": [
           1,
           null,
@@ -713,7 +778,7 @@
           null
         ]
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/models/application_record.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/models/application_record.rb": {
         "lines": [
           null,
           null,
@@ -722,7 +787,7 @@
           null
         ]
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/controllers/chatgpt_controller.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/controllers/chatgpt_controller.rb": {
         "lines": [
           null,
           null,
@@ -735,7 +800,7 @@
           null
         ]
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/controllers/application_controller.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/controllers/application_controller.rb": {
         "lines": [
           null,
           null,
@@ -743,7 +808,7 @@
           null
         ]
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/helpers/application_helper.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/helpers/application_helper.rb": {
         "lines": [
           null,
           null,
@@ -751,7 +816,7 @@
           null
         ]
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/helpers/excel_sheets_helper.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/helpers/excel_sheets_helper.rb": {
         "lines": [
           null,
           null,
@@ -759,7 +824,7 @@
           null
         ]
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/helpers/pages_helper.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/helpers/pages_helper.rb": {
         "lines": [
           null,
           null,
@@ -767,7 +832,7 @@
           null
         ]
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/services/chatgpt_service.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/services/chatgpt_service.rb": {
         "lines": [
           null,
           null,
@@ -803,7 +868,7 @@
           null
         ]
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/models/excel_sheet.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/models/excel_sheet.rb": {
         "lines": [
           null,
           null,
@@ -812,7 +877,7 @@
           null
         ]
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/controllers/pages_controller.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/controllers/pages_controller.rb": {
         "lines": [
           null,
           null,
@@ -822,6 +887,18 @@
           null,
           null,
           1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
           null,
           1,
           0,
@@ -833,7 +910,9 @@
           1,
           1,
           1,
+          1,
           null,
+          1,
           1,
           null,
           1,
@@ -843,17 +922,14 @@
           999,
           null,
           999,
-          null,
-          null,
-          null,
-          null,
+          243,
+          243,
           null,
           243,
           243,
           null,
-          null,
-          null,
-          null,
+          243,
+          243,
           null,
           243,
           243,
@@ -862,30 +938,75 @@
           null,
           1,
           13,
+          null,
           13,
+          null,
+          13,
+          13,
+          13,
+          null,
+          13,
+          256,
+          13,
+          13,
+          null,
+          13,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          13,
+          5,
+          null,
+          5,
+          null,
+          5,
+          5,
+          5,
+          5,
+          5,
+          null,
+          5,
+          5,
+          null,
+          5,
+          5,
+          5,
+          5,
+          null,
+          5,
+          null,
+          5,
+          21,
           21,
           null,
-          13,
           null,
           null,
           1,
-          1,
-          null,
-          1,
-          null,
-          1,
-          13,
-          13,
-          null,
-          13,
-          21,
-          21,
           null,
           null,
-          13,
           null,
           null,
-          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
           null,
           1,
           null,
@@ -939,7 +1060,13 @@
           null
         ]
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/controllers/excel_sheets_controller.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/models/processed_sheet.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/media/sf_606/CourseEvaluationSummarizer/app/controllers/excel_sheets_controller.rb": {
         "lines": [
           1,
           null,
@@ -970,6 +1097,9 @@
           null,
           null,
           1,
+          1,
+          1,
+          null,
           null,
           1,
           1,
@@ -1009,7 +1139,7 @@
           null
         ]
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/channels/application_cable/channel.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/channels/application_cable/channel.rb": {
         "lines": [
           null,
           null,
@@ -1024,7 +1154,7 @@
         "branches": {
         }
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/channels/application_cable/connection.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/channels/application_cable/connection.rb": {
         "lines": [
           0,
           0,
@@ -1034,7 +1164,7 @@
         "branches": {
         }
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/controllers/login_controller.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/controllers/login_controller.rb": {
         "lines": [
           0,
           0
@@ -1042,267 +1172,7 @@
         "branches": {
         }
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/controllers/users/confirmations_controller.rb": {
-        "lines": [
-          null,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/controllers/users/omniauth_callbacks_controller.rb": {
-        "lines": [
-          null,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/controllers/users/passwords_controller.rb": {
-        "lines": [
-          null,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/controllers/users/registrations_controller.rb": {
-        "lines": [
-          null,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/controllers/users/sessions_controller.rb": {
-        "lines": [
-          null,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/controllers/users/unlocks_controller.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/controllers/users/confirmations_controller.rb": {
         "lines": [
           null,
           null,
@@ -1338,7 +1208,267 @@
         "branches": {
         }
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/jobs/application_job.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/controllers/users/omniauth_callbacks_controller.rb": {
+        "lines": [
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/media/sf_606/CourseEvaluationSummarizer/app/controllers/users/passwords_controller.rb": {
+        "lines": [
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/media/sf_606/CourseEvaluationSummarizer/app/controllers/users/registrations_controller.rb": {
+        "lines": [
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/media/sf_606/CourseEvaluationSummarizer/app/controllers/users/sessions_controller.rb": {
+        "lines": [
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/media/sf_606/CourseEvaluationSummarizer/app/controllers/users/unlocks_controller.rb": {
+        "lines": [
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/media/sf_606/CourseEvaluationSummarizer/app/jobs/application_job.rb": {
         "lines": [
           null,
           null,
@@ -1359,7 +1489,7 @@
         "branches": {
         }
       },
-      "/Users/pratikdesai/Desktop/TAMU/Software Engineering/SE Project/CourseEvaluationSummarizer/app/mailers/application_mailer.rb": {
+      "/media/sf_606/CourseEvaluationSummarizer/app/mailers/application_mailer.rb": {
         "lines": [
           null,
           null,
@@ -1375,6 +1505,6 @@
         }
       }
     },
-    "timestamp": 1698356464
+    "timestamp": 1698386864
   }
 }
