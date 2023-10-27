@@ -3,6 +3,8 @@
     "coverage": {
       "/media/sf_606/CourseEvaluationSummarizer/app/models/user.rb": {
         "lines": [
+          null,
+          null,
           1,
           null,
           null,
@@ -57,6 +59,54 @@
           null
         ]
       },
+      "/media/sf_606/CourseEvaluationSummarizer/app/jobs/application_job.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/media/sf_606/CourseEvaluationSummarizer/app/mailers/application_mailer.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/media/sf_606/CourseEvaluationSummarizer/app/channels/application_cable/channel.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
       "/media/sf_606/CourseEvaluationSummarizer/app/controllers/chatgpt_controller.rb": {
         "lines": [
           null,
@@ -78,8 +128,20 @@
           null
         ]
       },
+      "/media/sf_606/CourseEvaluationSummarizer/app/channels/application_cable/connection.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
       "/media/sf_606/CourseEvaluationSummarizer/app/controllers/excel_sheets_controller.rb": {
         "lines": [
+          null,
+          null,
           1,
           null,
           1,
@@ -147,6 +209,7 @@
           null,
           1,
           2,
+          null,
           null,
           null
         ]
@@ -196,6 +259,7 @@
           1998,
           null,
           1998,
+          null,
           486,
           486,
           null,
@@ -235,6 +299,7 @@
           null,
           2,
           26,
+          null,
           10,
           null,
           10,
@@ -334,6 +399,83 @@
           null
         ]
       },
+      "/media/sf_606/CourseEvaluationSummarizer/app/controllers/users/sessions_controller.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/media/sf_606/CourseEvaluationSummarizer/app/controllers/users/unlocks_controller.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
       "/media/sf_606/CourseEvaluationSummarizer/app/services/chatgpt_service.rb": {
         "lines": [
           null,
@@ -381,37 +523,16 @@
       },
       "/media/sf_606/CourseEvaluationSummarizer/app/models/processed_sheet.rb": {
         "lines": [
+          null,
+          null,
           1,
           null
         ]
       },
-      "/media/sf_606/CourseEvaluationSummarizer/app/channels/application_cable/channel.rb": {
-        "lines": [
-          null,
-          null,
-          null,
-          null,
-          null,
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/media/sf_606/CourseEvaluationSummarizer/app/channels/application_cable/connection.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
       "/media/sf_606/CourseEvaluationSummarizer/app/controllers/login_controller.rb": {
         "lines": [
+          null,
+          null,
           0,
           0
         ],
@@ -423,6 +544,7 @@
           null,
           null,
           0,
+          0,
           null,
           null,
           null,
@@ -449,6 +571,7 @@
           null,
           null,
           null,
+          0,
           0
         ],
         "branches": {
@@ -459,6 +582,7 @@
           null,
           null,
           0,
+          0,
           null,
           null,
           null,
@@ -521,6 +645,7 @@
           null,
           null,
           null,
+          0,
           0,
           0,
           0,
@@ -534,6 +659,7 @@
           null,
           null,
           0,
+          0,
           null,
           null,
           null,
@@ -564,6 +690,7 @@
           null,
           null,
           null,
+          0,
           0
         ],
         "branches": {
@@ -574,114 +701,6 @@
           null,
           null,
           0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/media/sf_606/CourseEvaluationSummarizer/app/controllers/users/sessions_controller.rb": {
-        "lines": [
-          null,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/media/sf_606/CourseEvaluationSummarizer/app/controllers/users/unlocks_controller.rb": {
-        "lines": [
-          null,
-          null,
           0,
           null,
           null,
@@ -709,13 +728,6 @@
           null,
           null,
           null,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/media/sf_606/CourseEvaluationSummarizer/app/jobs/application_job.rb": {
-        "lines": [
           null,
           null,
           null,
@@ -724,26 +736,30 @@
           null,
           null,
           null,
-          0,
           null,
           null,
           null,
           null,
           null,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/media/sf_606/CourseEvaluationSummarizer/app/mailers/application_mailer.rb": {
-        "lines": [
           null,
           null,
           null,
           null,
           null,
-          0,
-          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
           0,
           0
         ],
@@ -751,12 +767,14 @@
         }
       }
     },
-    "timestamp": 1698386882
+    "timestamp": 1698442949
   },
   "Cucumber Features": {
     "coverage": {
       "/media/sf_606/CourseEvaluationSummarizer/app/models/user.rb": {
         "lines": [
+          null,
+          null,
           1,
           null,
           null,
@@ -922,6 +940,7 @@
           999,
           null,
           999,
+          null,
           243,
           243,
           null,
@@ -961,6 +980,7 @@
           null,
           1,
           13,
+          null,
           5,
           null,
           5,
@@ -1062,13 +1082,22 @@
       },
       "/media/sf_606/CourseEvaluationSummarizer/app/models/processed_sheet.rb": {
         "lines": [
+          null,
+          null,
           1,
           null
         ]
       },
       "/media/sf_606/CourseEvaluationSummarizer/app/controllers/excel_sheets_controller.rb": {
         "lines": [
+          null,
+          null,
           1,
+          null,
+          1,
+          0,
+          null,
+          null,
           null,
           1,
           0,
@@ -1081,11 +1110,6 @@
           null,
           null,
           1,
-          0,
-          null,
-          null,
-          null,
-          1,
           null,
           1,
           null,
@@ -1135,12 +1159,14 @@
           null,
           1,
           0,
+          null,
           null,
           null
         ]
       },
       "/media/sf_606/CourseEvaluationSummarizer/app/channels/application_cable/channel.rb": {
         "lines": [
+          null,
           null,
           null,
           null,
@@ -1156,6 +1182,8 @@
       },
       "/media/sf_606/CourseEvaluationSummarizer/app/channels/application_cable/connection.rb": {
         "lines": [
+          null,
+          null,
           0,
           0,
           0,
@@ -1166,6 +1194,8 @@
       },
       "/media/sf_606/CourseEvaluationSummarizer/app/controllers/login_controller.rb": {
         "lines": [
+          null,
+          null,
           0,
           0
         ],
@@ -1177,6 +1207,7 @@
           null,
           null,
           0,
+          0,
           null,
           null,
           null,
@@ -1203,6 +1234,7 @@
           null,
           null,
           null,
+          0,
           0
         ],
         "branches": {
@@ -1213,6 +1245,7 @@
           null,
           null,
           0,
+          0,
           null,
           null,
           null,
@@ -1275,6 +1308,7 @@
           null,
           null,
           null,
+          0,
           0,
           0,
           0,
@@ -1288,6 +1322,7 @@
           null,
           null,
           0,
+          0,
           null,
           null,
           null,
@@ -1318,6 +1353,7 @@
           null,
           null,
           null,
+          0,
           0
         ],
         "branches": {
@@ -1328,6 +1364,7 @@
           null,
           null,
           0,
+          0,
           null,
           null,
           null,
@@ -1386,6 +1423,7 @@
           null,
           null,
           null,
+          0,
           0
         ],
         "branches": {
@@ -1396,6 +1434,7 @@
           null,
           null,
           0,
+          0,
           null,
           null,
           null,
@@ -1427,6 +1466,7 @@
           null,
           null,
           null,
+          0,
           0
         ],
         "branches": {
@@ -1437,6 +1477,7 @@
           null,
           null,
           0,
+          0,
           null,
           null,
           null,
@@ -1463,6 +1504,7 @@
           null,
           null,
           null,
+          0,
           0
         ],
         "branches": {
@@ -1470,6 +1512,7 @@
       },
       "/media/sf_606/CourseEvaluationSummarizer/app/jobs/application_job.rb": {
         "lines": [
+          null,
           null,
           null,
           null,
@@ -1496,6 +1539,7 @@
           null,
           null,
           null,
+          null,
           0,
           0,
           0,
@@ -1505,6 +1549,6 @@
         }
       }
     },
-    "timestamp": 1698386864
+    "timestamp": 1698441670
   }
 }

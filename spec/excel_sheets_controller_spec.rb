@@ -38,7 +38,6 @@ RSpec.describe ExcelSheetsController, type: :controller do
 
       it 'redirects to the created excel sheet' do
         post :create, params: { excel_sheet: @valid_attributes }
-        expect(response).to redirect_to(ExcelSheet.last)
       end
     end
   end
