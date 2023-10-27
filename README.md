@@ -170,36 +170,61 @@ Go to  http://localhost:3000 in a browser and verify the “Hello! Welcome to Ru
 To run Cucumber tests, follow the steps below:
 
 Make sure you have Cucumber installed by running bundle install in your project's directory.
+
 Open your terminal and navigate to the project's directory.
+
 Run the following command to execute the Cucumber tests:
+
+```
 bundle exec cucumber
+```
+
 Cucumber will run all the feature files and display the test results in the terminal.
 
 # Running RSpec Tests
 To run RSpec tests, follow the steps below:
 
 Make sure you have RSpec installed by running bundle install in your project's directory.
-Open your terminal and navigate to the project's directory.
+
+Open your terminal and navigate to the project's directory
+.
 Run the following command to execute the RSpec tests:
+
+
+```
 bundle exec rspec
+```
+
 RSpec will run all the test files and display the test results in the terminal.
 
 # Running Rubocop
 To run Rubocop for code style and linting checks, follow the steps below:
 
 Make sure you have Rubocop installed by running bundle install in your project's directory.
+
 Open your terminal and navigate to the project's directory.
+
 Run the following command to execute Rubocop:
+
+```
 bundle exec rubocop
+```
+
 Rubocop will analyze your codebase and display any style violations or offenses in the terminal.
 
 # Running Rubycritic
 To generate Ruby code quality reports using Rubycritic, follow the steps below:
 
 Make sure you have Rubycritic installed by running bundle install in your project's directory.
+
 Open your terminal and navigate to the project's directory.
+
 Run the following command to generate the code quality report:
+
+```
 bundle exec rubycritic
+```
+
 Rubycritic will analyze your codebase and generate an HTML report containing a summary of the code quality metrics. The report is usually saved in the tmp/rubycritic directory.
 
 ---------------------------------------------------------------------------------------------------------------------------
