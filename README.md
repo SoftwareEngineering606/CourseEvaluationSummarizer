@@ -1,6 +1,6 @@
 ## CourseEvaluationSummarizerProject
 
-#Installation and Setup guide
+# Installation and Setup guide
 
 1. Install rbenv
 ```
@@ -166,7 +166,7 @@ bundle install
 Go to  http://localhost:3000 in a browser and verify the “Hello! Welcome to Ruby on Rails” page.
 ---------------------------------------------------------------------------------------------------------------------------
 
-#Running Cucumber Tests
+# Running Cucumber Tests
 To run Cucumber tests, follow the steps below:
 
 Make sure you have Cucumber installed by running bundle install in your project's directory.
@@ -175,7 +175,7 @@ Run the following command to execute the Cucumber tests:
 bundle exec cucumber
 Cucumber will run all the feature files and display the test results in the terminal.
 
-#Running RSpec Tests
+# Running RSpec Tests
 To run RSpec tests, follow the steps below:
 
 Make sure you have RSpec installed by running bundle install in your project's directory.
@@ -184,7 +184,7 @@ Run the following command to execute the RSpec tests:
 bundle exec rspec
 RSpec will run all the test files and display the test results in the terminal.
 
-#Running Rubocop
+# Running Rubocop
 To run Rubocop for code style and linting checks, follow the steps below:
 
 Make sure you have Rubocop installed by running bundle install in your project's directory.
@@ -193,7 +193,7 @@ Run the following command to execute Rubocop:
 bundle exec rubocop
 Rubocop will analyze your codebase and display any style violations or offenses in the terminal.
 
-#Running Rubycritic
+# Running Rubycritic
 To generate Ruby code quality reports using Rubycritic, follow the steps below:
 
 Make sure you have Rubycritic installed by running bundle install in your project's directory.
@@ -204,7 +204,7 @@ Rubycritic will analyze your codebase and generate an HTML report containing a s
 
 ---------------------------------------------------------------------------------------------------------------------------
 
-Ruby on Rails App Deployment to Heroku with PostgreSQL
+# Ruby on Rails App Deployment to Heroku with PostgreSQL
 This README provides step-by-step instructions on how to deploy a Ruby on Rails application to Heroku with a PostgreSQL database. Heroku is a popular platform-as-a-service (PaaS) that allows you to easily host and manage web applications in the cloud.
 
 Prerequisites
@@ -215,6 +215,7 @@ Rails
 Heroku CLI
 Git
 PostgreSQL
+
 
 
 Login to your Heroku account:
