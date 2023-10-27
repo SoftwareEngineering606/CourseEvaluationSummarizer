@@ -31,32 +31,27 @@ Rails.application.routes.draw do
   # get 'download_report', to: 'report#download'
 
   get '/chatgpt', to: 'chatgpt#index'
-  get "/login", to: "pages#login"
-# root "pages#homepage"
-# match '/excels/sheet/generate', to: 'pages#generate', via: :get,
-#         as: 'generate_excel'
-#   get '/download_excel', to: 'pages#download', as: 'download_excel'
+  get '/login', to: 'pages#login'
+  # root "pages#homepage"
+  # match '/excels/sheet/generate', to: 'pages#generate', via: :get,
+  #         as: 'generate_excel'
+  #   get '/download_excel', to: 'pages#download', as: 'download_excel'
 
-  
-#  root "pages#home"
+  #  root "pages#home"
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions',
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
-  
 
-
-# get 'download_processed_sheet', to: 'pages#download_processed_sheet', as: 'download_processed_sheet'
-# #root "hello#index"
-#   get "/download_report", to: "pages#download_report", as: "download_report"
-# get "/homepage", to: "pages#new", as: "homepage"
-#   post "/download_report", to: "pages#validate"
+  # get 'download_processed_sheet', to: 'pages#download_processed_sheet', as: 'download_processed_sheet'
+  # #root "hello#index"
+  #   get "/download_report", to: "pages#download_report", as: "download_report"
+  # get "/homepage", to: "pages#new", as: "homepage"
+  #   post "/download_report", to: "pages#validate"
   # get 'download_report', to: 'report#download'
 
-
-post "/homepage", to: "pages#validate"
-post "/homepage", to: "pages#homepage"
-
+  post '/homepage', to: 'pages#validate'
+  post '/homepage', to: 'pages#homepage'
 end

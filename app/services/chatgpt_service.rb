@@ -16,7 +16,7 @@ class ChatgptService
   end
 
   def chatgpt_api_key
-    Rails.application.credentials.dig(:chatgpt_api_key)
+    Rails.application.credentials[:chatgpt_api_key]
   end
 
   def call
