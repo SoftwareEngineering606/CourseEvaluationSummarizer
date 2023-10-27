@@ -55,8 +55,8 @@
     <h1>Upload Files</h1>
     <%= form_with(model: @excel_sheet, url: excel_sheets_create_path, local: true, method: :post, html: { multipart: true }) do |form| %>
       <div class="field">
-        <%= form.label :uploaded_file, 'Choose a file to upload:' %>
-        <%= form.file_field :uploaded_file %>
+        <%= form.label :uploaded_files, 'Choose a file to upload:', multiple: true %>
+        <%= form.file_field :uploaded_files, multiple: true %>
       </div>
       <br>
       <style>

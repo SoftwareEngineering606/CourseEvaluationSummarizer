@@ -17,7 +17,7 @@ class ExcelSheetsController < ApplicationController
   # Handles saving a new excel sheet to the database
   def create
     specific_params = {
-      uploaded_file: params[:uploaded_file],
+      uploaded_files: params[:uploaded_files],
       name: 'Dummy report',
       description: 'Dummy test report',
       user_id: 123,
@@ -27,6 +27,9 @@ class ExcelSheetsController < ApplicationController
       isProcessed: 'No'
     }
     @excel_sheet = ExcelSheet.new(specific_params)
+    Array(params[:uploaded_files]).each do |uploaded_file|
+      @excel_sheet.uploaded_files.attach(uploaded_file)
+    end
 
     if @excel_sheet.save
       redirect_to generate_excel_path
@@ -61,6 +64,6 @@ class ExcelSheetsController < ApplicationController
   private
 
   def excel_sheet_params
-    params.require(:excel_sheet).permit(:user_id, :report_id, :report_name, :report_path, :uploaded_file, :isProcessed)
+    params.require(:excel_sheet).permit(:user_id, :report_id, :report_name, :report_path, { uploaded_files: [] }, :isProcessed)
   end
 end
