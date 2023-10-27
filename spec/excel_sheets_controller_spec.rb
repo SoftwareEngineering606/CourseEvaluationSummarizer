@@ -37,7 +37,7 @@ RSpec.describe ExcelSheetsController, type: :controller do
 
       it "redirects to the created excel sheet" do
         post :create, params: {excel_sheet: @valid_attributes}
-        expect(response).to redirect_to(ExcelSheet.last)
+        expect(response).to redirect_to(generate_excel_path)
       end
     end
 
@@ -72,7 +72,6 @@ RSpec.describe ExcelSheetsController, type: :controller do
         expect(response).to redirect_to(@excel_sheet)
       end
     end
-
   end
 
   describe "DELETE #destroy" do
@@ -85,6 +84,18 @@ RSpec.describe ExcelSheetsController, type: :controller do
     it "redirects to the list of excel sheets" do
       delete :destroy, params: {id: @excel_sheet.to_param}
       expect(response).to redirect_to(excel_sheets_path)
+    end
+  end
+
+  describe 'GET #new' do
+    it 'assigns a new ExcelSheet to @excel_sheet' do
+      get :new
+      expect(assigns(:excel_sheet)).to be_a_new(ExcelSheet)
+    end
+
+    it 'renders the new template' do
+      get :new
+      expect(response).to render_template('new')
     end
   end
 end
