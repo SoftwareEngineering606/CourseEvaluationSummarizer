@@ -42,6 +42,15 @@ RSpec.describe ExcelSheetsController, type: :controller do
       end
     end
 
+    context 'when uploading invalid file types' do
+      it 'sets flash[:error]' do
+        invalid_file = fixture_file_upload('invalid_file.txt', 'text/plain')
+
+        post :create, params: { uploaded_files: ["",invalid_file] }
+
+        expect(flash[:error]).to eq('Only excel files (.xlsx) are allowed!')
+      end
+      end
 
   end
 

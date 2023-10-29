@@ -39,6 +39,14 @@ class ExcelSheetsController < ApplicationController
 
     if uploaded_files.present?
 
+      Array(params[:uploaded_files]).drop(1).each do |file|
+        if  file.content_type != 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+          flash[:error] = 'Only excel files (.xlsx) are allowed!'
+          redirect_to root_path
+          return
+        end
+      end
+
       upload_directory = Rails.root.join('public', 'uploads')
 
       # Delete all existing Excel files in the directory
