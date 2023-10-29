@@ -50,6 +50,16 @@
         <h1>Course Evaluation Summarizer</h1>
     </header>
 
+    <style>
+        .btn {
+            background-color: #C0C0C0; /* Background color */
+            color: #000; /* Text color */
+            padding: 5px 10px; /* Padding inside the button */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+        }
+    </style>
+
     <div class="main-content">
     <div class="upload_files">
     <h1>Upload Files</h1>
@@ -59,15 +69,6 @@
         <%= form.file_field :uploaded_files, multiple: true %>
       </div>
       <br>
-      <style>
-        .btn {
-          background-color: #C0C0C0; /* Background color */
-          color: #000; /* Text color */
-          padding: 5px 10px; /* Padding inside the button */
-          border: none; /* No border */
-          border-radius: 5px; /* Rounded corners */
-        }
-      </style>
       <div class="actions">
         <%= form.submit "Generate", class: "btn"%>
       </div>

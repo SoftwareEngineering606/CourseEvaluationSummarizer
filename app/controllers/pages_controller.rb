@@ -23,9 +23,16 @@ class PagesController < ApplicationController
     redirect_to download_report_path
   end
 
+
   def generate
-    puts @excel_sheet
-    workbook = RubyXL::Parser.parse('app/assets/images/SampleExcel.xlsx')
+    #puts @excel_sheet
+    directory = Rails.root.join('public', 'uploads')
+    excel_files = Dir["#{directory}/*.xlsx"]
+    excel_files.each do |file_path|
+      begin
+    # Uploaded file
+    #workbook = RubyXL::Parser.parse('public/uploads/SampleExcel.xlsx')
+    workbook = RubyXL::Parser.parse(file_path)
     worksheet = workbook[0]
     category_column_index = 25
     comments_column_index = 36
@@ -79,11 +86,14 @@ class PagesController < ApplicationController
 
     new_workbook = RubyXL::Workbook.new
 
+    i = 1
     data_groups.each do |category, comments, index|
       next if comments.empty?
 
       new_worksheet = new_workbook.add_worksheet(index)
 
+      new_worksheet.sheet_name = "Question "+ (i).to_s
+      i = i+1
       row_index = 0
 
       new_worksheet.add_cell(row_index, 0, category.to_s)
@@ -108,7 +118,19 @@ class PagesController < ApplicationController
       end
     end
 
-    new_workbook.write('public/excel_files/grouped_data.xlsx')
+    worksheet_to_delete = new_workbook[0]
+    new_workbook.worksheets.delete(worksheet_to_delete)
+
+    file_name = File.basename(file_path)
+    session[:file] = 'Processed_'+file_name
+    processed_file_path = file_path = Rails.root.join('public', 'excel_files', 'Processed_'+file_name)
+    new_workbook.write(processed_file_path)
+
+      rescue StandardError => e
+        # Handle any errors that occur during parsing
+        puts "Error parsing #{file_path}: #{e.message}"
+      end
+    end
 
     # new_workbook = RubyXL::Workbook.new
     # new_worksheet = new_workbook[0]
@@ -129,53 +151,56 @@ class PagesController < ApplicationController
 
     # new_workbook.write('public/excel_files/grouped_data.xlsx')
 
-    response_index = 29
-
-    response_values = []
-
-    worksheet.each do |row|
-      cell = row[response_index]
-      cell_value = cell&.value
-      response_values << cell_value
-    end
-
-    response_values = response_values.compact.map(&:to_i)
-
-    mean = response_values.sum.to_f / response_values.length
-    puts "Mean: #{mean}"
-
-    sorted_data = response_values.sort
-    if sorted_data.length.odd?
-      median = sorted_data[sorted_data.length / 2]
-    else
-      middle1 = sorted_data[(sorted_data.length / 2) - 1]
-      middle2 = sorted_data[sorted_data.length / 2]
-      median = (middle1 + middle2) / 2.0
-    end
-
-    puts "Median: #{median}"
-
-    value_count = Hash.new(0)
-
-    response_values.each { |value| value_count[value] += 1 }
-
-    max_count = value_count.values.max
-    mode = value_count.select { |_value, count| count == max_count }.keys
-
-    puts "Mode: #{mode}"
+    # response_index = 29
+    #
+    # response_values = []
+    #
+    # worksheet.each do |row|
+    #   cell = row[response_index]
+    #   cell_value = cell&.value
+    #   response_values << cell_value
+    # end
+    #
+    # response_values = response_values.compact.map(&:to_i)
+    #
+    # mean = response_values.sum.to_f / response_values.length
+    # puts "Mean: #{mean}"
+    #
+    # sorted_data = response_values.sort
+    # if sorted_data.length.odd?
+    #   median = sorted_data[sorted_data.length / 2]
+    # else
+    #   middle1 = sorted_data[(sorted_data.length / 2) - 1]
+    #   middle2 = sorted_data[sorted_data.length / 2]
+    #   median = (middle1 + middle2) / 2.0
+    # end
+    #
+    # puts "Median: #{median}"
+    #
+    # value_count = Hash.new(0)
+    #
+    # response_values.each { |value| value_count[value] += 1 }
+    #
+    # max_count = value_count.values.max
+    # mode = value_count.select { |_value, count| count == max_count }.keys
+    #
+    # puts "Mode: #{mode}"
 
     redirect_to download_report_path
   end
 
   def download
-    excel_file_path = Rails.root.join('public', 'excel_files', 'grouped_data.xlsx')
-
-    if File.exist?(excel_file_path)
-      send_file excel_file_path, filename: 'grouped_data.xlsx',
-                                 type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-    else
-      flash[:alert] = 'The Excel file does not exist.'
-      redirect_to root_path
+    name = session[:file]
+    if name.nil?
+      name = 'grouped_data.xlsx'
+    end
+    excel_file_path = Rails.root.join('public', 'excel_files', name)
+        if File.exist?(excel_file_path)
+          send_file excel_file_path, filename: name,
+                     type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+         else
+          flash[:alert] = 'The Excel file does not exist.'
+          redirect_to root_path
     end
   end
 end

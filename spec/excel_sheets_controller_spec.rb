@@ -42,6 +42,26 @@ RSpec.describe ExcelSheetsController, type: :controller do
       end
     end
 
+
+  end
+
+  describe 'POST #create' do
+    it 'processes and saves uploaded files, ignoring the first file' do
+      # Prepare a sample uploaded file
+      sample_file = fixture_file_upload('sample.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+      uploaded_files = ["",sample_file]
+
+      post :create, params: { uploaded_files: uploaded_files }
+
+      file_path = Rails.root.join('public', 'uploads', sample_file.original_filename)
+      expect(File.exist?(file_path)).to be true
+
+        if File.exist?(file_path)
+          File.delete(file_path)
+          puts "Deleted the file at #{file_path}"
+        end
+
+    end
   end
 
   describe "GET #edit" do
