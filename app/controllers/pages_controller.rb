@@ -28,6 +28,12 @@ class PagesController < ApplicationController
     #puts @excel_sheet
     directory = Rails.root.join('public', 'uploads')
     excel_files = Dir["#{directory}/*.xlsx"]
+
+    average_hash = {}
+    median_hash = {}
+    mode_hash = {}
+    data_groups = {}
+
     excel_files.each do |file_path|
       begin
     # Uploaded file
@@ -38,7 +44,7 @@ class PagesController < ApplicationController
     comments_column_index = 36
     question_response_value = 29
 
-    data_groups = {}
+
     category_statistics = {}
 
     worksheet.each_with_index do |row, index|
@@ -84,11 +90,31 @@ class PagesController < ApplicationController
       }
     end
 
+    data_groups.each do |category, comments|
+      category_stats = category_statistics[category]
+
+      average_hash[category] ||= []
+      average_hash[category] << category_stats['Average']
+
+      median_hash[category] ||= []
+      median_hash[category] << category_stats['Median']
+
+      mode_hash[category] ||= []
+      mode_hash[category] << category_stats['Mode']
+
+    end
+
+      rescue StandardError => e
+        # Handle any errors that occur during parsing
+        puts "Error parsing #{file_path}: #{e.message}"
+      end
+    end
+
     new_workbook = RubyXL::Workbook.new
 
     i = 1
     data_groups.each do |category, comments, index|
-      next if comments.empty?
+      # next if comments.empty?
 
       new_worksheet = new_workbook.add_worksheet(index)
 
@@ -103,14 +129,39 @@ class PagesController < ApplicationController
       new_worksheet.add_cell(row_index, 4, 'Mode')
 
       row_index = 1
-      new_worksheet.add_cell(row_index, 1, '4')
-      # Add the calculated statistics for the category
-      category_stats = category_statistics[category]
-      new_worksheet.add_cell(row_index, 2, category_stats['Average'])
-      new_worksheet.add_cell(row_index, 3, category_stats['Median'])
-      new_worksheet.add_cell(row_index, 4, category_stats['Mode'])
 
-      row_index = 2
+
+      # Add the calculated statistics for the category
+      # category_stats = category_statistics[category]
+      # new_worksheet.add_cell(row_index, 2, category_stats['Average'])
+      # new_worksheet.add_cell(row_index, 3, category_stats['Median'])
+      # new_worksheet.add_cell(row_index, 4, category_stats['Mode'])
+
+      average_hash[category].each do |avg|
+        puts('mean')
+        puts(avg)
+        new_worksheet.add_cell(row_index, 1, '4')
+        new_worksheet.add_cell(row_index, 2, avg.to_s)
+        row_index += 1
+      end
+
+      row_index = 1
+      median_hash[category].each do |median|
+        puts('median')
+        puts(median)
+        new_worksheet.add_cell(row_index, 3, median.to_s)
+        row_index += 1
+      end
+
+      row_index = 1
+      mode_hash[category].each do |mode|
+        puts('mode')
+        puts(mode)
+        new_worksheet.add_cell(row_index, 4, mode.to_s)
+        row_index += 1
+      end
+
+      row_index = 4
 
       comments.each do |comment|
         new_worksheet.add_cell(row_index, 0, comment.to_s)
@@ -121,16 +172,13 @@ class PagesController < ApplicationController
     worksheet_to_delete = new_workbook[0]
     new_workbook.worksheets.delete(worksheet_to_delete)
 
-    file_name = File.basename(file_path)
+    #file_name = File.basename(file_path)
+    file_name = 'Sheet.xlsx'
     session[:file] = 'Processed_'+file_name
-    processed_file_path = file_path = Rails.root.join('public', 'excel_files', 'Processed_'+file_name)
+    processed_file_path = Rails.root.join('public', 'excel_files', 'Processed_'+file_name)
     new_workbook.write(processed_file_path)
 
-      rescue StandardError => e
-        # Handle any errors that occur during parsing
-        puts "Error parsing #{file_path}: #{e.message}"
-      end
-    end
+
 
     # new_workbook = RubyXL::Workbook.new
     # new_worksheet = new_workbook[0]
