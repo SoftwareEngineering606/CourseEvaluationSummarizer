@@ -173,10 +173,14 @@ class PagesController < ApplicationController
     new_workbook.worksheets.delete(worksheet_to_delete)
 
     #file_name = File.basename(file_path)
-    file_name = 'Sheet.xlsx'
-    session[:file] = 'Processed_'+file_name
-    processed_file_path = Rails.root.join('public', 'excel_files', 'Processed_'+file_name)
+    file_name = "Sheet" + "-#{Time.now.to_i}" + ".xlsx"
+    session[:file] = "Processed_"+file_name
+    processed_file_name = "Processed_"+file_name
+    processed_file_path = Rails.root.join('public', 'excel_files', processed_file_name)
     new_workbook.write(processed_file_path)
+
+    processed_sheet = [ { name: processed_file_name, description: 'Description for '+ processed_file_name, report_path: processed_file_path } ]
+    ProcessedSheet.create(processed_sheet)
 
 
 
