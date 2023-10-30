@@ -33,6 +33,38 @@ class ExcelSheetsController < ApplicationController
       @excel_sheet.uploaded_files.attach(uploaded_file)
     end
 
+    uploaded_files = params[:uploaded_files]
+
+    puts "Received params: #{params.inspect}"
+
+    if uploaded_files.present?
+
+      Array(params[:uploaded_files]).drop(1).each do |file|
+        if  file.content_type != 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+          flash[:error] = 'Only excel files (.xlsx) are allowed!'
+          redirect_to root_path
+          return
+        end
+      end
+
+      upload_directory = Rails.root.join('public', 'uploads')
+
+      # Delete all existing Excel files in the directory
+      existing_excel_files = Dir["#{upload_directory}/*.xlsx"]
+      existing_excel_files.each { |file| File.delete(file) }
+
+      Array(params[:uploaded_files]).drop(1).each do |file|
+        if file.content_type == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+         file_path = Rails.root.join('public', 'uploads', file.original_filename)
+
+        # Save the file to the specified path.
+        File.open(file_path, 'wb') do |f|
+          f.write(file.read)
+        end
+        end
+        end
+    end
+
     if @excel_sheet.save
       redirect_to generate_excel_path
     else

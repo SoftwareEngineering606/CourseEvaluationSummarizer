@@ -42,6 +42,35 @@ RSpec.describe ExcelSheetsController, type: :controller do
       end
     end
 
+    context 'when uploading invalid file types' do
+      it 'sets flash[:error]' do
+        invalid_file = fixture_file_upload('invalid_file.txt', 'text/plain')
+
+        post :create, params: { uploaded_files: ["",invalid_file] }
+
+        expect(flash[:error]).to eq('Only excel files (.xlsx) are allowed!')
+      end
+      end
+
+  end
+
+  describe 'POST #create' do
+    it 'processes and saves uploaded files, ignoring the first file' do
+      # Prepare a sample uploaded file
+      sample_file = fixture_file_upload('sample.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+      uploaded_files = ["",sample_file]
+
+      post :create, params: { uploaded_files: uploaded_files }
+
+      file_path = Rails.root.join('public', 'uploads', sample_file.original_filename)
+      expect(File.exist?(file_path)).to be true
+
+        if File.exist?(file_path)
+          File.delete(file_path)
+          puts "Deleted the file at #{file_path}"
+        end
+
+    end
   end
 
   describe "GET #edit" do

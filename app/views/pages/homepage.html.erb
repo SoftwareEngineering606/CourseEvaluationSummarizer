@@ -50,24 +50,32 @@
         <h1>Course Evaluation Summarizer</h1>
     </header>
 
+    <style>
+        .btn {
+            background-color: #C0C0C0; /* Background color */
+            color: #000; /* Text color */
+            padding: 5px 10px; /* Padding inside the button */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+        }
+    </style>
+
     <div class="main-content">
     <div class="upload_files">
     <h1>Upload Files</h1>
+      <br>
+      <% if flash[:error].present? %>
+        <div class="alert alert-danger" style="background-color: #e0e0e0; color: #7C0A02; padding: 10px; border: 1px solid #e0e0e0; border-radius: 5px; font-size: 14px;">
+          <%= flash[:error] %>
+        </div>
+      <% end %>
+      <br>
     <%= form_with(model: @excel_sheet, url: excel_sheets_create_path, local: true, method: :post, html: { multipart: true }) do |form| %>
       <div class="field">
         <%= form.label :uploaded_files, 'Choose a file to upload:', multiple: true %>
         <%= form.file_field :uploaded_files, multiple: true %>
       </div>
       <br>
-      <style>
-        .btn {
-          background-color: #C0C0C0; /* Background color */
-          color: #000; /* Text color */
-          padding: 5px 10px; /* Padding inside the button */
-          border: none; /* No border */
-          border-radius: 5px; /* Rounded corners */
-        }
-      </style>
       <div class="actions">
         <%= form.submit "Generate", class: "btn"%>
       </div>
