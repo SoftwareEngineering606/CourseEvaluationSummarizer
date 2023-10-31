@@ -2,7 +2,8 @@
 
 class PagesController < ApplicationController
   def homepage
-    @recent_processed_sheets = ProcessedSheet.all
+    # @recent_processed_sheets = ProcessedSheet.all
+    @recent_processed_sheets = ProcessedSheet.order(created_at: :desc).limit(5)
   end
 
   def download_processed_sheet
