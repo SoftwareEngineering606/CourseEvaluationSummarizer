@@ -1,9 +1,7 @@
 # frozen_string_literal: true
-
 class PagesController < ApplicationController
   def homepage
-    # @recent_processed_sheets = ProcessedSheet.all
-    @recent_processed_sheets = ProcessedSheet.order(created_at: :desc).limit(5)
+    @recent_processed_sheets = ProcessedSheet.all
   end
 
   def download_processed_sheet
@@ -168,6 +166,17 @@ class PagesController < ApplicationController
         new_worksheet.add_cell(row_index, 0, comment.to_s)
         row_index += 1
       end
+      
+      # Make a chatgpt call here to summarize commemnts in some specific word count range and add it to the list
+      input_text = comments.join(" ")
+      summarizer = SummarizeService.new(input_text)
+      summary = summarizer.summarize_text
+      row_index+=1
+      new_worksheet.add_cell(row_index, 0, 'SUMMARY')
+      row_index+=1
+      new_worksheet.add_cell(row_index, 0, summary)
+
+
     end
 
     worksheet_to_delete = new_workbook[0]
