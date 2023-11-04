@@ -3,21 +3,34 @@
 class PagesController < ApplicationController
   def homepage
     # @recent_processed_sheets = ProcessedSheet.all
-    @recent_processed_sheets = ProcessedSheet.order(created_at: :desc).limit(5)
+    #@processed_sheet = ProcessedSheet.find(params[:id])
+    @recent_processed_sheets = ProcessedSheet.order(created_at: :desc).limit(3)
+    @processed_sheet = ProcessedSheet.order(created_at: :desc).limit(10)
   end
 
   def download_processed_sheet
-    #    @processed_sheet = ProcessedSheet.find_by(name: params[:name])
-
-    #    excel_file_path = Rails.root.join('public', 'excel_files', "#{@processed_sheet.name}.xlsx")
-
-    #    if File.exist?(excel_file_path)
-    #      send_file excel_file_path, filename: "#{@processed_sheet.name}.xlsx",
-    #                                 type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-    #    else
-    #      flash[:alert] = 'The Excel file does not exist.'
-    #      redirect_to root_path
-    #    end
+    if params[:report_id_final]
+      processed_sheet = ProcessedSheet.find_by(report_id_final: params[:report_id_final])
+      if processed_sheet
+        fileName = processed_sheet.name
+        file_path = Rails.root.join('public', 'excel_files', fileName)
+        if File.exist?(file_path)
+          send_file file_path,
+                    filename: "#{params[:report_id_final]}.xls",
+                    type: 'application/excel',
+                    disposition: 'attachment'
+        else
+          flash[:alert] = "File not found"
+          redirect_to root_path
+        end
+      else
+        flash[:alert] = "Not Processed sheet found"
+        redirect_to root_path
+      end
+    else
+      flash[:alert] = "Invalid request"
+      redirect_to root_path
+    end
   end
 
   def validate
