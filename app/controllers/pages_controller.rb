@@ -1,32 +1,14 @@
 # frozen_string_literal: true
-
 class PagesController < ApplicationController
   def homepage
-    # @recent_processed_sheets = ProcessedSheet.all
-    @recent_processed_sheets = ProcessedSheet.order(created_at: :desc).limit(5)
-  end
-
-  def download_processed_sheet
-    #    @processed_sheet = ProcessedSheet.find_by(name: params[:name])
-
-    #    excel_file_path = Rails.root.join('public', 'excel_files', "#{@processed_sheet.name}.xlsx")
-
-    #    if File.exist?(excel_file_path)
-    #      send_file excel_file_path, filename: "#{@processed_sheet.name}.xlsx",
-    #                                 type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-    #    else
-    #      flash[:alert] = 'The Excel file does not exist.'
-    #      redirect_to root_path
-    #    end
+    @recent_processed_sheets = ProcessedSheet.all
   end
 
   def validate
     redirect_to download_report_path
   end
 
-
   def generate
-    #puts @excel_sheet
     directory = Rails.root.join('public', 'uploads')
     excel_files = Dir["#{directory}/*.xlsx"]
 
@@ -139,8 +121,8 @@ class PagesController < ApplicationController
       # new_worksheet.add_cell(row_index, 4, category_stats['Mode'])
 
       average_hash[category].each do |avg|
-        puts('mean')
-        puts(avg)
+        # puts('mean')
+        # puts(avg)
         new_worksheet.add_cell(row_index, 1, '4')
         new_worksheet.add_cell(row_index, 2, avg.to_s)
         row_index += 1
@@ -148,25 +130,40 @@ class PagesController < ApplicationController
 
       row_index = 1
       median_hash[category].each do |median|
-        puts('median')
-        puts(median)
+        # puts('median')
+        # puts(median)
         new_worksheet.add_cell(row_index, 3, median.to_s)
         row_index += 1
       end
 
       row_index = 1
       mode_hash[category].each do |mode|
-        puts('mode')
-        puts(mode)
+        # puts('mode')
+        # puts(mode)
         new_worksheet.add_cell(row_index, 4, mode.to_s)
         row_index += 1
       end
 
       row_index = 4
 
-      comments.each do |comment|
+      #Remove duplicate comments 
+      duplicate_service = DuplicateService.new(comments)
+      unique_comments = duplicate_service.remove_duplicates
+      
+      unique_comments.each do |comment|
         new_worksheet.add_cell(row_index, 0, comment.to_s)
         row_index += 1
+      end
+      
+      # Make a chatgpt call here to summarize commemnts in some specific word count range and add it to the list
+      if unique_comments.length > 0
+        input_text = unique_comments.join(" ")
+        summarizer = SummarizeService.new(input_text)
+        summary = summarizer.summarize_text
+        row_index += 1
+        new_worksheet.add_cell(row_index, 0, 'SUMMARY')
+        row_index += 1
+        new_worksheet.add_cell(row_index, 0, summary)
       end
     end
 
@@ -182,62 +179,6 @@ class PagesController < ApplicationController
 
     processed_sheet = [ { name: processed_file_name, description: 'Description for '+ processed_file_name, report_path: processed_file_path } ]
     ProcessedSheet.create(processed_sheet)
-
-
-
-    # new_workbook = RubyXL::Workbook.new
-    # new_worksheet = new_workbook[0]
-
-    # row_index = 0
-
-    # data_groups.each do |category, comments|
-    #   new_worksheet.add_cell(row_index, 0, "Category: #{category}")
-    #   row_index += 1
-
-    #   comments.each do |comment|
-    #     new_worksheet.add_cell(row_index, 0, "Comment: #{comment}")
-    #     row_index += 1
-    #   end
-
-    #   row_index += 1
-    # end
-
-    # new_workbook.write('public/excel_files/grouped_data.xlsx')
-
-    # response_index = 29
-    #
-    # response_values = []
-    #
-    # worksheet.each do |row|
-    #   cell = row[response_index]
-    #   cell_value = cell&.value
-    #   response_values << cell_value
-    # end
-    #
-    # response_values = response_values.compact.map(&:to_i)
-    #
-    # mean = response_values.sum.to_f / response_values.length
-    # puts "Mean: #{mean}"
-    #
-    # sorted_data = response_values.sort
-    # if sorted_data.length.odd?
-    #   median = sorted_data[sorted_data.length / 2]
-    # else
-    #   middle1 = sorted_data[(sorted_data.length / 2) - 1]
-    #   middle2 = sorted_data[sorted_data.length / 2]
-    #   median = (middle1 + middle2) / 2.0
-    # end
-    #
-    # puts "Median: #{median}"
-    #
-    # value_count = Hash.new(0)
-    #
-    # response_values.each { |value| value_count[value] += 1 }
-    #
-    # max_count = value_count.values.max
-    # mode = value_count.select { |_value, count| count == max_count }.keys
-    #
-    # puts "Mode: #{mode}"
 
     redirect_to download_report_path
   end
