@@ -3,7 +3,7 @@ class PagesController < ApplicationController
     # @recent_processed_sheets = ProcessedSheet.all
     #@processed_sheet = ProcessedSheet.find(params[:id])
     @recent_processed_sheets = ProcessedSheet.order(created_at: :desc).limit(3)
-    @processed_sheet = ProcessedSheet.order(created_at: :desc).limit(10)
+    @processed_sheet = ProcessedSheet.order(created_at: :desc).limit(5)
   end
 
   def download_processed_sheet
