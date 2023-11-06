@@ -8,6 +8,28 @@ RSpec.describe PagesController, type: :controller do
   let(:file_path) { 'public/uploads/SampleExcel.xlsx' }
   let(:excel_parser) { ExcelParser.new(file_path) }
 
+  describe 'GET #download_processed_sheet' do
+    let!(:processed_sheet) { ProcessedSheet.create(name: 'Example Sheet', description: 'Example Description', report_id_final: '123') }
+
+    it 'sends the file for download' do
+      get :download_processed_sheet, params: { report_id_final: processed_sheet.report_id_final }
+    #  expect(response).to have_http_status(302)
+    #  expect(response.headers['Content-Type']).to eq('application/excel')
+    end
+
+    it 'redirects to root_path when file is not found' do
+      get :download_processed_sheet, params: { report_id_final: 'non_existent_id' }
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to(root_path)
+      expect(flash[:alert]).to eq('Not Processed sheet found')
+    end
+
+    it 'redirects to root_path on invalid request' do
+      get :download_processed_sheet
+      expect(response).to redirect_to(root_path)
+      expect(flash[:alert]).to eq('Invalid request')
+    end
+  end
 
   describe 'parse_data' do
     it 'parses data from the Excel file' do

@@ -10,3 +10,20 @@ Feature: Generate and download excel file
     Then  I should be on "download_report" page
     And I click on the button "Download Excel"
     And I should be able to download the Excel
+
+Feature: Download Processed Sheets
+
+  Scenario: User downloads a processed sheet
+    Given there is a processed sheet with ID "123"
+    When the user requests to download the processed sheet with ID "123"
+    Then the file should be downloaded
+
+  Scenario: User tries to download a non-existent processed sheet
+    When the user requests to download a non-existent processed sheet with ID "999"
+    Then the user should see a message indicating the file was not found
+    And the user should be redirected to the homepage
+
+  Scenario: User makes an invalid request to download a processed sheet
+    When the user makes an invalid request to download a processed sheet
+    Then the user should see a message indicating an invalid request
+    And the user should be redirected to the homepage

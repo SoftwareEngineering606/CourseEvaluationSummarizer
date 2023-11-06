@@ -94,11 +94,11 @@
             </tr>
             </thead>
             <tbody>
-                <% @recent_processed_sheets.each do |processed_sheets| %>
+                <% @processed_sheet.each do |processed_sheets| %>
                 <tr>
                     <td><%= processed_sheets.name %></td>
                     <td><%= processed_sheets.description %></td>
-                    <td><%= link_to "Download", download_processed_sheet_path(processed_sheets) %></td>
+                    <td><%= link_to "Download", download_processed_sheet_path(report_id_final: processed_sheets.report_id_final) %></td>
                 </tr>
             <% end %>
             </tbody>
