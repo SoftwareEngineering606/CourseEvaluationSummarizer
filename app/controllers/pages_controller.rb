@@ -14,7 +14,7 @@ class PagesController < ApplicationController
         file_path = Rails.root.join('public', 'excel_files', fileName)
         if File.exist?(file_path)
           send_file file_path,
-                    filename: "#{params[:report_id_final]}.xls",
+                    filename: "#{params[:report_id_final]}.xlsx",
                     type: 'application/excel',
                     disposition: 'attachment'
         else
