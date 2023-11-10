@@ -1,3 +1,11 @@
+require 'rubyXL/convenience_methods/cell'
+require 'rubyXL/convenience_methods/color'
+require 'rubyXL/convenience_methods/font'
+require 'rubyXL/convenience_methods/workbook'
+require 'rubyXL/convenience_methods/worksheet'
+require 'rubyXL/convenience_methods'
+
+
 class PagesController < ApplicationController
   def homepage
     # @recent_processed_sheets = ProcessedSheet.all
@@ -37,8 +45,19 @@ class PagesController < ApplicationController
 
 
   def generate
+
+    labels=session[:labels]
+
+    # Delete all existing Excel files in the directory
+    del_directory = Rails.root.join('public', 'processed')
+    existing_excel_files = Dir["#{del_directory}/*.xlsx"]
+    existing_excel_files.each { |file| File.delete(file) }
+
+
+ labels.each do |label|
+
     directory = Rails.root.join('public', 'uploads')
-    excel_files = Dir["#{directory}/*.xlsx"]
+    excel_files = Dir["#{directory}/*"+label+".xlsx"]
 
     average_hash = {}
     median_hash = {}
@@ -123,6 +142,8 @@ class PagesController < ApplicationController
 
     new_workbook = RubyXL::Workbook.new
 
+    data_groups = data_groups.sort.to_h
+
     i = 1
     data_groups.each do |category, comments, index|
       # next if comments.empty?
@@ -199,18 +220,113 @@ class PagesController < ApplicationController
     new_workbook.worksheets.delete(worksheet_to_delete)
 
     #file_name = File.basename(file_path)
-    file_name = "Sheet" + "-#{Time.now.to_i}" + ".xlsx"
+    file_name = "Sheet" + "-#{Time.now.to_i}_" + label + ".xlsx"
     session[:file] = "Processed_"+file_name
     processed_file_name = "Processed_"+file_name
-    processed_file_path = Rails.root.join('public', 'excel_files', processed_file_name)
+
+
+
+
+    processed_file_path = Rails.root.join('public', 'processed', processed_file_name)
     new_workbook.write(processed_file_path)
 
     processed_sheet = [ { name: processed_file_name, description: 'Description for '+ processed_file_name, report_path: processed_file_path } ]
     ProcessedSheet.create(processed_sheet)
-
+    end
     redirect_to download_report_path
   end
 
+
+  def compare
+
+    directory = Rails.root.join('public', 'processed')
+    excel_files = Dir["#{directory}/*.xlsx"]
+
+    new_workbook = RubyXL::Workbook.new
+    new_sheet = new_workbook[0]
+    new_sheet.sheet_name = "Comparison"
+    new_sheet.add_cell(0, 0, "QUESTION NO.")
+    new_sheet.add_cell(0, 1, "QUESTIONS")
+    new_sheet.add_cell(0, 4, "PERFECT SCORE")
+    new_sheet.change_column_width(4, 30)
+
+    new_sheet.add_cell(0, 5, "% IMPROVEMENT")
+    new_sheet.change_column_width(5, 30)
+
+    question_column = 0
+    row_index=3
+
+    # labels=session[:labels]
+
+    label_column = 6
+    # labels.each do |label|
+    #   new_sheet.add_cell(0, label_column, label)
+    #   label_column = label_column + 2
+    # end
+
+
+
+    excel_files.each do |file_path|
+      begin
+        workbook = RubyXL::Parser.parse(file_path)
+        sheets_list = workbook.worksheets
+        question_increment = 1
+
+
+
+
+        sheets_list.each do |sheet|
+
+          sheet.each_with_index do |row, index|
+             if index.zero?
+               question_cell = row[question_column]
+               question_string = question_cell&.value
+               puts(question_string)
+               new_sheet.add_cell(row_index, 0, question_increment.to_s)
+               question_increment = question_increment + 1
+               new_sheet.add_cell(row_index, 1, question_string)
+               row_index = row_index + 2
+             end
+
+        end
+
+      rescue StandardError => e
+        # Handle any errors that occur during parsing
+        puts "Error parsing #{file_path}: #{e.message}"
+        end
+
+        row_index=3
+    end
+
+
+    new_sheet.change_column_width(1, 250)
+
+
+
+
+      # Extract the last 4 characters of the file name
+      file_name = File.basename(file_path, File.extname(file_path))
+      last_four_characters = file_name[-4..-1]
+      new_sheet.add_cell(0,label_column , last_four_characters + "-Average")
+      new_sheet.change_column_width(label_column, 30)
+      label_column = label_column + 1
+      new_sheet.add_cell(0,label_column , last_four_characters + "-Median")
+      new_sheet.change_column_width(label_column, 30)
+      label_column = label_column + 1
+      new_sheet.add_cell(0,label_column , last_four_characters + "-Mode")
+      new_sheet.change_column_width(label_column, 30)
+      label_column = label_column + 1
+      new_sheet.add_cell(0,label_column , last_four_characters + "-Summary")
+      new_sheet.change_column_width(label_column, 30)
+
+      label_column = label_column + 3
+    end
+
+    file_path = Rails.root.join('public', 'processed_final', 'Final_Processed_'+"-#{Time.now.to_i}" + ".xlsx")
+    new_workbook.write(file_path)
+    redirect_to root_path
+
+    end
   def download
     name = session[:file]
     if name.nil?
