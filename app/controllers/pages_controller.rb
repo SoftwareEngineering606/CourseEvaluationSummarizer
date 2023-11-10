@@ -1,3 +1,4 @@
+require 'rubyXL'
 require 'rubyXL/convenience_methods/cell'
 require 'rubyXL/convenience_methods/color'
 require 'rubyXL/convenience_methods/font'
@@ -260,6 +261,7 @@ class PagesController < ApplicationController
 
     label_column = 6
     column_index = 6
+    current_color = "b2e7b2"
     # labels.each do |label|
     #   new_sheet.add_cell(0, label_column, label)
     #   label_column = label_column + 2
@@ -386,7 +388,7 @@ class PagesController < ApplicationController
 
      end
 
-      row_index=3
+
 
       new_sheet.change_column_width(1, 250)
 
@@ -405,8 +407,45 @@ class PagesController < ApplicationController
       new_sheet.add_cell(0,label_column , last_four_characters + "-Summary")
       new_sheet.change_column_width(label_column, 30)
 
+
+        columns_to_color = []
+        columns_to_color.push(column_index)
+        #column_color = RubyXL::Color.new(200, 200, 200)
+
+        puts('HELOOOOOO4')
+        # new_sheet.each do |sheet_row|
+        #   columns_to_color.each do |column|
+        #     cell = sheet_row[column]
+        #     cell.change_fill("008000")
+        #   end
+        # end
+
+
+        start_row = 0
+        end_row = row_index
+        start_column = column_index
+        end_column = column_index + 3
+
+        #Iterate through rows and apply color to cells in the specified range
+        # (new_sheet.sheet_data[start_row..end_row] || []).each do |sheet_row|
+        #   next unless sheet_row
+        #   (sheet_row.cells[start_column..end_column] || []).each do |cell|
+        #     # Apply the color to the cell's style
+        #     cell.change_fill(current_color)
+        #   end
+        # end
+
+        if current_color == "b2e7b2"
+          current_color = "ffb65c"
+        else
+          current_color = "b2e7b2"
+        end
+
+
+        row_index=3
       label_column = label_column + 3
       column_index = column_index + 6
+
 
       rescue StandardError => e
         # Handle any errors that occur during parsing
