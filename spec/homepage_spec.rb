@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.feature 'Homepage' do
   scenario 'displays the correct HTML structure and styles' do
-    visit '/'
+    visit '/homepage'
 
     # Test the header
     expect(page).to have_selector('header')
