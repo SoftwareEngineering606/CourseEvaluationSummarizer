@@ -259,6 +259,7 @@ class PagesController < ApplicationController
     # labels=session[:labels]
 
     label_column = 6
+    column_index = 6
     # labels.each do |label|
     #   new_sheet.add_cell(0, label_column, label)
     #   label_column = label_column + 2
@@ -266,7 +267,7 @@ class PagesController < ApplicationController
 
 
 
-    excel_files.each do |file_path|
+    excel_files.each_with_index do |file_path, file_index|
       begin
         workbook = RubyXL::Parser.parse(file_path)
         sheets_list = workbook.worksheets
@@ -277,6 +278,12 @@ class PagesController < ApplicationController
 
         sheets_list.each do |sheet|
 
+          perfect_score = 4
+          short_summary = ''
+          average_list = []
+          median_list = []
+          mode_list = []
+
           sheet.each_with_index do |row, index|
              if index.zero?
                question_cell = row[question_column]
@@ -285,26 +292,105 @@ class PagesController < ApplicationController
                new_sheet.add_cell(row_index, 0, question_increment.to_s)
                question_increment = question_increment + 1
                new_sheet.add_cell(row_index, 1, question_string)
-               row_index = row_index + 2
+
+
+             else
+
+               summary = row&.[](0)
+               summary_value = summary&.value
+
+               if summary_value && !summary_value.to_s.empty?
+                 short_summary = summary_value
+               end
+
+               metric = row&.[](1)
+
+               metric_value = metric&.value
+
+               if metric_value && !metric_value.to_s.empty?
+
+                 perfect_score = metric_value
+               end
+
+               metric = row&.[](2)
+               metric_value = metric&.value
+
+               if metric_value && !metric_value.to_s.empty?
+
+                 average_list.push(metric_value)
+               end
+
+               metric = row&.[](3)
+               metric_value = metric&.value
+
+               if metric_value && !metric_value.to_s.empty?
+
+                 median_list.push(metric_value)
+               end
+
+               metric = row&.[](4)
+               metric_value = metric&.value
+
+               if metric_value && !metric_value.to_s.empty?
+
+                 mode_list.push(metric_value)
+               end
+
+
              end
 
-        end
+          end
 
-      rescue StandardError => e
-        # Handle any errors that occur during parsing
-        puts "Error parsing #{file_path}: #{e.message}"
-        end
+          # puts('HELLOOOOO')
+          # puts('row Index')
+          # puts(row_index)
 
-        row_index=3
-    end
+          average_list = average_list.map(&:to_f)
+          average = average_list.reduce(0.0, :+) / average_list.length.to_f
 
+          median_list = median_list.map(&:to_f)
+          sorted_values = median_list.sort
+          n = sorted_values.length
+          median = n.odd? ? sorted_values[n / 2] : (sorted_values[n / 2 - 1] + sorted_values[n / 2]) / 2.0
 
-    new_sheet.change_column_width(1, 250)
+          mode = mode_list.map(&:to_f).max
 
+          # puts('Perfect score')
+          # puts(perfect_score)
+          #
+          # puts('Average')
+          # puts(average)
+          #
+          # puts('median')
+          # puts(median)
+          #
+          # puts('mode')
+          # puts(mode)
 
+          if file_index.zero?
+          new_sheet.add_cell(row_index, 4 , perfect_score)
+          end
 
+          puts('summary')
+          #puts(short_summary)
+          cell1 = new_sheet.add_cell(row_index, column_index , average)
+          cell2 = new_sheet.add_cell(row_index, column_index+1 , median)
+          cell3 = new_sheet.add_cell(row_index, column_index+2 , mode)
+          cell4 = new_sheet.add_cell(row_index, column_index+3 , short_summary)
+          cell1.set_number_format('0.00')
+          cell2.set_number_format('0.00')
+          cell3.set_number_format('0.00')
 
-      # Extract the last 4 characters of the file name
+          #column_index = 6
+          row_index = row_index + 2
+
+     end
+
+      row_index=3
+
+      new_sheet.change_column_width(1, 250)
+
+        #Extract the last 4 characters of the file name
       file_name = File.basename(file_path, File.extname(file_path))
       last_four_characters = file_name[-4..-1]
       new_sheet.add_cell(0,label_column , last_four_characters + "-Average")
@@ -320,6 +406,13 @@ class PagesController < ApplicationController
       new_sheet.change_column_width(label_column, 30)
 
       label_column = label_column + 3
+      column_index = column_index + 6
+
+      rescue StandardError => e
+        # Handle any errors that occur during parsing
+        puts "Error parsing #{file_path}: #{e.message}"
+      end
+
     end
 
     file_path = Rails.root.join('public', 'processed_final', 'Final_Processed_'+"-#{Time.now.to_i}" + ".xlsx")
