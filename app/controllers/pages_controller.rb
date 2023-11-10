@@ -174,20 +174,20 @@ class PagesController < ApplicationController
 
       row_index = 4
 
-      #Remove duplicate comments 
-      duplicate_service = DuplicateService.new(comments)
-      unique_comments = duplicate_service.remove_duplicates
+      # #Remove duplicate comments 
+      # duplicate_service = DuplicateService.new(comments)
+      # unique_comments = duplicate_service.remove_duplicates
       
-      unique_comments.each do |comment|
+      comments.each do |comment|
         new_worksheet.add_cell(row_index, 0, comment.to_s)
         row_index += 1
       end
       
       # Make a chatgpt call here to summarize commemnts in some specific word count range and add it to the list
-      if unique_comments.length > 0
-        input_text = unique_comments.join(" ")
-        summarizer = SummarizeService.new(input_text)
-        summary = summarizer.summarize_text
+      if comments.length > 0
+        input_text = "Summarize the following in 3 4 lines" + comments.join(" ")
+        summarizer = ChatgptService.new(input_text)
+        summary = summarizer.call
         row_index += 1
         new_worksheet.add_cell(row_index, 0, 'SUMMARY')
         row_index += 1
