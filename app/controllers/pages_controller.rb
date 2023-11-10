@@ -174,11 +174,16 @@ class PagesController < ApplicationController
 
       row_index = 4
 
-      # #Remove duplicate comments 
+      #Remove duplicate comments 
+      dup_comments = comments.join("\n")
+      input = "Remove duplicate lines from the below text and output unique lines only\n" + dup_comments
+      remove_duplicates = ChatgptService.new(input)
+      output = remove_duplicates.call
+      unique_comments = output.split(".")
       # duplicate_service = DuplicateService.new(comments)
       # unique_comments = duplicate_service.remove_duplicates
       
-      comments.each do |comment|
+      unique_comments.each do |comment|
         new_worksheet.add_cell(row_index, 0, comment.to_s)
         row_index += 1
       end
