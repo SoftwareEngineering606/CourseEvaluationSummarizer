@@ -11,8 +11,6 @@ Feature: Generate and download excel file
     And I click on the button "Download Excel"
     And I should be able to download the Excel
 
-Feature: Download Processed Sheets
-
   Scenario: User downloads a processed sheet
     Given there is a processed sheet with ID "123"
     When the user requests to download the processed sheet with ID "123"
