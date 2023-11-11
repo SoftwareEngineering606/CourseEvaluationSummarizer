@@ -34,7 +34,7 @@ RSpec.describe PagesController, type: :controller do
   describe 'parse_data' do
     it 'parses data from the Excel file' do
       source_file_path = 'spec/fixtures/files/sample.xlsx'
-      destination_file_path = Rails.root.join('public', 'uploads', 'sample.xlsx')
+      destination_file_path = Rails.root.join('public', 'uploads', 'sample_FA23.xlsx')
 
       # Copy the sample Excel file to the "public" directory
       FileUtils.cp(source_file_path, destination_file_path)
@@ -45,6 +45,21 @@ RSpec.describe PagesController, type: :controller do
       File.delete(destination_file_path) if File.exist?(destination_file_path)
 
     end
+
+    it 'generates comparison' do
+      source_file_path = 'spec/fixtures/files/Processed_SheetFA23.xlsx'
+      destination_file_path = Rails.root.join('public', 'processed', 'Processed_SheetFA23.xlsx')
+
+      # Copy the sample Excel file to the "public" directory
+      FileUtils.cp(source_file_path, destination_file_path)
+
+      get :compare
+      expect(response).to redirect_to(download_report_path)
+
+      File.delete(destination_file_path) if File.exist?(destination_file_path)
+
+    end
+
 
   end
   describe 'GET #validate' do
