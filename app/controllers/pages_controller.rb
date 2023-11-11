@@ -518,9 +518,13 @@ class PagesController < ApplicationController
 
     end
 
-    file_path = Rails.root.join('public', 'processed_final', 'Final_Processed_'+"-#{Time.now.to_i}" + ".xlsx")
+
+
+    final_file_name = 'Final_Processed_'+"-#{Time.now.to_i}" + '.xlsx'
+    file_path = Rails.root.join('public', 'processed_final',final_file_name )
     new_workbook.write(file_path)
-    redirect_to root_path
+    session[:file] = final_file_name
+    redirect_to download_excel_path
 
     end
   def download
@@ -528,7 +532,7 @@ class PagesController < ApplicationController
     if name.nil?
       name = 'grouped_data.xlsx'
     end
-    excel_file_path = Rails.root.join('public', 'excel_files', name)
+    excel_file_path = Rails.root.join('public', 'processed_final', name)
         if File.exist?(excel_file_path)
           send_file excel_file_path, filename: name,
                      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
