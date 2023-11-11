@@ -298,7 +298,6 @@ class PagesController < ApplicationController
              if index.zero?
                question_cell = row[question_column]
                question_string = question_cell&.value
-               puts(question_string)
                new_sheet.add_cell(row_index, 0, question_increment.to_s)
                question_increment = question_increment + 1
                new_sheet.add_cell(row_index, 1, question_string)
@@ -459,12 +458,6 @@ class PagesController < ApplicationController
         #   end
         # end
 
-        puts('end row')
-        puts(end_row)
-        puts('start column')
-        puts(start_column)
-        puts('end column')
-        puts(end_column)
 
         for row_index_new in start_row...end_row
            if new_sheet[row_index_new].nil?
@@ -523,7 +516,6 @@ class PagesController < ApplicationController
 
     final_file_name = 'Final_Processed_'+"-#{Time.now.to_i}" + '.xlsx'
     file_path = Rails.root.join('public', 'processed_final',final_file_name )
-    puts('HIII')
     new_workbook.write(file_path)
     session[:processedFile] = final_file_name
     redirect_to download_report_path
