@@ -208,8 +208,9 @@ class PagesController < ApplicationController
       # Make a chatgpt call here to summarize commemnts in some specific word count range and add it to the list
       if comments.length > 0
         input_text = "Summarize the following in 3 4 lines" + comments.join(" ")
-        summarizer = ChatgptService.new(input_text)
-        summary = summarizer.call
+        # summarizer = ChatgptService.new(input_text)
+        # summary = summarizer.call
+        summary = "Dummy summary"
         row_index += 1
         new_worksheet.add_cell(row_index, 0, 'SUMMARY')
         row_index += 1
@@ -380,7 +381,7 @@ class PagesController < ApplicationController
           new_sheet.add_cell(row_index, 4 , perfect_score)
           end
 
-          puts('summary')
+          #puts('summary')
           #puts(short_summary)
           cell1 = new_sheet.add_cell(row_index, column_index , average)
           cell2 = new_sheet.add_cell(row_index, column_index+1 , median)
@@ -435,7 +436,7 @@ class PagesController < ApplicationController
         columns_to_color.push(column_index)
         #column_color = RubyXL::Color.new(200, 200, 200)
 
-        puts('HELOOOOOO4')
+
         # new_sheet.each do |sheet_row|
         #   columns_to_color.each do |column|
         #     cell = sheet_row[column]
@@ -522,13 +523,14 @@ class PagesController < ApplicationController
 
     final_file_name = 'Final_Processed_'+"-#{Time.now.to_i}" + '.xlsx'
     file_path = Rails.root.join('public', 'processed_final',final_file_name )
+    puts('HIII')
     new_workbook.write(file_path)
-    session[:file] = final_file_name
-    redirect_to download_excel_path
+    session[:processedFile] = final_file_name
+    redirect_to download_report_path
 
     end
   def download
-    name = session[:file]
+    name = session[:processedFile]
     if name.nil?
       name = 'grouped_data.xlsx'
     end

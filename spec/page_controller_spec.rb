@@ -38,6 +38,7 @@ RSpec.describe PagesController, type: :controller do
 
       # Copy the sample Excel file to the "public" directory
       FileUtils.cp(source_file_path, destination_file_path)
+      session[:labels] = ["FA23"]
       get :generate
       expect(response).to redirect_to(download_report_path)
 

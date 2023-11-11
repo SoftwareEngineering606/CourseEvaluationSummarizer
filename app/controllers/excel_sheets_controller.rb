@@ -49,7 +49,8 @@ class ExcelSheetsController < ApplicationController
 
       upload_directory = Rails.root.join('public', 'uploads')
 
-      labels = ["SP22", "FA22", "SP23"]
+      #upload the same number of files as the length of labels
+      labels = ["FA22", "FA22"]
       i=0
       session[:labels]=labels.uniq
 
