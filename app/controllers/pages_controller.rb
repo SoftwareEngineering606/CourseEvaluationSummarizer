@@ -246,12 +246,19 @@ class PagesController < ApplicationController
     new_workbook = RubyXL::Workbook.new
     new_sheet = new_workbook[0]
     new_sheet.sheet_name = "Comparison"
-    new_sheet.add_cell(0, 0, "QUESTION NO.")
-    new_sheet.add_cell(0, 1, "QUESTIONS")
-    new_sheet.add_cell(0, 4, "PERFECT SCORE")
+    added_cell = new_sheet.add_cell(0, 0, "QUESTION NO.")
+    new_sheet.change_column_width(0, 20)
+    added_cell.change_font_bold(bolded = true)
+
+    added_cell = new_sheet.add_cell(0, 1, "QUESTIONS")
+    added_cell.change_font_bold(bolded = true)
+
+    added_cell = new_sheet.add_cell(0, 4, "PERFECT SCORE")
+    added_cell.change_font_bold(bolded = true)
     new_sheet.change_column_width(4, 30)
 
-    new_sheet.add_cell(0, 5, "% IMPROVEMENT")
+    added_cell = new_sheet.add_cell(0, 5, "% IMPROVEMENT")
+    added_cell.change_font_bold(bolded = true)
     new_sheet.change_column_width(5, 30)
 
     question_column = 0
@@ -383,6 +390,11 @@ class PagesController < ApplicationController
           cell2.set_number_format('0.00')
           cell3.set_number_format('0.00')
 
+          cell1.change_horizontal_alignment(alignment = 'center')
+          cell2.change_horizontal_alignment(alignment = 'center')
+          cell3.change_horizontal_alignment(alignment = 'center')
+
+
           #column_index = 6
           row_index = row_index + 2
 
@@ -394,17 +406,28 @@ class PagesController < ApplicationController
 
         #Extract the last 4 characters of the file name
       file_name = File.basename(file_path, File.extname(file_path))
+
       last_four_characters = file_name[-4..-1]
-      new_sheet.add_cell(0,label_column , last_four_characters + "-Average")
+      added_cell = new_sheet.add_cell(0,label_column , last_four_characters + "-Average")
+      added_cell.change_horizontal_alignment(alignment = 'center')
+      added_cell.change_font_bold(bolded = true)
+
       new_sheet.change_column_width(label_column, 30)
       label_column = label_column + 1
-      new_sheet.add_cell(0,label_column , last_four_characters + "-Median")
+      added_cell = new_sheet.add_cell(0,label_column , last_four_characters + "-Median")
+      added_cell.change_horizontal_alignment(alignment = 'center')
+      added_cell.change_font_bold(bolded = true)
+
       new_sheet.change_column_width(label_column, 30)
       label_column = label_column + 1
-      new_sheet.add_cell(0,label_column , last_four_characters + "-Mode")
+      added_cell = new_sheet.add_cell(0,label_column , last_four_characters + "-Mode")
+      added_cell.change_horizontal_alignment(alignment = 'center')
+      added_cell.change_font_bold(bolded = true)
+
       new_sheet.change_column_width(label_column, 30)
       label_column = label_column + 1
-      new_sheet.add_cell(0,label_column , last_four_characters + "-Summary")
+      added_cell = new_sheet.add_cell(0,label_column , last_four_characters + "-Summary")
+      added_cell.change_font_bold(bolded = true)
       new_sheet.change_column_width(label_column, 30)
 
 
@@ -424,7 +447,7 @@ class PagesController < ApplicationController
         start_row = 0
         end_row = row_index
         start_column = column_index
-        end_column = column_index + 3
+        end_column = column_index + 4
 
         #Iterate through rows and apply color to cells in the specified range
         # (new_sheet.sheet_data[start_row..end_row] || []).each do |sheet_row|
@@ -434,6 +457,47 @@ class PagesController < ApplicationController
         #     cell.change_fill(current_color)
         #   end
         # end
+
+        puts('end row')
+        puts(end_row)
+        puts('start column')
+        puts(start_column)
+        puts('end column')
+        puts(end_column)
+
+        for row_index_new in start_row...end_row
+           if new_sheet[row_index_new].nil?
+            for column_index_new in start_column...end_column
+              new_sheet.add_cell(row_index_new,column_index_new,"")
+            end
+           end
+        end
+
+        for row_index_new in start_row...end_row
+            for column_index_new in start_column...end_column
+              if new_sheet[row_index_new][column_index_new].nil?
+              new_sheet.add_cell(row_index_new,column_index_new,"")
+            end
+          end
+        end
+
+        #Iterate through rows and apply color to cells in the specified range
+        (new_sheet.sheet_data[start_row..end_row] || []).each do |sheet_row|
+           next unless sheet_row
+          (sheet_row.cells[start_column..end_column] || []).each do |cell|
+            # Apply the color to the cell's style
+            cell.change_fill(current_color)
+            cell.change_border(:top, :thin)
+            cell.change_border(:left, :thin)
+            cell.change_border(:right, :thin)
+            cell.change_border_color(:top, 'A9A9A9')
+            cell.change_border_color(:left, 'A9A9A9')
+            cell.change_border_color(:right, 'A9A9A9')
+
+          end
+        end
+
+
 
         if current_color == "b2e7b2"
           current_color = "ffb65c"

@@ -49,7 +49,7 @@ class ExcelSheetsController < ApplicationController
 
       upload_directory = Rails.root.join('public', 'uploads')
 
-      labels = ["SP22", "SP23", "SP23"]
+      labels = ["SP22", "FA22", "SP23"]
       i=0
       session[:labels]=labels.uniq
 
@@ -61,8 +61,6 @@ class ExcelSheetsController < ApplicationController
         if file.content_type == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
          filename_without_extension = File.basename(file.original_filename, File.extname(file.original_filename))
          file_path = Rails.root.join('public', 'uploads', filename_without_extension+labels[i]+".xlsx")
-         puts('hi')
-         puts(i)
          i=i+1
 
         # Save the file to the specified path.
