@@ -7,7 +7,7 @@ Given('there are recent Excel sheets in the database') do
 end
 
 When('the user visits the homepage') do
-  visit '/'
+  visit '/homepage'
 end
 
 Then("the user should see a list of recent Excel sheets") do

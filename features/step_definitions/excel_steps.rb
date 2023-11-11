@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Given('I am on the main page') do
-  visit root_path
+  visit '/homepage'
 end
 
 When('I click on the button {string}') do |button_text|
