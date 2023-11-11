@@ -60,6 +60,20 @@ RSpec.describe PagesController, type: :controller do
 
     end
 
+    it 'generates comparison for multiple semesters' do
+      source_file_path = 'spec/fixtures/files/Processed_SheetSP22.xlsx'
+      destination_file_path = Rails.root.join('public', 'processed', 'Processed_SheetSP22.xlsx')
+
+      # Copy the sample Excel file to the "public" directory
+      FileUtils.cp(source_file_path, destination_file_path)
+
+      get :compare
+      expect(response).to redirect_to(download_report_path)
+
+      File.delete(destination_file_path) if File.exist?(destination_file_path)
+
+    end
+
 
   end
   describe 'GET #validate' do

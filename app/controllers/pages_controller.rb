@@ -512,6 +512,51 @@ class PagesController < ApplicationController
 
     end
 
+    all_sem_average = []
+    starting_row = 3
+    ending_row = 28
+    starting_column = 6
+
+    while !new_sheet[starting_row] && !new_sheet[starting_row][starting_column].nil?
+
+
+    end
+
+    value_improvement = 0
+    improvement_text = ""
+
+    #need_to_change
+    while starting_row<=ending_row
+
+      while  !new_sheet[starting_row].nil? && !new_sheet[starting_row][starting_column].nil?
+        all_sem_average.push(new_sheet[starting_row][starting_column].value)
+        starting_column = starting_column + 6
+      end
+
+      max_value = all_sem_average.max
+      min_value = all_sem_average.min
+
+      if max_value == min_value
+        value_improvement = 0
+      else
+        value_improvement = ((max_value-min_value)/min_value) * 100
+        value_improvement = sprintf('%.2f', value_improvement)
+      end
+
+      if value_improvement == 0
+        improvement_text = "NA"
+      else
+        improvement_text = value_improvement.to_s+'%'
+      end
+
+      cell=new_sheet.add_cell(starting_row,5,improvement_text)
+      cell.set_number_format('00.00%')
+
+      all_sem_average = []
+      starting_row = starting_row + 2
+      starting_column = 6
+    end
+
 
 
     final_file_name = 'Final_Processed_'+"-#{Time.now.to_i}" + '.xlsx'
