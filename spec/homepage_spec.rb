@@ -26,6 +26,6 @@ RSpec.feature 'Homepage' do
     # Test Generate button and Download File page
     click_button('Generate')
     expect(page).to have_current_path(download_report_path)
-    expect(page).to have_link('Download Excel')
+    expect(page).to have_link('Download Final Comparison')
   end
 end
