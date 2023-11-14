@@ -49,10 +49,8 @@ class ExcelSheetsController < ApplicationController
 
       upload_directory = Rails.root.join('public', 'uploads')
 
-      #upload the same number of files as the length of labels
-      labels = ["FA22", "FA22", "SP23"]
-      i=0
-      session[:labels]=labels.uniq
+    
+      labels = []
 
       # Delete all existing Excel files in the directory
       existing_excel_files = Dir["#{upload_directory}/*.xlsx"]
@@ -61,15 +59,18 @@ class ExcelSheetsController < ApplicationController
       Array(params[:uploaded_files]).drop(1).each do |file|
         if file.content_type == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
          filename_without_extension = File.basename(file.original_filename, File.extname(file.original_filename))
-         file_path = Rails.root.join('public', 'uploads', filename_without_extension+labels[i]+".xlsx")
-         i=i+1
+         last_four_characters = filename_without_extension[-4..-1]
+         labels.push(last_four_characters)
+         file_path = Rails.root.join('public', 'uploads', filename_without_extension+".xlsx")
+
 
         # Save the file to the specified path.
         File.open(file_path, 'wb') do |f|
           f.write(file.read)
         end
         end
-        end
+      end
+      session[:labels]=labels.uniq
     end
 
     if @excel_sheet.save
