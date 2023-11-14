@@ -8,7 +8,7 @@ Feature: Generate and download excel file
     Given I am on the main page
     And I click on the button "Generate"
     Then I should be on "download_report" page
-    And I click on the button "Download Excel"
+    And I click on the button "Download Final Comparison"
     And I should be able to download the Excel
 
   Scenario: User downloads a processed sheet
