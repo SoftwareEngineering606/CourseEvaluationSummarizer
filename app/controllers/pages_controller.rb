@@ -1,3 +1,12 @@
+require 'rubyXL'
+require 'rubyXL/convenience_methods/cell'
+require 'rubyXL/convenience_methods/color'
+require 'rubyXL/convenience_methods/font'
+require 'rubyXL/convenience_methods/workbook'
+require 'rubyXL/convenience_methods/worksheet'
+require 'rubyXL/convenience_methods'
+
+
 class PagesController < ApplicationController
   def homepage
     # @recent_processed_sheets = ProcessedSheet.all
@@ -37,8 +46,19 @@ class PagesController < ApplicationController
 
 
   def generate
+
+    labels=session[:labels]
+
+    # Delete all existing Excel files in the directory
+    del_directory = Rails.root.join('public', 'processed')
+    existing_excel_files = Dir["#{del_directory}/*.xlsx"]
+    existing_excel_files.each { |file| File.delete(file) }
+
+
+ labels.each do |label|
+
     directory = Rails.root.join('public', 'uploads')
-    excel_files = Dir["#{directory}/*.xlsx"]
+    excel_files = Dir["#{directory}/*"+label+".xlsx"]
 
     average_hash = {}
     median_hash = {}
@@ -123,6 +143,8 @@ class PagesController < ApplicationController
 
     new_workbook = RubyXL::Workbook.new
 
+    data_groups = data_groups.sort.to_h
+
     i = 1
     data_groups.each do |category, comments, index|
       # next if comments.empty?
@@ -174,20 +196,21 @@ class PagesController < ApplicationController
 
       row_index = 4
 
-      #Remove duplicate comments 
-      duplicate_service = DuplicateService.new(comments)
-      unique_comments = duplicate_service.remove_duplicates
+      # #Remove duplicate comments 
+      # duplicate_service = DuplicateService.new(comments)
+      # unique_comments = duplicate_service.remove_duplicates
       
-      unique_comments.each do |comment|
+      comments.each do |comment|
         new_worksheet.add_cell(row_index, 0, comment.to_s)
         row_index += 1
       end
       
       # Make a chatgpt call here to summarize commemnts in some specific word count range and add it to the list
-      if unique_comments.length > 0
-        input_text = unique_comments.join(" ")
-        summarizer = SummarizeService.new(input_text)
-        summary = summarizer.summarize_text
+      if comments.length > 0
+        input_text = "Summarize the following in 3 4 lines" + comments.join(" ")
+        # summarizer = ChatgptService.new(input_text)
+        # summary = summarizer.call
+        summary = "Dummy summary"
         row_index += 1
         new_worksheet.add_cell(row_index, 0, 'SUMMARY')
         row_index += 1
@@ -199,24 +222,356 @@ class PagesController < ApplicationController
     new_workbook.worksheets.delete(worksheet_to_delete)
 
     #file_name = File.basename(file_path)
-    file_name = "Sheet" + "-#{Time.now.to_i}" + ".xlsx"
+    file_name = "Sheet" + "-#{Time.now.to_i}_" + label + ".xlsx"
     session[:file] = "Processed_"+file_name
     processed_file_name = "Processed_"+file_name
-    processed_file_path = Rails.root.join('public', 'excel_files', processed_file_name)
+
+
+
+
+    processed_file_path = Rails.root.join('public', 'processed', processed_file_name)
     new_workbook.write(processed_file_path)
 
     processed_sheet = [ { name: processed_file_name, description: 'Description for '+ processed_file_name, report_path: processed_file_path } ]
     ProcessedSheet.create(processed_sheet)
-
+    end
     redirect_to download_report_path
   end
 
+
+  def compare
+
+    directory = Rails.root.join('public', 'processed')
+    excel_files = Dir["#{directory}/*.xlsx"]
+
+    new_workbook = RubyXL::Workbook.new
+    new_sheet = new_workbook[0]
+    new_sheet.sheet_name = "Comparison"
+    added_cell = new_sheet.add_cell(0, 0, "QUESTION NO.")
+    new_sheet.change_column_width(0, 20)
+    added_cell.change_font_bold(bolded = true)
+
+    added_cell = new_sheet.add_cell(0, 1, "QUESTIONS")
+    added_cell.change_font_bold(bolded = true)
+
+    added_cell = new_sheet.add_cell(0, 4, "PERFECT SCORE")
+    added_cell.change_font_bold(bolded = true)
+    new_sheet.change_column_width(4, 30)
+
+    added_cell = new_sheet.add_cell(0, 5, "% IMPROVEMENT")
+    added_cell.change_font_bold(bolded = true)
+    new_sheet.change_column_width(5, 30)
+
+    question_column = 0
+    row_index=3
+
+    # labels=session[:labels]
+
+    label_column = 6
+    column_index = 6
+    current_color = "b2e7b2"
+    # labels.each do |label|
+    #   new_sheet.add_cell(0, label_column, label)
+    #   label_column = label_column + 2
+    # end
+
+
+
+    excel_files.each_with_index do |file_path, file_index|
+      begin
+        workbook = RubyXL::Parser.parse(file_path)
+        sheets_list = workbook.worksheets
+        question_increment = 1
+
+
+
+
+        sheets_list.each do |sheet|
+
+          perfect_score = 4
+          short_summary = ''
+          average_list = []
+          median_list = []
+          mode_list = []
+
+          sheet.each_with_index do |row, index|
+             if index.zero?
+               question_cell = row[question_column]
+               question_string = question_cell&.value
+               new_sheet.add_cell(row_index, 0, question_increment.to_s)
+               question_increment = question_increment + 1
+               new_sheet.add_cell(row_index, 1, question_string)
+
+
+             else
+
+               summary = row&.[](0)
+               summary_value = summary&.value
+
+               if summary_value && !summary_value.to_s.empty?
+                 short_summary = summary_value
+               end
+
+               metric = row&.[](1)
+
+               metric_value = metric&.value
+
+               if metric_value && !metric_value.to_s.empty?
+
+                 perfect_score = metric_value
+               end
+
+               metric = row&.[](2)
+               metric_value = metric&.value
+
+               if metric_value && !metric_value.to_s.empty?
+
+                 average_list.push(metric_value)
+               end
+
+               metric = row&.[](3)
+               metric_value = metric&.value
+
+               if metric_value && !metric_value.to_s.empty?
+
+                 median_list.push(metric_value)
+               end
+
+               metric = row&.[](4)
+               metric_value = metric&.value
+
+               if metric_value && !metric_value.to_s.empty?
+
+                 mode_list.push(metric_value)
+               end
+
+
+             end
+
+          end
+
+          # puts('HELLOOOOO')
+          # puts('row Index')
+          # puts(row_index)
+
+          average_list = average_list.map(&:to_f)
+          average = average_list.reduce(0.0, :+) / average_list.length.to_f
+
+          median_list = median_list.map(&:to_f)
+          sorted_values = median_list.sort
+          n = sorted_values.length
+          median = n.odd? ? sorted_values[n / 2] : (sorted_values[n / 2 - 1] + sorted_values[n / 2]) / 2.0
+
+          mode = mode_list.map(&:to_f).max
+
+          # puts('Perfect score')
+          # puts(perfect_score)
+          #
+          # puts('Average')
+          # puts(average)
+          #
+          # puts('median')
+          # puts(median)
+          #
+          # puts('mode')
+          # puts(mode)
+
+          if file_index.zero?
+          new_sheet.add_cell(row_index, 4 , perfect_score)
+          end
+
+          #puts('summary')
+          #puts(short_summary)
+          cell1 = new_sheet.add_cell(row_index, column_index , average)
+          cell2 = new_sheet.add_cell(row_index, column_index+1 , median)
+          cell3 = new_sheet.add_cell(row_index, column_index+2 , mode)
+          cell4 = new_sheet.add_cell(row_index, column_index+3 , short_summary)
+          cell1.set_number_format('0.00')
+          cell2.set_number_format('0.00')
+          cell3.set_number_format('0.00')
+
+          cell1.change_horizontal_alignment(alignment = 'center')
+          cell2.change_horizontal_alignment(alignment = 'center')
+          cell3.change_horizontal_alignment(alignment = 'center')
+
+
+          #column_index = 6
+          row_index = row_index + 2
+
+     end
+
+
+
+      new_sheet.change_column_width(1, 250)
+
+        #Extract the last 4 characters of the file name
+      file_name = File.basename(file_path, File.extname(file_path))
+
+      last_four_characters = file_name[-4..-1]
+      added_cell = new_sheet.add_cell(0,label_column , last_four_characters + "-Average")
+      added_cell.change_horizontal_alignment(alignment = 'center')
+      added_cell.change_font_bold(bolded = true)
+
+      new_sheet.change_column_width(label_column, 30)
+      label_column = label_column + 1
+      added_cell = new_sheet.add_cell(0,label_column , last_four_characters + "-Median")
+      added_cell.change_horizontal_alignment(alignment = 'center')
+      added_cell.change_font_bold(bolded = true)
+
+      new_sheet.change_column_width(label_column, 30)
+      label_column = label_column + 1
+      added_cell = new_sheet.add_cell(0,label_column , last_four_characters + "-Mode")
+      added_cell.change_horizontal_alignment(alignment = 'center')
+      added_cell.change_font_bold(bolded = true)
+
+      new_sheet.change_column_width(label_column, 30)
+      label_column = label_column + 1
+      added_cell = new_sheet.add_cell(0,label_column , last_four_characters + "-Summary")
+      added_cell.change_font_bold(bolded = true)
+      new_sheet.change_column_width(label_column, 30)
+
+
+        columns_to_color = []
+        columns_to_color.push(column_index)
+        #column_color = RubyXL::Color.new(200, 200, 200)
+
+
+        # new_sheet.each do |sheet_row|
+        #   columns_to_color.each do |column|
+        #     cell = sheet_row[column]
+        #     cell.change_fill("008000")
+        #   end
+        # end
+
+
+        start_row = 0
+        end_row = row_index
+        start_column = column_index
+        end_column = column_index + 4
+
+        #Iterate through rows and apply color to cells in the specified range
+        # (new_sheet.sheet_data[start_row..end_row] || []).each do |sheet_row|
+        #   next unless sheet_row
+        #   (sheet_row.cells[start_column..end_column] || []).each do |cell|
+        #     # Apply the color to the cell's style
+        #     cell.change_fill(current_color)
+        #   end
+        # end
+
+
+        for row_index_new in start_row...end_row
+           if new_sheet[row_index_new].nil?
+            for column_index_new in start_column...end_column
+              new_sheet.add_cell(row_index_new,column_index_new,"")
+            end
+           end
+        end
+
+        for row_index_new in start_row...end_row
+            for column_index_new in start_column...end_column
+              if new_sheet[row_index_new][column_index_new].nil?
+              new_sheet.add_cell(row_index_new,column_index_new,"")
+            end
+          end
+        end
+
+        #Iterate through rows and apply color to cells in the specified range
+        (new_sheet.sheet_data[start_row..end_row] || []).each do |sheet_row|
+           next unless sheet_row
+          (sheet_row.cells[start_column..end_column] || []).each do |cell|
+            # Apply the color to the cell's style
+            cell.change_fill(current_color)
+            cell.change_border(:top, :thin)
+            cell.change_border(:left, :thin)
+            cell.change_border(:right, :thin)
+            cell.change_border_color(:top, 'A9A9A9')
+            cell.change_border_color(:left, 'A9A9A9')
+            cell.change_border_color(:right, 'A9A9A9')
+
+          end
+        end
+
+
+
+        if current_color == "b2e7b2"
+          current_color = "ffb65c"
+        else
+          current_color = "b2e7b2"
+        end
+
+
+        row_index=3
+      label_column = label_column + 3
+      column_index = column_index + 6
+
+
+      rescue StandardError => e
+        # Handle any errors that occur during parsing
+        puts "Error parsing #{file_path}: #{e.message}"
+      end
+
+    end
+
+    all_sem_average = []
+    starting_row = 3
+    ending_row = 28
+    starting_column = 6
+
+    while !new_sheet[starting_row] && !new_sheet[starting_row][starting_column].nil?
+
+
+    end
+
+    value_improvement = 0
+    improvement_text = ""
+
+    #need_to_change
+    while starting_row<=ending_row
+
+      while  !new_sheet[starting_row].nil? && !new_sheet[starting_row][starting_column].nil?
+        all_sem_average.push(new_sheet[starting_row][starting_column].value)
+        starting_column = starting_column + 6
+      end
+
+      max_value = all_sem_average.max
+      min_value = all_sem_average.min
+
+      if max_value == min_value
+        value_improvement = 0
+      else
+        value_improvement = ((max_value-min_value)/min_value) * 100
+        value_improvement = sprintf('%.2f', value_improvement)
+      end
+
+      if value_improvement == 0
+        improvement_text = "NA"
+      else
+        improvement_text = value_improvement.to_s+'%'
+      end
+
+      cell=new_sheet.add_cell(starting_row,5,improvement_text)
+      cell.set_number_format('00.00%')
+
+      all_sem_average = []
+      starting_row = starting_row + 2
+      starting_column = 6
+    end
+
+
+
+    final_file_name = 'Final_Processed_'+"-#{Time.now.to_i}" + '.xlsx'
+    file_path = Rails.root.join('public', 'processed_final',final_file_name )
+    new_workbook.write(file_path)
+    session[:processedFile] = final_file_name
+    redirect_to download_report_path
+
+    end
   def download
-    name = session[:file]
+    name = session[:processedFile]
     if name.nil?
       name = 'grouped_data.xlsx'
     end
-    excel_file_path = Rails.root.join('public', 'excel_files', name)
+    excel_file_path = Rails.root.join('public', 'processed_final', name)
         if File.exist?(excel_file_path)
           send_file excel_file_path, filename: name,
                      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'

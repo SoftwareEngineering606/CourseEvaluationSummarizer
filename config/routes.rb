@@ -14,8 +14,14 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+
   root 'pages#login'
   
+
+  #root 'pages#homepage'
+  match '/excels/sheet/compare', to: 'pages#compare', via: :get,
+        as: 'compare_excel'
+
   get 'excel_sheets/new', to: 'excel_sheets#new', as: 'excel_sheets_new'
   post 'excel_sheets/create', to: 'excel_sheets#create', as: 'excel_sheets_create'
   match '/excels/sheet/generate', to: 'pages#generate', via: :get,
