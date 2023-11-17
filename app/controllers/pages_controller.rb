@@ -232,8 +232,6 @@ class PagesController < ApplicationController
     processed_file_path = Rails.root.join('public', 'processed', processed_file_name)
     new_workbook.write(processed_file_path)
 
-    processed_sheet = [ { name: processed_file_name, description: 'Description for '+ processed_file_name, report_path: processed_file_path } ]
-    ProcessedSheet.create(processed_sheet)
     end
     redirect_to download_report_path
   end
@@ -578,7 +576,9 @@ class PagesController < ApplicationController
     all_files = excel_files
     all_files.push(file_path)
 
-    zip_file_path = Rails.root.join('public','zip_all_files','all_files'+"-#{Time.now.to_i}"+'.zip')
+
+    zip_name = 'Comparison_Zip'+"-#{Time.now.to_i}"+'.zip'
+    zip_file_path = Rails.root.join('public','zip_all_files',zip_name)
     Zip::File.open(zip_file_path, Zip::File::CREATE) do |zipfile|
       all_files.each do |file_path|
         # Extract the file name from the path
@@ -588,6 +588,9 @@ class PagesController < ApplicationController
     end
 
     session[:all_files_zip] = zip_file_path
+
+    processed_zip = [ { name: zip_name, description: 'Description for '+ zip_name, report_path: zip_file_path } ]
+    ProcessedSheet.create(processed_zip)
 
     redirect_to download_report_path
 
