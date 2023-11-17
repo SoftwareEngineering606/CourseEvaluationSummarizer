@@ -7,16 +7,24 @@
       font-family: Arial, sans-serif;
       background-color: #f2f2f2;
       text-align: center;
+      margin: 50px;
     }
 
     h1 {
-      color: #333;
+      color: white;
     }
-
+    h2 {
+      text-align: center;
+      line-height: 100%; 
+      margin-left: -50px;
+      height: 100%;
+    }
     .container {
       max-width: 300px;
-      margin: 0 auto;
+      margin: 20px auto;
       padding: 20px;
+      padding-right: 100px;
+      padding-left: 100px;
       background: #fff;
       border-radius: 5px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -40,27 +48,114 @@
       border-radius: 3px;
       cursor: pointer;
     }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+  }
 
-    button:hover {
-      background-color: #0056b3;
-    }
+  header {
+      background-color: #500000;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+  }
+
+  .main-content {
+      display: flex;
+      flex-wrap: wrap;
+  }
+
+  .upload_files {
+      flex: 1;
+      background-color: #f0f0f0;
+      padding: 20px;
+  }
+
+  .recents {
+      flex: 1;
+      background-color: #e0e0e0;
+      padding: 20px;
+  }
+
+  /* Media Query for Responsiveness */
+  @media screen and (max-width: 768px) {
+      .main-content {
+          flex-direction: column;
+      }
+  }
   </style>
+  
 </head>
+<header>
+        <h1>Course Evaluation Summarizer</h1>
+    </header>
+
+    <style>
+        .btn {
+            background-color: #C0C0C0; /* Background color */
+            color: #000; /* Text color */
+            padding: 5px 10px; /* Padding inside the button */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+        }
+        .dropdown {
+      position: fixed;
+      top: 10px; 
+      right: 10px; 
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-item {
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      background-color: white;
+    color: black;
+    }
+    </style>
 <body>
   <div class="container">
-    <h1>Login Page</h1>
+  
+
 
     <% if current_user %>
     <h2><%= current_user.email %></h2>
-    <%= image_tag(current_user.avatar_url) %>
-    <%= link_to "Edit Account", edit_user_registration_path %>
+    
     <%= button_to "Logout", destroy_user_session_path, data: {turbo: "false"}, method: :delete %>
     <% else %>
     <%= link_to "Login", new_user_session_path %>
     <br>
-    <%= link_to "Create Account", new_user_registration_path %>
     <% end %>
+    
   </div>
+  <div class="dropdown">
+            <button class="dropdown-item" onclick="redirectToSection1()" >Homepage</button>
+            <button class="dropdown-item" onclick="redirectToSection2()">Download  </button>
+        </div>
+        <script>
+        function redirectToSection1() {
+          
+          window.location.href = '/homepage'; 
+        }
+        function redirectToSection2() {
+          
+          window.location.href = '/download_report'; 
+        }
+      </script>
 </body>
 </html>
 

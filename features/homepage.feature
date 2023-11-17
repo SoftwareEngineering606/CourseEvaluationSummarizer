@@ -12,6 +12,6 @@ Feature: Homepage
         And I should see the "Recents" section
         And I click on the "Generate" button
         Then I should be on the "Download File" page
-        And I click on the "Download Excel" button in download Page
+        And I click on the "Download Final Comparison" button in download Page
 
 

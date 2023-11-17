@@ -14,7 +14,14 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  root 'pages#homepage'
+
+  root 'pages#login'
+  
+
+  #root 'pages#homepage'
+  match '/excels/sheet/compare', to: 'pages#compare', via: :get,
+        as: 'compare_excel'
+
   get 'excel_sheets/new', to: 'excel_sheets#new', as: 'excel_sheets_new'
   post 'excel_sheets/create', to: 'excel_sheets#create', as: 'excel_sheets_create'
   match '/excels/sheet/generate', to: 'pages#generate', via: :get,
@@ -27,12 +34,13 @@ Rails.application.routes.draw do
   #get 'download_processed_sheet', to: 'pages#download_processed_sheet', as: 'download_processed_sheet'
   # root "hello#index"
   get '/download_report', to: 'pages#download_report', as: 'download_report'
-  get '/homepage', to: 'pages#new', as: 'homepage'
+  #get '/homepage', to: 'pages#new', as: 'homepage'
   post '/download_report', to: 'pages#validate'
   # get 'download_report', to: 'report#download'
 
   get '/chatgpt', to: 'chatgpt#index'
   get '/login', to: 'pages#login'
+  get '/homepage', to: 'pages#homepage'
   # root "pages#homepage"
   # match '/excels/sheet/generate', to: 'pages#generate', via: :get,
   #         as: 'generate_excel'
@@ -55,4 +63,5 @@ Rails.application.routes.draw do
 
   post '/homepage', to: 'pages#validate'
   post '/homepage', to: 'pages#homepage'
+  get '/new_route', to: 'controller_name#custom_action'
 end

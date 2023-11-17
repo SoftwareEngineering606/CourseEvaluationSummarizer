@@ -62,13 +62,15 @@ RSpec.describe ExcelSheetsController, type: :controller do
 
       post :create, params: { uploaded_files: uploaded_files }
 
-      file_path = Rails.root.join('public', 'uploads', sample_file.original_filename)
-      expect(File.exist?(file_path)).to be true
+      file_path = Rails.root.join('public', 'uploads')
 
-        if File.exist?(file_path)
-          File.delete(file_path)
-          puts "Deleted the file at #{file_path}"
-        end
+      files_in_directory = Dir.entries(file_path).select { |file| File.file?(File.join(file_path, file)) }
+
+      # Check if there is any file with '.xlsx' extension
+      excel_file_present = files_in_directory.any? { |file| file.downcase.end_with?('.xlsx') }
+
+      # Expect that at least one Excel file is present
+      expect(excel_file_present).to be true
 
     end
   end

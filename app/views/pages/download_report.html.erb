@@ -53,7 +53,7 @@
     <div class="main-content">
     <div class="upload_files">
     <h1>Download File</h1>
-    <p>Click the button below to download a file:</p>
+    <p>Click the 'Generate Comparison' button to generate and 'Download Final Comparison' button to download the file:</p>
 
       <style>
           .btn {
@@ -68,8 +68,13 @@
   
     <%= form_tag download_report_path, method: :get do %>
       <!--<button type="submit">Download</button>-->
-        <%= link_to 'Download Excel', '/download_excel', class: 'btn' %>
-        <%= link_to 'Back to Homepage', root_path, class: 'btn' %>
+
+        <%= link_to 'Back to Homepage', '/homepage', class: 'btn' %>
+        <%= link_to 'Generate Comparison', compare_excel_path, class: 'btn' %>
+        <%= link_to 'Download Final Comparison', '/download_excel', class: 'btn' %>
+
+
+
     <% end %>
     </div>
     </div>

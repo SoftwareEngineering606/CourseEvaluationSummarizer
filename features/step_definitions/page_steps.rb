@@ -7,7 +7,7 @@ Given('there are recent Excel sheets in the database') do
 end
 
 When('the user visits the homepage') do
-  visit '/'
+  visit '/homepage'
 end
 
 Then("the user should see a list of recent Excel sheets") do
@@ -19,6 +19,6 @@ When('the user click the download Excel sheet page') do
 end
 
 Then("the user should be able to download the Excel sheet")do
-  expect(page).to have_link('Download Excel')
-  click_link('Download Excel')
+  expect(page).to have_link('Download Final Comparison')
+  click_link('Download Final Comparison')
 end

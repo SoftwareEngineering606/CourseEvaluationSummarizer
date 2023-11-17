@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      text-align: center;
+      margin: 50px;
+    }
+
+    h1 {
+      color: white;
+    }
+
+    .container {
+      max-width: 300px;
+      margin: 20px auto;
+      padding: 20px;
+      padding-right: 100px;
+      padding-left: 100px;
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #0074D9;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+  }
+
+  header {
+      background-color: #500000;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+  }
+
+  .main-content {
+      display: flex;
+      flex-wrap: wrap;
+  }
+
+  .upload_files {
+      flex: 1;
+      background-color: #f0f0f0;
+      padding: 20px;
+  }
+
+  .recents {
+      flex: 1;
+      background-color: #e0e0e0;
+      padding: 20px;
+  }
+
+  /* Media Query for Responsiveness */
+  @media screen and (max-width: 768px) {
+      .main-content {
+          flex-direction: column;
+      }
+  }
+  </style>
+</head>
+
+<body>
+    <header>
+        <h1>Course Evaluation Summarizer</h1>
+    </header>
+
+    <style>
+        .btn {
+            background-color: #C0C0C0; /* Background color */
+            color: #000; /* Text color */
+            padding: 5px 10px; /* Padding inside the button */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+        }
+    </style>
+    <div class="container">
+
+<%- if controller_name != 'sessions' %>
+  <%= link_to "Log in", new_session_path(resource_name) %><br />
+<% end %>
+
+
+
+<%- if devise_mapping.omniauthable? %>
+  <%- resource_class.omniauth_providers.each do |provider| %>
+    <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false } %><br />
+  <% end %>
+<% end %>
+</div>
+</body>

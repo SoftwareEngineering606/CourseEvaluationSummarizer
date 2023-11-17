@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.feature 'Homepage' do
   scenario 'displays the correct HTML structure and styles' do
-    visit '/'
+    visit '/homepage'
 
     # Test the header
     expect(page).to have_selector('header')
@@ -26,6 +26,6 @@ RSpec.feature 'Homepage' do
     # Test Generate button and Download File page
     click_button('Generate')
     expect(page).to have_current_path(download_report_path)
-    expect(page).to have_link('Download Excel')
+    expect(page).to have_link('Download Final Comparison')
   end
 end

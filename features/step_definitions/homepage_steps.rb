@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 When('I visit the UI homepage') do
-  visit '/'
+  visit '/homepage'
 end
 
 Then('I should see the title {string}') do |title|
