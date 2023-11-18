@@ -63,6 +63,7 @@ class PagesController < ApplicationController
     average_hash = {}
     median_hash = {}
     mode_hash = {}
+    perfect_score_hash = {}
     data_groups = {}
 
     excel_files.each do |file_path|
@@ -114,10 +115,13 @@ class PagesController < ApplicationController
       max_count = value_counts.values.max
       mode = value_counts.key(max_count)
 
+      perfect_score = response_values.max
+
       category_statistics[category] = {
         'Average' => average,
         'Median' => median,
-        'Mode' => mode
+        'Mode' => mode,
+        'Perfect_score' => perfect_score
       }
     end
 
@@ -132,6 +136,9 @@ class PagesController < ApplicationController
 
       mode_hash[category] ||= []
       mode_hash[category] << category_stats['Mode']
+
+      perfect_score_hash[category] ||= []
+      perfect_score_hash[category] << category_stats['Perfect_score']
 
     end
 
@@ -170,10 +177,18 @@ class PagesController < ApplicationController
       # new_worksheet.add_cell(row_index, 3, category_stats['Median'])
       # new_worksheet.add_cell(row_index, 4, category_stats['Mode'])
 
+
+      max_values = {}
+      perfect_score_hash.each do |_category, values|
+        max_value = values.max
+        max_values[_category] = max_value
+      end
+
+
       average_hash[category].each do |avg|
         # puts('mean')
         # puts(avg)
-        new_worksheet.add_cell(row_index, 1, '4')
+        new_worksheet.add_cell(row_index, 1, max_values[category])
         new_worksheet.add_cell(row_index, 2, avg.to_s)
         row_index += 1
       end
