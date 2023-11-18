@@ -118,50 +118,23 @@ After the installation, verify the version:
 psql –version
 ```
 
-12. Create a new Rails App:
-
-•	Go to a desired folder location and create a new app with the following command:
-```
-rails new myapp --database=postgresql
-```
-
-•	Go into the project folder and add the x86_64-linux and ruby platforms to Gemfile.lock.
-```
-cd myapp
-bundle lock --add-platform x86_64-linux --add-platform ruby
-```
-
-•	Create a local database:
-```
-bin/rails db:create
-```
 
 •	Install dependencies :
 ```
 bundle install
 ```
 
-13. To create a basic Hello World Rails App:
-
-•	Create a welcome controller :
+• Do the PostgreSQL database migration :
 ```
- rails generate controller welcome
+rails run db:migrate
 ```
 
-•	Create index.HTML in app/views/welcome/index.html
+• Run the rails server locally:
 ```
- <h2>Hello! Welcome to Ruby on Rails</h2>
-```
-
-•	Create a route to map to this action. In config/routes.rb, add:
-```
-  root 'welcome#index'
+rails s
 ```
 
-•	Start rails server:
-```
- rails server
-```
+
 
 Go to  http://localhost:3000 in a browser and verify the “Hello! Welcome to Ruby on Rails” page.
 ---------------------------------------------------------------------------------------------------------------------------
@@ -261,21 +234,16 @@ Add Heroku PostgreSQL add-on to your app:
 heroku addons:create heroku-postgresql:hobby-dev
 ```
 
-Push your code to Heroku:
-
-```
-git push heroku master
-```
-
 Migrate your database on Heroku:
 
 ```
 heroku run rake db:migrate
 ```
 
+Push your code to Heroku:
 
-
-
-
+```
+git push heroku master
+```
 
 
