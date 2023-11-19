@@ -20,11 +20,11 @@ class PagesController < ApplicationController
       processed_sheet = ProcessedSheet.find_by(report_id_final: params[:report_id_final])
       if processed_sheet
         fileName = processed_sheet.name
-        file_path = Rails.root.join('public', 'excel_files', fileName)
+        file_path = Rails.root.join('public', 'zip_all_files', fileName)
         if File.exist?(file_path)
           send_file file_path,
-                    filename: "#{params[:report_id_final]}.xlsx",
-                    type: 'application/excel',
+                    filename: "#{params[:report_id_final]}.zip",
+                    type: 'application/zip',
                     disposition: 'attachment'
         else
           flash[:alert] = "File not found"
