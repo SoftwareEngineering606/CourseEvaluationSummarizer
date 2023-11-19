@@ -250,10 +250,10 @@ you also can click the url returned by this command, if the webpage didn't open 
 ## Sixth: How to use the APP
 
 1. On the login page, please login through single sign-on with your Google account.
-2. You can upload the Course Evaluation file from the project directory /public/uploads and press the "generate" button.
-3. You can press the "Download Final Comparison" button to download the processed file.
-4. You can upload multiple files, which represent data in different semesters, the name of such file looks like "Individual_1_FA22.xlsx".
-5. You can press "Generate Comparison" and press "Download Final Comparison" button to download the processed file.
+2. You can upload multiple files, which represent data in different semesters, the name of the file should look like "*_FAxx.xlsx" or "*_SPxx.xlsx" (xx is a number that represents year) Eg: Individual_FA22.xlsx.
+3. You can find the sample files under the project directory /public/uploads.
+4. Press the "Generate" button which takes you to the next page. This would have generated intermediate files.
+5. You can press "Generate Comparison" and then press "Download Final Comparison" button to download the final comparison file.
 6. You can press "Back to Homepage" to redirect to Homepage and upload the files again.
 7. You can click the "Profile" button on the left-top corner to see your login name and logout your account.
 
