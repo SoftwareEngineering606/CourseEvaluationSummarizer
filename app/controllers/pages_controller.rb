@@ -46,7 +46,7 @@ class PagesController < ApplicationController
 
 
   def generate
-
+    comments_hash = {}
     labels=session[:labels]
 
     # Delete all existing Excel files in the directory
@@ -152,6 +152,7 @@ class PagesController < ApplicationController
       new_worksheet = new_workbook.add_worksheet(index)
 
       new_worksheet.sheet_name = "Question "+ (i).to_s
+      comments_hash[i] = comments.join(" ") || ""    
       i = i+1
       row_index = 0
 
@@ -193,33 +194,33 @@ class PagesController < ApplicationController
         new_worksheet.add_cell(row_index, 4, mode.to_s)
         row_index += 1
       end
-
-      row_index = 4
-
-      # #Remove duplicate comments 
-      # duplicate_service = DuplicateService.new(comments)
-      # unique_comments = duplicate_service.remove_duplicates
-      
-      comments.each do |comment|
-        new_worksheet.add_cell(row_index, 0, comment.to_s)
-        row_index += 1
-      end
-      
-      # Make a chatgpt call here to summarize commemnts in some specific word count range and add it to the list
-      if comments.length > 0
-        input_text = "Summarize the following in 3 4 lines" + comments.join(" ")
-        # summarizer = ChatgptService.new(input_text)
-        # summary = summarizer.call
-        summary = "Dummy summary"
-        row_index += 1
-        new_worksheet.add_cell(row_index, 0, 'SUMMARY')
-        row_index += 1
-        new_worksheet.add_cell(row_index, 0, summary)
-      end
     end
 
     worksheet_to_delete = new_workbook[0]
     new_workbook.worksheets.delete(worksheet_to_delete)
+
+    # Formatted comments
+    formatted_comments = ""
+
+    comments_hash.each do |index, value|
+      formatted_comments += "Question #{index}: #{value}\n"
+    end
+
+    input_text = "Summarize the following in the following format (Question No: Summary for that question) and split each question with two lines" + formatted_comments
+    summarizer = ChatgptService.new(input_text)
+    summary = summarizer.call
+
+    # Add a new worksheet for summaries
+    summary_worksheet = new_workbook.add_worksheet('Summary')
+
+    row_index = 0
+    summary_worksheet.add_cell(row_index, 0, 'SUMMARY')
+    row_index = 1
+    summary_worksheet.add_cell(row_index, 0, summary)
+
+    puts "#################"
+    puts summary
+    puts "#################"
 
     #file_name = File.basename(file_path)
     file_name = "Sheet" + "-#{Time.now.to_i}_" + label + ".xlsx"
@@ -235,6 +236,7 @@ class PagesController < ApplicationController
     processed_sheet = [ { name: processed_file_name, description: 'Description for '+ processed_file_name, report_path: processed_file_path } ]
     ProcessedSheet.create(processed_sheet)
     end
+
     redirect_to download_report_path
   end
 
