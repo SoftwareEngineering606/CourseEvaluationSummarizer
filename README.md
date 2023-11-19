@@ -1,5 +1,11 @@
 # CourseEvaluationSummarizerProject
 
+## Contact information
+
+Kangdong Yuan
+kky5082@tamu.edu
+8148528757 Please call or text me if you have any problem.
+
 ## Installation and Setup guide
 
 
@@ -78,11 +84,12 @@ gem install rails
 The rails version is 7.0.8
 
 ### Install the dependencies
-1. Install the dependenices :
+
+1. Install the dependencies :
 ```
 bundle install
 ```
-
+#### The following commands are for Mac OS, if you use Linux, you can use apt install with Linux ubuntu
 
 2. In case you see any error related to libyaml not found, follow the below steps:
 ```
@@ -126,6 +133,12 @@ We can also install postgreDB from terminal using brew:
 •	export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:${PATH}"
 •	source ~/.bash_profile 
 ```
+The postgres install guide for ubuntu
+
+```
+sudo apt install postgresql
+```
+
 After the installation, verify the version:
 ```
 psql –version
@@ -137,12 +150,14 @@ psql –version
 bundle install
 ```
 
-7. Do the PostgreSQL database migration :
+### Run the local server
+
+1. Do the PostgreSQL database migration :
 ```
 rails run db:migrate
 ```
 
-8. Run the rails server locally:
+2. Run the rails server locally:
 ```
 rails s
 ```
@@ -168,6 +183,8 @@ Run the following command to execute the RSpec tests:
 bundle exec rspec
 ```
 RSpec will run all the test files and display the test results in the terminal.
+
+### The comprehensive test coverage needs to run Rspec and cucumber. You will see the coverage percentage after run two commands. 
 
 ## Running Rubocop
 Run the following command to execute Rubocop:
@@ -250,8 +267,4 @@ you also can click the url returned by this command, if the webpage didn't open 
 6. You can press "Back to Homepage" to redirect to Homepage and upload the files again.
 7. You can click the "Profile" button on the left-top corner to see your login name and logout your account.
 
-## Contact information
 
-Kangdong Yuan
-kky5082@tamu.edu
-8148528757 Please call me if you have any problem.
