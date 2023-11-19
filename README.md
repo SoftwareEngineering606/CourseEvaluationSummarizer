@@ -106,22 +106,7 @@ bundle install
 •	Install: sudo make install
 ```
 
-3. Install Node.js for handling Javascript in our Rails apps
-
-Download Node.js from https://nodejs.org/en/
-or from terminal using : 
-```
-brew install node
-```
-
-4. Install yarn ( JavaScript package manager)
-
-Run in terminal: 
-```
-brew install yarn
-```
-
-5. Install postgresql DB:
+3. Install postgresql DB:
 Heroku recommends using PostgreSQL during development as Sqlite3 is not compatible with Heroku.
 
 ```
@@ -147,7 +132,7 @@ psql –version
 ```
 
 
-6.	Install dependencies again:
+4.	Install dependencies again:
 ```
 bundle install
 ```
