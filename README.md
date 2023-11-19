@@ -1,12 +1,14 @@
 # CourseEvaluationSummarizerProject
 
-## Contact information
+## First: Contact information
 
 Kangdong Yuan
 kky5082@tamu.edu
-8148528757 Please call or text me if you have any problem.
+8148528757
 
-## Installation and Setup guide
+### Important information, if you have any problem with environment setup, app running, or deployment. Please text or call me.
+
+## Second: Installation and Setup guide
 
 
 ### Install ruby and rails
@@ -150,7 +152,7 @@ psql –version
 bundle install
 ```
 
-### Run the local server
+### Third: Run the local server
 
 1. Do the PostgreSQL database migration :
 ```
@@ -165,8 +167,9 @@ rails s
 Go to  http://localhost:3000 in a browser and verify the “Hello! Welcome to Ruby on Rails” page.
 
 ---------------------------------------------------------------------------------------------------------------------------
+## Fourth: Test and coverage
 
-## Running Cucumber Tests
+### Running Cucumber Tests
 
 Run the following command to execute the Cucumber tests:
 
@@ -176,7 +179,7 @@ bundle exec cucumber
 
 Cucumber will run all the feature files and display the test results in the terminal.
 
-## Running RSpec Tests
+### Running RSpec Tests
 Run the following command to execute the RSpec tests:
 
 ```
@@ -184,16 +187,16 @@ bundle exec rspec
 ```
 RSpec will run all the test files and display the test results in the terminal.
 
-### The comprehensive test coverage needs to run Rspec and cucumber. You will see the coverage percentage after run two commands. 
+#### The comprehensive test coverage needs to run Rspec and cucumber. You will see the coverage percentage after run two commands. 
 
-## Running Rubocop
+### Running Rubocop
 Run the following command to execute Rubocop:
 ```
 bundle exec rubocop
 ```
 Rubocop will analyze your codebase and display any style violations or offenses in the terminal.
 
-## Running Rubycritic
+### Running Rubycritic
 Run the following command to generate the code quality report:
 ```
 bundle exec rubycritic
@@ -202,7 +205,7 @@ Rubycritic will analyze your codebase and generate an HTML report containing a s
 
 ---------------------------------------------------------------------------------------------------------------------------
 
-## Ruby on Rails App Deployment to Heroku with PostgreSQL
+## Fifth: Ruby on Rails App Deployment to Heroku with PostgreSQL
 
 Prerequisites
 Before you begin, make sure you have the following prerequisites installed:
@@ -257,7 +260,7 @@ heroku open
 ```
 you also can click the url returned by this command, if the webpage didn't open automatically. 
 
-## How to use the APP
+## Sixth: How to use the APP
 
 1. On the login page, please login through single sign-on with your Google account.
 2. You can upload the Course Evaluation file from the project directory /public/uploads and press the "generate" button.
