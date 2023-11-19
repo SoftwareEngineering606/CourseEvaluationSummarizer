@@ -530,10 +530,10 @@ class PagesController < ApplicationController
     ending_row = 28
     starting_column = 6
 
-    while !new_sheet[starting_row] && !new_sheet[starting_row][starting_column].nil?
-
-
-    end
+    # while !new_sheet[starting_row] && !new_sheet[starting_row][starting_column].nil?
+    #
+    #
+    # end
 
     value_improvement = 0
     improvement_text = ""
