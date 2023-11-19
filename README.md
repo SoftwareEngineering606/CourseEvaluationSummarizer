@@ -198,41 +198,60 @@ PostgreSQL
 
 1. The installation of Heroku CLI is different based on OS: Please follow the guide: https://devcenter.heroku.com/articles/heroku-cli
 
-Login to your Heroku account:
+2. Login to your Heroku account:
 
 ```
 heroku login
 ```
 
-Create a new Heroku app:
+3. Create a new Heroku app:
 
 ```
 heroku create <app_name>
 ```
 
-Add Heroku PostgreSQL add-on to your app:
+4. Add Heroku PostgreSQL add-on to your app:
 
 ```
 heroku addons:create heroku-postgresql:hobby-dev
 ```
 
-Migrate your database on Heroku:
+5. Migrate your database on Heroku:
 
 ```
 heroku run rake db:migrate
 ```
 
-Push your code to Heroku:
+6. Push your code to Heroku:
 
 ```
 git push heroku master
 ```
+If you meet the error said: "Detecting rails configuration failed, set HEROKU_DEBUG_RAILS_RUNNER=1 to debug"
+Please run the following command and run the git push again:
+```
+heroku config:set HEROKU_DEBUG_RAILS_RUNNER=1 
+```
 
-View deployed APP:
+7. View deployed APP:
 
 ```
 heroku open
 ```
 you also can click the url returned by this command, if the webpage didn't open automatically. 
 
+## How to use the APP
 
+1. On the login page, please login through single sign-on with your Google account.
+2. You can upload the Course Evaluation file from the project directory /public/uploads and press the "generate" button.
+3. You can press the "Download Final Comparison" button to download the processed file.
+4. You can upload multiple files, which represent data in different semesters, the name of such file looks like "Individual_1_FA22.xlsx".
+5. You can press "Generate Comparison" and press "Download Final Comparison" button to download the processed file.
+6. You can press "Back to Homepage" to redirect to Homepage and upload the files again.
+7. You can click the "Profile" button on the left-top corner to see your login name and logout your account.
+
+## Contact information
+
+Kangdong Yuan
+kky5082@tamu.edu
+8148528757 Please call me if you have any problem.
