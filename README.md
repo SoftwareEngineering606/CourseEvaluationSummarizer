@@ -1,5 +1,5 @@
 # CourseEvaluationSummarizerProject
-
+---------------------------------------------------------------------------------------------------------------------------
 ## First: Contact information
 
 Kangdong Yuan
@@ -7,7 +7,7 @@ kky5082@tamu.edu
 8148528757
 
 ### Important information, if you have any problem with environment setup, app running, or deployment. Please text or call me.
-
+---------------------------------------------------------------------------------------------------------------------------
 ## Second: Installation and Setup guide
 
 
@@ -151,8 +151,8 @@ psql –version
 ```
 bundle install
 ```
-
-### Third: Run the local server
+---------------------------------------------------------------------------------------------------------------------------
+## Third: Run the local server
 
 1. Do the PostgreSQL database migration :
 ```
@@ -259,6 +259,8 @@ heroku config:set HEROKU_DEBUG_RAILS_RUNNER=1
 heroku open
 ```
 you also can click the url returned by this command, if the webpage didn't open automatically. 
+
+---------------------------------------------------------------------------------------------------------------------------
 
 ## Sixth: How to use the APP
 
