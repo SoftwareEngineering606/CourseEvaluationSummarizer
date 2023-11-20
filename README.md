@@ -153,33 +153,40 @@ bundle install
 
 ## Postgres Installation for MAC
 
-```bash
+```
 brew install postgresql@14
+```
 
 # Start Postgres 
-```bash
+```
 brew services start PostgreSQL
+```
 
 # Open psql
-```bash
+```
 psql postgres
+```
 
 # Create a new superuser
-```bash
+```
 CREATE ROLE newuser WITH LOGIN PASSWORD 'your_password' SUPERUSER;
+```
 
 # To verify
-```bash
+```
 \du
+```
 
 # Quit psql
-```bash
+```
 \q
+```
 
 # Finally run this with postgres username and password
-```bash
+```
 export DB_USERNAME=your_username
 export DB_PASSWORD=your_password
+```
 
 ---------------------------------------------------------------------------------------------------------------------------
 ## Third: Run the local server
