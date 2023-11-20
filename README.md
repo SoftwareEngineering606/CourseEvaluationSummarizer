@@ -131,6 +131,11 @@ After the installation, verify the version:
 psql –version
 ```
 
+If you using Linux, you may need to create the superuser for Postgresql, run the following command, substitute the highlighted word with your Ubuntu 20.04 username:
+```
+sudo -u postgres createuser -s Yourusername -P
+```
+Since you specified the -P flag, you will be prompted to enter a password for your new role. Enter your desired password, making sure to record it so that you can use it in a configuration file in a later step.
 
 4.	Install dependencies again:
 ```
