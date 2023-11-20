@@ -269,6 +269,8 @@ PostgreSQL
 heroku login
 ```
 
+You can use "git status" and commit changes using "git add ." and "git commit -m yourmessage"
+
 3. Create a new Heroku app:
 
 ```
@@ -290,7 +292,7 @@ heroku run rake db:migrate
 6. Push your code to Heroku:
 
 ```
-git push heroku master
+git push heroku main
 ```
 If you meet the error said: "Detecting rails configuration failed, set HEROKU_DEBUG_RAILS_RUNNER=1 to debug"
 Please run the following command and run the git push again:
