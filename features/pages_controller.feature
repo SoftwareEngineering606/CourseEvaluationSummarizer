@@ -11,10 +11,12 @@ Feature: Generate and download excel file
     And I click on the button "Download Final Comparison"
     And I should be able to download the Excel
 
-#  Scenario: User downloads a processed sheet
-#    Given there is a processed sheet with ID "123"
-#    When the user requests to download the processed sheet with ID "123"
-#    Then the file should be downloaded
+
+  Scenario: User downloads a processed sheet
+    Given there is a processed sheet with ID "123"   
+    When the user requests to download the processed sheet with ID "123"
+    Then the response should be a downloadable zip file
+
 
 #  Scenario: User tries to download a non-existent processed sheet
 #    When the user requests to download a non-existent processed sheet with ID "999"
