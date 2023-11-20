@@ -19,6 +19,13 @@ Prathyusha Polepalli
 ---------------------------------------------------------------------------------------------------------------------------
 ## Second: Installation and Setup guide
 
+### Clone the repository
+
+Please visit https://github.com/SoftwareEngineering606/CourseEvaluationSummarizer to clone our project. 
+- Command to clone :
+``` 
+git clone git@github.com:SoftwareEngineering606/CourseEvaluationSummarizer.git
+```
 
 ### Install ruby and rails
 
