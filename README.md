@@ -157,32 +157,32 @@ bundle install
 brew install postgresql@14
 ```
 
-# Start Postgres 
+1. Start Postgres 
 ```
 brew services start PostgreSQL
 ```
 
-# Open psql
+2. Open psql
 ```
 psql postgres
 ```
 
-# Create a new superuser
+3. Create a new superuser
 ```
 CREATE ROLE newuser WITH LOGIN PASSWORD 'your_password' SUPERUSER;
 ```
 
-# To verify
+4. To verify
 ```
 \du
 ```
 
-# Quit psql
+5. Quit psql
 ```
 \q
 ```
 
-# Finally run this with postgres username and password
+6. Finally run this with postgres username and password
 ```
 export DB_USERNAME=your_username
 export DB_PASSWORD=your_password
