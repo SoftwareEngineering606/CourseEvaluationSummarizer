@@ -6,6 +6,15 @@ Kangdong Yuan
 kky5082@tamu.edu
 8148528757
 
+Pratik Desai
++1-979-350-0973
+
+Vinodheni Ramasrinivasan
++1-979-721-2361
+
+Prathyusha Polepalli
++1-979-344-3684
+
 ### Important information, if you have any problem with environment setup, app running, or deployment. Please text or call me.
 ---------------------------------------------------------------------------------------------------------------------------
 ## Second: Installation and Setup guide
