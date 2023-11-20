@@ -19,7 +19,7 @@ class PagesController < ApplicationController
     if params[:report_id_final]
       processed_sheet = ProcessedSheet.find_by(report_id_final: params[:report_id_final])
       if processed_sheet
-        fileName = processed_sheet.name
+        fileName = processed_sheet.name || 'default_filename'
         file_path = Rails.root.join('public', 'zip_all_files', fileName)
         if File.exist?(file_path)
           send_file file_path,
@@ -39,6 +39,7 @@ class PagesController < ApplicationController
       redirect_to root_path
     end
   end
+
 
   def validate
     redirect_to download_report_path

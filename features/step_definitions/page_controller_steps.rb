@@ -6,13 +6,22 @@ When('I visit the homepage') do
   visit homepage_path
 end
 
+
 Given(/^there is a processed sheet with ID "(.*?)"$/) do |report_id_final|
-  create(:processed_sheet, report_id_final: report_id_final) # Assuming you have a factory for ProcessedSheet
+  FactoryBot.create(:processed_sheet, report_id_final: report_id_final, name: 'Valid Name')
 end
 
 When(/^the user requests to download the processed sheet with ID "(.*?)"$/) do |report_id_final|
   visit download_processed_sheet_path(report_id_final: report_id_final)
 end
+
+Then(/^the response should be a downloadable zip file$/) do
+  #puts page.response_headers.inspect
+  # Check the response headers to ensure it's a downloadable zip file
+  #expect(page.response_headers['Content-Disposition']).to match(/attachment/)
+  expect(page.response_headers['Content-Type']).to match(%r{application/zip})
+end
+
 
 Then(/^the file should be downloaded$/) do
   # Write code to check the download behavior (e.g., checking HTTP headers)

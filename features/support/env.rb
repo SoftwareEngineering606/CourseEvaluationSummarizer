@@ -11,6 +11,16 @@ SimpleCov.start 'rails'
 
 require 'cucumber/rails'
 
+# features/support/env.rb
+require File.expand_path('../../../config/environment', __FILE__)
+
+
+# features/support/env.rb
+require 'factory_bot_rails'
+
+World(FactoryBot::Syntax::Methods)
+
+
 # frozen_string_literal: true
 
 # Capybara defaults to CSS3 selectors rather than XPath.
