@@ -215,14 +215,6 @@ Go to  http://localhost:3000 in a browser and verify the “Hello! Welcome to Ru
 
 ### Running Cucumber Tests
 
-Run the following command to execute the Cucumber tests:
-
-```
-bundle exec cucumber
-```
-
-Cucumber will run all the feature files and display the test results in the terminal.
-
 ### Running RSpec Tests
 Run the following command to execute the RSpec tests:
 
@@ -230,6 +222,15 @@ Run the following command to execute the RSpec tests:
 bundle exec rspec
 ```
 RSpec will run all the test files and display the test results in the terminal.
+
+
+Run the following command to execute the Cucumber tests:
+
+```
+bundle exec cucumber
+```
+
+Cucumber will run all the feature files and display the test results in the terminal.
 
 #### The comprehensive test coverage needs to run Rspec and cucumber. You will see the coverage percentage after run two commands. 
 
