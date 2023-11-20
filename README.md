@@ -6,10 +6,26 @@ Kangdong Yuan
 kky5082@tamu.edu
 8148528757
 
+Pratik Desai
++1-979-350-0973
+
+Vinodheni Ramasrinivasan
++1-979-721-2361
+
+Prathyusha Polepalli
++1-979-344-3684
+
 ### Important information, if you have any problem with environment setup, app running, or deployment. Please text or call me.
 ---------------------------------------------------------------------------------------------------------------------------
 ## Second: Installation and Setup guide
 
+### Clone the repository
+
+Please visit https://github.com/SoftwareEngineering606/CourseEvaluationSummarizer to clone our project. 
+- Command to clone :
+``` 
+git clone git@github.com:SoftwareEngineering606/CourseEvaluationSummarizer.git
+```
 
 ### Install ruby and rails
 
@@ -106,22 +122,7 @@ bundle install
 •	Install: sudo make install
 ```
 
-3. Install Node.js for handling Javascript in our Rails apps
-
-Download Node.js from https://nodejs.org/en/
-or from terminal using : 
-```
-brew install node
-```
-
-4. Install yarn ( JavaScript package manager)
-
-Run in terminal: 
-```
-brew install yarn
-```
-
-5. Install postgresql DB:
+3. Install postgresql DB:
 Heroku recommends using PostgreSQL during development as Sqlite3 is not compatible with Heroku.
 
 ```
@@ -146,11 +147,54 @@ After the installation, verify the version:
 psql –version
 ```
 
+If you using Linux, you may need to create the superuser for Postgresql, run the following command, substitute the highlighted word with your Ubuntu 20.04 username:
+```
+sudo -u postgres createuser -s Yourusername -P
+```
+Since you specified the -P flag, you will be prompted to enter a password for your new role. Enter your desired password, making sure to record it so that you can use it in a configuration file in a later step.
 
-6.	Install dependencies again:
+4.	Install dependencies again:
 ```
 bundle install
 ```
+
+## Postgres Installation for MAC
+
+```
+brew install postgresql@14
+```
+
+1. Start Postgres 
+```
+brew services start PostgreSQL
+```
+
+2. Open psql
+```
+psql postgres
+```
+
+3. Create a new superuser
+```
+CREATE ROLE newuser WITH LOGIN PASSWORD 'your_password' SUPERUSER;
+```
+
+4. To verify
+```
+\du
+```
+
+5. Quit psql
+```
+\q
+```
+
+6. Finally run this with postgres username and password
+```
+export DB_USERNAME=your_username
+export DB_PASSWORD=your_password
+```
+
 ---------------------------------------------------------------------------------------------------------------------------
 ## Third: Run the local server
 
@@ -171,14 +215,6 @@ Go to  http://localhost:3000 in a browser and verify the “Hello! Welcome to Ru
 
 ### Running Cucumber Tests
 
-Run the following command to execute the Cucumber tests:
-
-```
-bundle exec cucumber
-```
-
-Cucumber will run all the feature files and display the test results in the terminal.
-
 ### Running RSpec Tests
 Run the following command to execute the RSpec tests:
 
@@ -186,6 +222,15 @@ Run the following command to execute the RSpec tests:
 bundle exec rspec
 ```
 RSpec will run all the test files and display the test results in the terminal.
+
+
+Run the following command to execute the Cucumber tests:
+
+```
+bundle exec cucumber
+```
+
+Cucumber will run all the feature files and display the test results in the terminal.
 
 #### The comprehensive test coverage needs to run Rspec and cucumber. You will see the coverage percentage after run two commands. 
 
@@ -224,6 +269,8 @@ PostgreSQL
 heroku login
 ```
 
+You can use "git status" and commit changes using "git add ." and "git commit -m yourmessage"
+
 3. Create a new Heroku app:
 
 ```
@@ -245,7 +292,7 @@ heroku run rake db:migrate
 6. Push your code to Heroku:
 
 ```
-git push heroku master
+git push heroku main
 ```
 If you meet the error said: "Detecting rails configuration failed, set HEROKU_DEBUG_RAILS_RUNNER=1 to debug"
 Please run the following command and run the git push again:
@@ -265,10 +312,10 @@ you also can click the url returned by this command, if the webpage didn't open 
 ## Sixth: How to use the APP
 
 1. On the login page, please login through single sign-on with your Google account.
-2. You can upload the Course Evaluation file from the project directory /public/uploads and press the "generate" button.
-3. You can press the "Download Final Comparison" button to download the processed file.
-4. You can upload multiple files, which represent data in different semesters, the name of such file looks like "Individual_1_FA22.xlsx".
-5. You can press "Generate Comparison" and press "Download Final Comparison" button to download the processed file.
+2. You can upload multiple files, which represent data in different semesters, the name of the file should look like "*_FAxx.xlsx" or "*_SPxx.xlsx" (xx is a number that represents year) Eg: Individual_FA22.xlsx.
+3. You can find the sample files under the project directory /public/uploads.
+4. Press the "Generate" button which takes you to the next page. This would have generated intermediate files.
+5. You can press "Generate Comparison" and then press "Download Final Comparison" button to download the final comparison file.
 6. You can press "Back to Homepage" to redirect to Homepage and upload the files again.
 7. You can click the "Profile" button on the left-top corner to see your login name and logout your account.
 
