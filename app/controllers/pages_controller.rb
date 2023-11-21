@@ -225,7 +225,7 @@ class PagesController < ApplicationController
         input_text = "Summarize the following in 3 4 lines" + unique_comments.join(" ")
         summarizer = ChatgptService.new(input_text)
         summary = summarizer.call
-        summary = "Dummy summary"
+        # summary = "Dummy summary"
         row_index += 1
         new_worksheet.add_cell(row_index, 0, 'SUMMARY')
         row_index += 1
