@@ -65,6 +65,7 @@ class PagesController < ApplicationController
     mode_hash = {}
     perfect_score_hash = {}
     data_groups = {}
+    all_comments = ""
 
     excel_files.each do |file_path|
       begin
@@ -219,7 +220,9 @@ class PagesController < ApplicationController
         new_worksheet.add_cell(row_index, 0, comment.to_s)
         row_index += 1
       end
+
       
+      # all_comments += "Question " + (i).to_s + ": " + unique_comments.join(" ") + "\n\n"
       # Make a chatgpt call here to summarize commemnts in some specific word count range and add it to the list
       if unique_comments.length > 0
         input_text = "Summarize the following in 3 4 lines" + unique_comments.join(" ")
@@ -232,6 +235,16 @@ class PagesController < ApplicationController
         new_worksheet.add_cell(row_index, 0, summary)
       end
     end
+
+    # input_text = "Summarize the following in the following format (Question 1: Summary for that in 3 4 lines and then two empty lines) " + all_comments
+    # summarizer = ChatgptService.new(input_text)
+    # summary = summarizer.call
+
+    # new_worksheet = new_workbook.add_worksheet()
+    # new_worksheet.sheet_name = "Summary"
+    # new_worksheet.add_cell(0, 0, "Summary")
+    # new_worksheet.add_cell(1, 2, summary.to_s)
+
 
     worksheet_to_delete = new_workbook[0]
     new_workbook.worksheets.delete(worksheet_to_delete)
