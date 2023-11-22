@@ -182,7 +182,7 @@ class PagesController < ApplicationController
       # next if comments.empty?
 
       new_worksheet = new_workbook.add_worksheet(index)
-      sheet_name = "Question"
+      sheet_name = "Miscellaneous"
 
       puts(category)
       if category.include?('understood')
