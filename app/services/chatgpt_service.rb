@@ -21,7 +21,7 @@ class ChatgptService
 
   def call
     body = {
-      model: 'gpt-3.5-turbo', 
+      model: 'gpt-3.5-turbo-1106', 
       messages: [{ role: 'user', content: query }]
     }
     response = HTTParty.post(api_url, body: body.to_json, headers: options[:headers], timeout: 500)
