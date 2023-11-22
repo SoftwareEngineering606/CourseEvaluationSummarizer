@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   match '/excels/sheet/generate', to: 'pages#generate', via: :get,
                                   as: 'generate_excel'
   get '/download_excel', to: 'pages#download', as: 'download_excel'
+  get '/download_intermediate', to: 'pages#downloadIntermediate', as: 'download_intermediate'
 
   resources :excel_sheets
   get "downloads/xls/:report_id_final" => "pages#download_processed_sheet", :as => :download_processed_sheet

@@ -19,7 +19,7 @@ class PagesController < ApplicationController
     if params[:report_id_final]
       processed_sheet = ProcessedSheet.find_by(report_id_final: params[:report_id_final])
       if processed_sheet
-        fileName = processed_sheet.name
+        fileName = processed_sheet.name || 'default_filename'
         file_path = Rails.root.join('public', 'zip_all_files', fileName)
         if File.exist?(file_path)
           send_file file_path,
@@ -39,6 +39,7 @@ class PagesController < ApplicationController
       redirect_to root_path
     end
   end
+
 
   def validate
     redirect_to download_report_path
@@ -637,4 +638,24 @@ class PagesController < ApplicationController
           redirect_to root_path
     end
   end
+
+
+  def downloadIntermediate
+    path = session[:processed_intermediate_zip]
+    puts "here"
+    puts path
+    if path.nil?
+      path = 'processed_files.zip'
+    end
+    zip_file_path = Rails.root.join('public', 'zip_intermediate_processed', path)
+    puts "here2"
+    puts zip_file_path
+    if File.exist?(zip_file_path)
+      send_file zip_file_path, filename: path, type: 'application/zip'
+    else
+      flash[:alert] = 'The zip file does not exist.'
+      redirect_to root_path
+    end
+  end
+
 end
