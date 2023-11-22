@@ -45,6 +45,12 @@ class ExcelSheetsController < ApplicationController
           redirect_to root_path
           return
         end
+        file_name = file.original_filename
+        if !file_name.match?(/_(FA|SP)\d{2}\.xlsx\z/)
+          flash[:error] = 'Invalid file name. File name should end with either _FAXX or _SPXX where XX are numbers.'
+          redirect_to root_path
+          return
+        end
       end
 
       upload_directory = Rails.root.join('public', 'uploads')

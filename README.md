@@ -6,10 +6,26 @@ Kangdong Yuan
 kky5082@tamu.edu
 8148528757
 
+Pratik Desai
++1-979-350-0973
+
+Vinodheni Ramasrinivasan
++1-979-721-2361
+
+Prathyusha Polepalli
++1-979-344-3684
+
 ### Important information, if you have any problem with environment setup, app running, or deployment. Please text or call me.
 ---------------------------------------------------------------------------------------------------------------------------
 ## Second: Installation and Setup guide
 
+### Clone the repository
+
+Please visit https://github.com/SoftwareEngineering606/CourseEvaluationSummarizer to clone our project. 
+- Command to clone :
+``` 
+git clone git@github.com:SoftwareEngineering606/CourseEvaluationSummarizer.git
+```
 
 ### Install ruby and rails
 
@@ -141,6 +157,44 @@ Since you specified the -P flag, you will be prompted to enter a password for yo
 ```
 bundle install
 ```
+
+## Postgres Installation for MAC
+
+```
+brew install postgresql@14
+```
+
+1. Start Postgres 
+```
+brew services start PostgreSQL
+```
+
+2. Open psql
+```
+psql postgres
+```
+
+3. Create a new superuser
+```
+CREATE ROLE newuser WITH LOGIN PASSWORD 'your_password' SUPERUSER;
+```
+
+4. To verify
+```
+\du
+```
+
+5. Quit psql
+```
+\q
+```
+
+6. Finally run this with postgres username and password
+```
+export DB_USERNAME=your_username
+export DB_PASSWORD=your_password
+```
+
 ---------------------------------------------------------------------------------------------------------------------------
 ## Third: Run the local server
 
@@ -161,14 +215,6 @@ Go to  http://localhost:3000 in a browser and verify the “Hello! Welcome to Ru
 
 ### Running Cucumber Tests
 
-Run the following command to execute the Cucumber tests:
-
-```
-bundle exec cucumber
-```
-
-Cucumber will run all the feature files and display the test results in the terminal.
-
 ### Running RSpec Tests
 Run the following command to execute the RSpec tests:
 
@@ -176,6 +222,15 @@ Run the following command to execute the RSpec tests:
 bundle exec rspec
 ```
 RSpec will run all the test files and display the test results in the terminal.
+
+
+Run the following command to execute the Cucumber tests:
+
+```
+bundle exec cucumber
+```
+
+Cucumber will run all the feature files and display the test results in the terminal.
 
 #### The comprehensive test coverage needs to run Rspec and cucumber. You will see the coverage percentage after run two commands. 
 
@@ -214,6 +269,8 @@ PostgreSQL
 heroku login
 ```
 
+You can use "git status" and commit changes using "git add ." and "git commit -m yourmessage"
+
 3. Create a new Heroku app:
 
 ```
@@ -235,7 +292,7 @@ heroku run rake db:migrate
 6. Push your code to Heroku:
 
 ```
-git push heroku master
+git push heroku main
 ```
 If you meet the error said: "Detecting rails configuration failed, set HEROKU_DEBUG_RAILS_RUNNER=1 to debug"
 Please run the following command and run the git push again:
