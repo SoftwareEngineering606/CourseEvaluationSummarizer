@@ -169,7 +169,7 @@ class PagesController < ApplicationController
       end
     end
 
-    puts('Final Max')
+    
     numberOfResp_hash[label] = numberOfResp
     numberOfResp = 0
 
@@ -184,7 +184,6 @@ class PagesController < ApplicationController
       new_worksheet = new_workbook.add_worksheet(index)
       sheet_name = "Miscellaneous"
 
-      puts(category)
       if category.include?('understood')
         sheet_name = "Understood Expectation"
       elsif category.include?('participation')
