@@ -54,9 +54,13 @@ class PagesController < ApplicationController
     existing_excel_files = Dir["#{del_directory}/*.xlsx"]
     existing_excel_files.each { |file| File.delete(file) }
 
+    numberOfResp_hash = {}
+
 
  labels.each do |label|
 
+
+    numberOfResp = 0
     directory = Rails.root.join('public', 'uploads')
     excel_files = Dir["#{directory}/*"+label+".xlsx"]
 
@@ -70,6 +74,7 @@ class PagesController < ApplicationController
       begin
     # Uploaded file
     #workbook = RubyXL::Parser.parse('public/uploads/SampleExcel.xlsx')
+    responseCount = []
     workbook = RubyXL::Parser.parse(file_path)
     worksheet = workbook[0]
     category_column_index = 25
@@ -103,6 +108,7 @@ class PagesController < ApplicationController
     # Calculate category statistics (average, median, and mode) for each category
     data_groups.each do |category, _comments|
       response_values = category_statistics[category]['Response Values']
+      responseCount.push(response_values.size)
 
       average = response_values.reduce(0.0, :+) / response_values.length.to_f
 
@@ -115,6 +121,7 @@ class PagesController < ApplicationController
       max_count = value_counts.values.max
       mode = value_counts.key(max_count)
 
+
       perfect_score = response_values.max
 
       category_statistics[category] = {
@@ -124,6 +131,10 @@ class PagesController < ApplicationController
         'Perfect_score' => perfect_score
       }
     end
+
+
+
+    numberOfResp= numberOfResp+responseCount.max
 
     data_groups.each do |category, comments|
       category_stats = category_statistics[category]
@@ -142,11 +153,17 @@ class PagesController < ApplicationController
 
     end
 
+
+
       rescue StandardError => e
         # Handle any errors that occur during parsing
         puts "Error parsing #{file_path}: #{e.message}"
       end
     end
+
+    puts('Final Max')
+    numberOfResp_hash[label] = numberOfResp
+    numberOfResp = 0
 
     new_workbook = RubyXL::Workbook.new
 
@@ -157,10 +174,41 @@ class PagesController < ApplicationController
       # next if comments.empty?
 
       new_worksheet = new_workbook.add_worksheet(index)
+      sheet_name = "Question"
 
-      new_worksheet.sheet_name = "Question "+ (i).to_s
+      puts(category)
+      if category.include?('understood')
+        sheet_name = "Understood Expectation"
+      elsif category.include?('participation')
+        sheet_name = "Engagement and Participation"
+      elsif category.include?('Grade')
+        sheet_name = "Grade"
+      elsif category.include?('feedback')
+        sheet_name = "Feedback"
+      elsif category.include?('critical thinking')
+        sheet_name = "Critical Thinking"
+      elsif category.include?('perspectives')
+        sheet_name = "Diverse ideas and Perspective"
+      elsif category.include?('required')
+        sheet_name = "Course Importance"
+      elsif category.include?('comments')
+        sheet_name = "General Comments"
+      elsif category.include?('organization')
+        sheet_name = "Organization of Course"
+      elsif category.include?('responsibility')
+        sheet_name = "Encouraged Responsibility"
+      elsif category.include?('learning environment')
+        sheet_name = "Learning Environment"
+      elsif category.include?('teaching')
+        sheet_name = "Teaching Methods"
+      elsif category.include?('objectives')
+        sheet_name = "Objectives and Outcomes"
+      end
+
+      new_worksheet.sheet_name = sheet_name
       i = i+1
       row_index = 0
+      
 
       new_worksheet.add_cell(row_index, 0, category.to_s)
       new_worksheet.add_cell(row_index, 1, 'Perfect Score')
@@ -247,7 +295,9 @@ class PagesController < ApplicationController
     processed_file_path = Rails.root.join('public', 'processed', processed_file_name)
     new_workbook.write(processed_file_path)
 
-    end
+ end
+
+    session[:numberOfResp] = numberOfResp_hash
     redirect_to download_report_path
   end
 
@@ -570,6 +620,24 @@ class PagesController < ApplicationController
       starting_column = 6
     end
 
+    puts(session[:numberOfResp])
+
+    sheetResp = new_workbook.add_worksheet('# of Respondents')
+
+    sheetResp.add_cell(0, 0, "Semester")
+    sheetResp.add_cell(0, 1, "# of Respondents")
+    sheetResp.change_row_bold(0,true)
+    sheetResp.change_column_width(0, 20)
+    sheetResp.change_column_width(1, 20)
+
+    row_value = 2
+    resp_hash = session[:numberOfResp]
+
+    resp_hash.each do |key, value|
+      sheetResp.add_cell(row_value, 0, key.to_s)
+      sheetResp.add_cell(row_value, 1, value.to_s)
+      row_value = row_value + 1
+    end
 
 
     final_file_name = 'Final_Processed_'+"-#{Time.now.to_i}" + '.xlsx'
