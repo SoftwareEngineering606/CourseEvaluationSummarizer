@@ -79,6 +79,7 @@ class PagesController < ApplicationController
     worksheet = workbook[0]
     category_column_index = 25
     comments_column_index = 36
+    text_response_column_index = 30
     question_response_value = 29
 
 
@@ -97,6 +98,13 @@ class PagesController < ApplicationController
 
       data_groups[category] ||= []
       data_groups[category] << comment_name unless comment_name.nil? || comment_name.empty?
+
+      if comment_name.nil? || comment_name.empty?
+        test_response_cell = row[text_response_column_index]
+        comment_text = test_response_cell&.value
+
+        data_groups[category] << comment_text unless comment_text.nil? || comment_text.empty?
+      end
 
       question_value_cell = row[question_response_value]
       response_value = question_value_cell&.value
@@ -208,7 +216,7 @@ class PagesController < ApplicationController
       new_worksheet.sheet_name = sheet_name
       i = i+1
       row_index = 0
-      
+
 
       new_worksheet.add_cell(row_index, 0, category.to_s)
       new_worksheet.add_cell(row_index, 1, 'Perfect Score')
