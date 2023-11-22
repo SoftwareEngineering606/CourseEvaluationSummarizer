@@ -24,7 +24,7 @@ class ChatgptService
       model: 'gpt-3.5-turbo-16k', 
       messages: [{ role: 'user', content: query }]
     }
-    response = HTTParty.post(api_url, body: body.to_json, headers: options[:headers], timeout: 500)
+    response = HTTParty.post(api_url, body: body.to_json, headers: options[:headers], timeout: 5000)
     raise response['error']['message'] unless response.code == 200
 
     response['choices'][0]['message']['content']
