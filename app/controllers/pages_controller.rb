@@ -169,7 +169,7 @@ class PagesController < ApplicationController
       end
     end
 
-    
+
     numberOfResp_hash[label] = numberOfResp
     numberOfResp = 0
 
@@ -663,8 +663,12 @@ class PagesController < ApplicationController
 
     session[:processed_intermediate_zip] = zip_file_path
 
+    directory_upload = Rails.root.join('public', 'uploads')
+    excel_files_uploaded = Dir["#{directory_upload}/*.xlsx"]
+
     all_files = excel_files
     all_files.push(file_path)
+    all_files = all_files + excel_files_uploaded
 
 
     zip_name = 'Comparison_Zip'+"-#{Time.now.to_i}"+'.zip'
