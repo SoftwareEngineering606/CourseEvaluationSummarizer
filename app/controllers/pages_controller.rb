@@ -8,6 +8,13 @@ require 'rubyXL/convenience_methods'
 
 
 class PagesController < ApplicationController
+  before_action :initialize_buttons_disabled_state , unless: -> { @initialized }
+
+  def initialize_buttons_disabled_state
+    @buttons_disabled = true
+    @initialized = true
+  end
+
   def homepage
     # @recent_processed_sheets = ProcessedSheet.all
     #@processed_sheet = ProcessedSheet.find(params[:id])
@@ -311,7 +318,6 @@ class PagesController < ApplicationController
 
 
   def compare
-
     directory = Rails.root.join('public', 'processed')
     excel_files = Dir["#{directory}/*.xlsx"]
 
@@ -686,42 +692,53 @@ class PagesController < ApplicationController
 
     processed_zip = [ { name: zip_name, description: 'Description for '+ zip_name, report_path: zip_file_path } ]
     ProcessedSheet.create(processed_zip)
+    @buttons_disabled = false
+    redirect_to download_report_path(buttons_disabled: false)
+  end
 
-    redirect_to download_report_path
-
-    end
   def download
-    name = session[:processedFile]
-    if name.nil?
-      name = 'grouped_data.xlsx'
-    end
-    excel_file_path = Rails.root.join('public', 'processed_final', name)
-        if File.exist?(excel_file_path)
-          send_file excel_file_path, filename: name,
-                     type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-         else
-          flash[:alert] = 'The Excel file does not exist.'
-          redirect_to root_path
+    @buttons_disabled = params[:buttons_disabled].to_s.downcase == 'true'
+    if !@buttons_disabled
+      name = session[:processedFile]
+      if name.nil?
+        name = 'grouped_data.xlsx'
+      end
+      excel_file_path = Rails.root.join('public', 'processed_final', name)
+      
+      if File.exist?(excel_file_path)
+        send_file excel_file_path, filename: name,
+                   type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+      else
+        flash[:alert] = 'The Excel file does not exist.'
+        redirect_to root_path
+      end
+    else
+      flash[:alert] = 'Click on Generate Comparison before clicking on Download'
+      redirect_to download_report_path
     end
   end
+  
 
 
   def downloadIntermediate
-    path = session[:processed_intermediate_zip]
-    puts "here"
-    puts path
-    if path.nil?
-      path = 'processed_files.zip'
-    end
-    zip_file_path = Rails.root.join('public', 'zip_intermediate_processed', path)
-    puts "here2"
-    puts zip_file_path
-    if File.exist?(zip_file_path)
-      send_file zip_file_path, filename: path, type: 'application/zip'
+    @buttons_disabled = params[:buttons_disabled].to_s.downcase == 'true'
+    if !@buttons_disabled
+      path = session[:processed_intermediate_zip]
+      if path.nil?
+        path = 'processed_files.zip'
+      end
+      zip_file_path = Rails.root.join('public', 'zip_intermediate_processed', path)
+      if File.exist?(zip_file_path)
+        send_file zip_file_path, filename: path, type: 'application/zip'
+      else
+        flash[:alert] = 'The zip file does not exist.'
+        redirect_to root_path
+      end
     else
-      flash[:alert] = 'The zip file does not exist.'
-      redirect_to root_path
+      flash[:alert] = 'Click on Generate Comparison before clicking on Download'
+      redirect_to download_report_path
     end
   end
+  
 
 end
