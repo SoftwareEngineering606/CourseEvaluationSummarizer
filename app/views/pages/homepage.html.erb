@@ -99,6 +99,8 @@
       <br>
     <%= form_with(model: @excel_sheet, url: excel_sheets_create_path, local: true, method: :post, html: { multipart: true }) do |form| %>
       <div class="field">
+      <p style="color: blue;">Expected file format is *.xlsx</p>
+      <p style="color: blue;">Expected file name is *_FAXX.xlsx or *_SPXX.xlsx. Here 'XX' represents academic year</p>
         <%= form.label :uploaded_files, 'Choose a file to upload:', multiple: true %>
         <%= form.file_field :uploaded_files, multiple: true %>
       </div>
