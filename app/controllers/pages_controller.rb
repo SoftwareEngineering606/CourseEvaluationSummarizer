@@ -8,6 +8,13 @@ require 'rubyXL/convenience_methods'
 
 
 class PagesController < ApplicationController
+  before_action :initialize_buttons_disabled_state , unless: -> { @initialized }
+
+  def initialize_buttons_disabled_state
+    @buttons_disabled = true
+    @initialized = true
+  end
+
   def homepage
     # @recent_processed_sheets = ProcessedSheet.all
     #@processed_sheet = ProcessedSheet.find(params[:id])
@@ -55,9 +62,13 @@ class PagesController < ApplicationController
     existing_excel_files = Dir["#{del_directory}/*.xlsx"]
     existing_excel_files.each { |file| File.delete(file) }
 
+    numberOfResp_hash = {}
+
 
  labels.each do |label|
 
+
+    numberOfResp = 0
     directory = Rails.root.join('public', 'uploads')
     excel_files = Dir["#{directory}/*"+label+".xlsx"]
 
@@ -71,10 +82,12 @@ class PagesController < ApplicationController
       begin
     # Uploaded file
     #workbook = RubyXL::Parser.parse('public/uploads/SampleExcel.xlsx')
+    responseCount = []
     workbook = RubyXL::Parser.parse(file_path)
     worksheet = workbook[0]
     category_column_index = 25
     comments_column_index = 36
+    text_response_column_index = 30
     question_response_value = 29
 
 
@@ -94,6 +107,13 @@ class PagesController < ApplicationController
       data_groups[category] ||= []
       data_groups[category] << comment_name unless comment_name.nil? || comment_name.empty?
 
+      if comment_name.nil? || comment_name.empty?
+        test_response_cell = row[text_response_column_index]
+        comment_text = test_response_cell&.value
+
+        data_groups[category] << comment_text unless comment_text.nil? || comment_text.empty?
+      end
+
       question_value_cell = row[question_response_value]
       response_value = question_value_cell&.value
 
@@ -104,6 +124,7 @@ class PagesController < ApplicationController
     # Calculate category statistics (average, median, and mode) for each category
     data_groups.each do |category, _comments|
       response_values = category_statistics[category]['Response Values']
+      responseCount.push(response_values.size)
 
       average = response_values.reduce(0.0, :+) / response_values.length.to_f
 
@@ -116,6 +137,7 @@ class PagesController < ApplicationController
       max_count = value_counts.values.max
       mode = value_counts.key(max_count)
 
+
       perfect_score = response_values.max
 
       category_statistics[category] = {
@@ -125,6 +147,10 @@ class PagesController < ApplicationController
         'Perfect_score' => perfect_score
       }
     end
+
+
+
+    numberOfResp= numberOfResp+responseCount.max
 
     data_groups.each do |category, comments|
       category_stats = category_statistics[category]
@@ -143,11 +169,17 @@ class PagesController < ApplicationController
 
     end
 
+
+
       rescue StandardError => e
         # Handle any errors that occur during parsing
         puts "Error parsing #{file_path}: #{e.message}"
       end
     end
+
+
+    numberOfResp_hash[label] = numberOfResp
+    numberOfResp = 0
 
     new_workbook = RubyXL::Workbook.new
 
@@ -158,10 +190,40 @@ class PagesController < ApplicationController
       # next if comments.empty?
 
       new_worksheet = new_workbook.add_worksheet(index)
+      sheet_name = "Miscellaneous"
 
-      new_worksheet.sheet_name = "Question "+ (i).to_s
+      if category.include?('understood')
+        sheet_name = "Understood Expectation"
+      elsif category.include?('participation')
+        sheet_name = "Engagement and Participation"
+      elsif category.include?('Grade')
+        sheet_name = "Grade"
+      elsif category.include?('feedback')
+        sheet_name = "Feedback"
+      elsif category.include?('critical thinking')
+        sheet_name = "Critical Thinking"
+      elsif category.include?('perspectives')
+        sheet_name = "Diverse ideas and Perspective"
+      elsif category.include?('required')
+        sheet_name = "Course Importance"
+      elsif category.include?('comments')
+        sheet_name = "General Comments"
+      elsif category.include?('organization')
+        sheet_name = "Organization of Course"
+      elsif category.include?('responsibility')
+        sheet_name = "Encouraged Responsibility"
+      elsif category.include?('learning environment')
+        sheet_name = "Learning Environment"
+      elsif category.include?('teaching')
+        sheet_name = "Teaching Methods"
+      elsif category.include?('objectives')
+        sheet_name = "Objectives and Outcomes"
+      end
+
+      new_worksheet.sheet_name = sheet_name
       i = i+1
       row_index = 0
+
 
       new_worksheet.add_cell(row_index, 0, category.to_s)
       new_worksheet.add_cell(row_index, 1, 'Perfect Score')
@@ -248,13 +310,14 @@ class PagesController < ApplicationController
     processed_file_path = Rails.root.join('public', 'processed', processed_file_name)
     new_workbook.write(processed_file_path)
 
-    end
+ end
+
+    session[:numberOfResp] = numberOfResp_hash
     redirect_to download_report_path
   end
 
 
   def compare
-
     directory = Rails.root.join('public', 'processed')
     excel_files = Dir["#{directory}/*.xlsx"]
 
@@ -571,6 +634,24 @@ class PagesController < ApplicationController
       starting_column = 6
     end
 
+    puts(session[:numberOfResp])
+
+    sheetResp = new_workbook.add_worksheet('# of Respondents')
+
+    sheetResp.add_cell(0, 0, "Semester")
+    sheetResp.add_cell(0, 1, "# of Respondents")
+    sheetResp.change_row_bold(0,true)
+    sheetResp.change_column_width(0, 20)
+    sheetResp.change_column_width(1, 20)
+
+    row_value = 2
+    resp_hash = session[:numberOfResp]
+
+    resp_hash.each do |key, value|
+      sheetResp.add_cell(row_value, 0, key.to_s)
+      sheetResp.add_cell(row_value, 1, value.to_s)
+      row_value = row_value + 1
+    end
 
 
     final_file_name = 'Final_Processed_'+"-#{Time.now.to_i}" + '.xlsx'
@@ -589,8 +670,12 @@ class PagesController < ApplicationController
 
     session[:processed_intermediate_zip] = zip_file_path
 
+    directory_upload = Rails.root.join('public', 'uploads')
+    excel_files_uploaded = Dir["#{directory_upload}/*.xlsx"]
+
     all_files = excel_files
     all_files.push(file_path)
+    all_files = all_files + excel_files_uploaded
 
 
     zip_name = 'Comparison_Zip'+"-#{Time.now.to_i}"+'.zip'
@@ -607,42 +692,53 @@ class PagesController < ApplicationController
 
     processed_zip = [ { name: zip_name, description: 'Description for '+ zip_name, report_path: zip_file_path } ]
     ProcessedSheet.create(processed_zip)
+    @buttons_disabled = false
+    redirect_to download_report_path(buttons_disabled: false)
+  end
 
-    redirect_to download_report_path
-
-    end
   def download
-    name = session[:processedFile]
-    if name.nil?
-      name = 'grouped_data.xlsx'
-    end
-    excel_file_path = Rails.root.join('public', 'processed_final', name)
-        if File.exist?(excel_file_path)
-          send_file excel_file_path, filename: name,
-                     type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-         else
-          flash[:alert] = 'The Excel file does not exist.'
-          redirect_to root_path
+    @buttons_disabled = params[:buttons_disabled].to_s.downcase == 'true'
+    if !@buttons_disabled
+      name = session[:processedFile]
+      if name.nil?
+        name = 'grouped_data.xlsx'
+      end
+      excel_file_path = Rails.root.join('public', 'processed_final', name)
+      
+      if File.exist?(excel_file_path)
+        send_file excel_file_path, filename: name,
+                   type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+      else
+        flash[:alert] = 'The Excel file does not exist.'
+        redirect_to root_path
+      end
+    else
+      flash[:alert] = 'Click on Generate Comparison before clicking on Download'
+      redirect_to download_report_path
     end
   end
+  
 
 
   def downloadIntermediate
-    path = session[:processed_intermediate_zip]
-    puts "here"
-    puts path
-    if path.nil?
-      path = 'processed_files.zip'
-    end
-    zip_file_path = Rails.root.join('public', 'zip_intermediate_processed', path)
-    puts "here2"
-    puts zip_file_path
-    if File.exist?(zip_file_path)
-      send_file zip_file_path, filename: path, type: 'application/zip'
+    @buttons_disabled = params[:buttons_disabled].to_s.downcase == 'true'
+    if !@buttons_disabled
+      path = session[:processed_intermediate_zip]
+      if path.nil?
+        path = 'processed_files.zip'
+      end
+      zip_file_path = Rails.root.join('public', 'zip_intermediate_processed', path)
+      if File.exist?(zip_file_path)
+        send_file zip_file_path, filename: path, type: 'application/zip'
+      else
+        flash[:alert] = 'The zip file does not exist.'
+        redirect_to root_path
+      end
     else
-      flash[:alert] = 'The zip file does not exist.'
-      redirect_to root_path
+      flash[:alert] = 'Click on Generate Comparison before clicking on Download'
+      redirect_to download_report_path
     end
   end
+  
 
 end

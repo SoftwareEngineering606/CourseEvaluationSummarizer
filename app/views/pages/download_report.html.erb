@@ -53,28 +53,33 @@
     <div class="main-content">
     <div class="upload_files">
     <h1>Download File</h1>
-    <p>Click the 'Generate Comparison' button to generate and 'Download Final Comparison' button to download the file:</p>
+    <p style="color: blue;">Click the 'Generate Comparison' button before clicking 'Download Final Comparison' or 'Download Intermediate Files' button to download the generated files</p>
 
-      <style>
-          .btn {
-              background-color: #C0C0C0; /* Background color */
-              color: #000; /* Text color */
-              padding: 5px 10px; /* Padding inside the button */
-              border: none; /* No border */
-              border-radius: 5px; /* Rounded corners */
-
-          }
-      </style>
+    <style>
+    .btn {
+      background-color: #C0C0C0;
+      color: #000;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+    }
+  
+  </style>
+  
   
     <%= form_tag download_report_path, method: :get do %>
       <!--<button type="submit">Download</button>-->
 
       <%= link_to 'Back to Homepage', '/homepage', class: 'btn' %>
-      <%= link_to 'Generate Comparison', compare_excel_path, class: 'btn' %>
-      <%= link_to 'Download Final Comparison', '/download_excel', class: 'btn' %>
-      <br>
-      <br>
-      <%= link_to 'Download Intermediate Files', '/download_intermediate', class: 'btn' %>
+
+<%= link_to 'Generate Comparison', compare_excel_path(@buttons_disabled), class: 'btn', id: 'generateButton' %>
+<br>
+<br>
+<%= link_to 'Download Final Comparison', '/download_excel', class: 'btn', disabled: @buttons_disabled %>
+<br>
+<br>
+<%= link_to 'Download Intermediate Files', '/download_intermediate', class: 'btn', disabled: @buttons_disabled %>
+
 
     <% end %>
     </div>
