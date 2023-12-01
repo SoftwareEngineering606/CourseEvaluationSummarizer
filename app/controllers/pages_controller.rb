@@ -286,9 +286,9 @@ class PagesController < ApplicationController
       # Make a chatgpt call here to summarize commemnts in some specific word count range and add it to the list
       if comments.length > 0
         input_text = "Summarize the following in 3 4 lines" + comments.join(" ")
-        # summarizer = ChatgptService.new(input_text)
-        # summary = summarizer.call
-        summary = "Dummy summary"
+        summarizer = ChatgptService.new(input_text)
+        summary = summarizer.call
+        # summary = "Dummy summary"
         row_index += 1
         new_worksheet.add_cell(row_index, 0, 'SUMMARY')
         row_index += 1
