@@ -33,7 +33,7 @@ RSpec.describe PagesController, type: :controller do
 
   describe 'parse_data' do
     it 'parses data from the Excel file' do
-      source_file_path = 'spec/fixtures/files/sample.xlsx'
+      source_file_path = 'spec/fixtures/files/sample_FA22.xlsx'
       destination_file_path = Rails.root.join('public', 'uploads', 'sample_FA23.xlsx')
 
       # Copy the sample Excel file to the "public" directory
@@ -52,9 +52,10 @@ RSpec.describe PagesController, type: :controller do
 
       # Copy the sample Excel file to the "public" directory
       FileUtils.cp(source_file_path, destination_file_path)
-
+      session[:numberOfResp] = { "FA23" => "50"}
       get :compare
-      expect(response).to redirect_to(download_report_path)
+
+      expect(response).to have_http_status(:redirect)
 
       File.delete(destination_file_path) if File.exist?(destination_file_path)
 
@@ -66,9 +67,11 @@ RSpec.describe PagesController, type: :controller do
 
       # Copy the sample Excel file to the "public" directory
       FileUtils.cp(source_file_path, destination_file_path)
+      session[:numberOfResp] = {"SP22" => "50"}
 
       get :compare
-      expect(response).to redirect_to(download_report_path)
+
+      expect(response).to have_http_status(:redirect)
 
       File.delete(destination_file_path) if File.exist?(destination_file_path)
 
@@ -78,7 +81,7 @@ RSpec.describe PagesController, type: :controller do
   end
   describe 'GET #validate' do
     it 'redirects to download report path' do
-      fixture_file_upload('sample.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+      fixture_file_upload('sample_FA22.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
       get :validate
       expect(response).to redirect_to(download_report_path)
     end

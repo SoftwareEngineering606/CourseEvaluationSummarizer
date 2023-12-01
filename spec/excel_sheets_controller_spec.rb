@@ -50,14 +50,24 @@ RSpec.describe ExcelSheetsController, type: :controller do
 
         expect(flash[:error]).to eq('Only excel files (.xlsx) are allowed!')
       end
+    end
+
+    context 'when uploading invalid excel file' do
+      it 'sets flash[:error]' do
+        invalid_file = fixture_file_upload('invalid_file_name.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+
+        post :create, params: { uploaded_files: ["",invalid_file] }
+
+        expect(flash[:error]).to eq('Invalid file name. File name should end with either _FAXX or _SPXX where XX are numbers.')
       end
+    end
 
   end
 
   describe 'POST #create' do
     it 'processes and saves uploaded files, ignoring the first file' do
       # Prepare a sample uploaded file
-      sample_file = fixture_file_upload('sample.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+      sample_file = fixture_file_upload('sample_FA22.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
       uploaded_files = ["",sample_file]
 
       post :create, params: { uploaded_files: uploaded_files }
