@@ -42,13 +42,13 @@ class ExcelSheetsController < ApplicationController
       Array(params[:uploaded_files]).drop(1).each do |file|
         if  file.content_type != 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
           flash[:error] = 'Only excel files (.xlsx) are allowed!'
-          redirect_to root_path
+          redirect_to home_page_path
           return
         end
         file_name = file.original_filename
         if !file_name.match?(/_(FA|SP)\d{2}\.xlsx\z/)
           flash[:error] = 'Invalid file name. File name should end with either _FAXX or _SPXX where XX are numbers.'
-          redirect_to root_path
+          redirect_to home_page_path
           return
         end
       end

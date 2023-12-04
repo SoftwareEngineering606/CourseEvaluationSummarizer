@@ -41,7 +41,7 @@ Rails.application.routes.draw do
 
   get '/chatgpt', to: 'chatgpt#index'
   get '/login', to: 'pages#login'
-  get '/homepage', to: 'pages#homepage'
+  get '/homepage', to: 'pages#homepage',  as: 'home_page'
   # root "pages#homepage"
   # match '/excels/sheet/generate', to: 'pages#generate', via: :get,
   #         as: 'generate_excel'
