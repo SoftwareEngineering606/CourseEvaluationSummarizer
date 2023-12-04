@@ -124,7 +124,62 @@ bundle install
 
 3. Install postgresql DB:
 Heroku recommends using PostgreSQL during development as Sqlite3 is not compatible with Heroku.
+   
+## Postgres Installation for Windows
 
+1. Download and Install PostgreSQL: https://www.postgresql.org/download/windows/ 
+   Visit the official PostgreSQL download page: PostgreSQL Downloads
+   Download the latest version for Windows.
+   Run the installer and follow the installation wizard. Make sure to remember the password you set for the postgres user.
+
+   Download PostgreSQL:
+
+1. Visit the official PostgreSQL download page: https://www.postgresql.org/download/windows/ 
+   Choose the version that suits your needs and click on the installer link.
+   
+3. Run the Installer:
+   Execute the downloaded installer to start the installation process.
+   
+4. Choose Installation Directory:
+   During installation, you will be prompted to choose an installation directory. You can choose the default or specify a custom location.
+   
+5. Select Components:
+   Select the components you want to install. The default components are usually sufficient for most users.
+  
+6. Set Data Directory:
+   Choose a location for the data directory. This is where PostgreSQL will store its data. Again, the default location is usually fine.
+
+7. Enter Password for Superuser:
+   Set a password for the superuser (postgres). Remember this password as you'll need it later.
+
+8. Specify Port:
+   Choose the port on which PostgreSQL will listen. The default is 5432, and you can usually stick with this unless you have a specific reason to change it.
+
+9. Select Locale:
+   Choose the default locale settings. The default values are usually appropriate for most users.
+
+10. Install Stack Builder:
+   Stack Builder is a tool that allows you to download and install additional tools and drivers for PostgreSQL. You can choose whether to install it or not.
+
+11. Complete the Installation:
+   Complete the installation process by clicking through the remaining steps.
+
+12. Add PostgreSQL to the System Path:
+   During the installation, you might be asked if you want to add PostgreSQL to the system path. It's generally a good idea to do this to make it easier to run PostgreSQL commands from the command line.
+
+13. Launch pgAdmin:
+   Once the installation is complete, you can launch pgAdmin, the PostgreSQL GUI administration tool that is typically installed along with PostgreSQL.
+
+14. Connect to the PostgreSQL Server:
+   In pgAdmin, you'll need to connect to the PostgreSQL server. Use the superuser (postgres) and the password you set during installation.
+
+Set environment variable using terminal
+'''
+set DB_USERNAME=your_username
+set DB_PASSWORD=your_password
+'''
+
+## Postgres Installation for Ubuntu
 ```
 •	Download POSTgreSQL from https://postgresapp.com/downloads.html
 •	Add the below path to ~/.bash_profile 
