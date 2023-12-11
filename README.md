@@ -1,5 +1,8 @@
 # CourseEvaluationSummarizerProject
 ---------------------------------------------------------------------------------------------------------------------------
+Heroku deployed App link:
+https://peaceful-earth-44851-8eb808894c2b.herokuapp.com/
+
 ## First: Contact information
 
 Kangdong Yuan
